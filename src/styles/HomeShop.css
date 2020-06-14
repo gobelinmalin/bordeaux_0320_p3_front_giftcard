@@ -1,0 +1,38 @@
+.shop-slider-container {
+    background-color: #F8C597;
+    border-radius: 0 20px 20px;
+    width: 100%;
+};
+
+.shopslidercontainer .slick-list, .slick-slider, .slick-track, .slick-initialized {
+    position: relative;
+    display: block;
+    width: 95%;
+    margin: auto;
+}
+
+.shopslidercontainer .slick-slide {
+    height: 15vh;
+}
+
+.shopslidercontainer .slick-slide button {
+    border: none;
+    background-color: transparent;
+}
+
+.shopslidercontainer .slick-slide button:hover {
+    cursor: pointer;
+}
+
+.shopslidercontainer .slick-slide img {
+   display: block;
+   margin: auto;
+   position: unset;
+   width: 90%;
+   height: 15vh;
+   object-fit: contain;
+}
+
+.lastitem {
+    padding-bottom: 3rem;
+}

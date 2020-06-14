@@ -1,0 +1,40 @@
+.home {
+    width:90%;
+    margin:auto;
+    padding-bottom: 1rem;
+}
+
+.home h2 {
+    margin-top: 3rem;
+}
+
+.contBtn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.container {
+    width: 500px;
+    height: 600px;
+    text-align: justify;
+    border-top: none;
+}
+
+.active {
+    background: #F8C597;
+    color: #0a0a0a;
+}
+
+.container-products {
+    background-color: #F8C597;
+    border-radius: 0 0 20px 20px;
+    margin: 0;
+    padding: 2rem 1rem;
+    display: flex;
+}
+
+.home .round {
+    border-radius: 0 20px 0 0;
+}
