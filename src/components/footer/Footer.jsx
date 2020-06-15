@@ -1,13 +1,13 @@
 import React from 'react';
 import Banner from './Banner/Banner';
-import './Footer.css'
+import './Footer.css';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { borders } from '@material-ui/system';
-import twitter from '../../image/LogoSocialNetwork/logo-footer-twitter.png'
-import instagram from '../../image/LogoSocialNetwork/logo-footer-instagram.png'
-import facebook from '../../image/LogoSocialNetwork/logo-footer-facebook.png'
+import twitter from '../../image/LogoSocialNetwork/logo-footer-twitter.png';
+import instagram from '../../image/LogoSocialNetwork/logo-footer-instagram.png';
+import facebook from '../../image/LogoSocialNetwork/logo-footer-facebook.png';
 
 
 const Footer = () => {
@@ -21,7 +21,6 @@ const Footer = () => {
             borderRadius: '50px'
           },
         root: {
-            
           '& > *': {
             margin: theme.spacing(1),
             width: '50ch',
@@ -40,7 +39,7 @@ const Footer = () => {
       }));
     const classes = useStyles();
     return (
-        <React.Fragment>
+        <>
             <Banner />
             <div className='Footer'>
                 <div className='About'>
@@ -95,7 +94,7 @@ const Footer = () => {
                     
                 </div>
             </div>
-        </React.Fragment>
+        </>
             
 
     )

@@ -4,7 +4,7 @@ import Icon from '../Icon';
 
 const Banner = () => {
     return (
-        <div className={'Banner'}>
+        <div className='Banner'>
             <div className='IconAndTextContainer'>
                 <Icon image='gift'/>
                 <p>Cadeau 100% personnalisé</p>
