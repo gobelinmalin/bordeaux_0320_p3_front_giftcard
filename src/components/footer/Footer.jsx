@@ -57,6 +57,7 @@ const Footer = () => {
                     <p>Inscrivez-vous à notre newsletter pour être informé de nos actualités !</p>
                     <form className={classes.root} noValidate autoComplete="off">
                     <div className='FirstnameLastnameInputs'>
+                    
                         <TextField id="outlined-basic" label="Nom" variant="outlined" style={{width: 210}}/>
                         <TextField id="outlined-basic" label="Prénom" variant="outlined" style={{width: 210}}/>
                     </div>
