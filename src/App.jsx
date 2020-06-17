@@ -11,11 +11,13 @@ import Contact from './components/Contact/Contact';
 function App() {
   return (
     <Router>
+    <Header />
       <Switch>
-        <Header />
+        
         <Route path="/contact" component={Contact} exact />
-        <Footer />
+        
       </Switch>
+      <Footer />
     </Router>
   );
 }
