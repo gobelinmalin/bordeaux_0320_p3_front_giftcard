@@ -2,6 +2,10 @@ body {
   overflow-x: hidden;
   outline:none;
   color:#20124d 
+
+.App {
+  text-align: center;
+  font-family: 'Montserrat', 'sans-serif';
 }
 
 /*TITLE*/
