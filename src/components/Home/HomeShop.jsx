@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeShopSlider from './HomeShopSlider';
-import '../../styles/HomeShop.css';
+import '../../style/HomeShop.css';
 
 const HomeShop = () => {
     return (

@@ -1,53 +1,47 @@
 import React, {useState, useEffect} from 'react';
+import { connect } from 'react-redux';
 import CardProduct from './CardProduct';
-import Axios from 'axios';
+import axios from 'axios';
+import * as actionCreators from '../../actions/index';
 
-const HomeProductList = ({onglets}) => {
-    const [newProducts, setNewProducts] = useState([]);
-    const [MonthProducts, setMonthProducts] = useState([]);
+
+const HomeProductList = ({onglets, getProducts, newProducts}) => {
+    const [monthProducts, setMonthProducts] = useState([]);
 
     useEffect(() => {
-        //news
-        Axios.get('URL/api/')
-            .then(res => res.data)
-            .then(data => getNewProducts(data))
-            .then(results => setNewProducts(results))
-        //month
-        Axios.get('URL/api/')
-            .then(res => res.data)
-            .then(data => getMonthProducts(data))
-            .then(results => setMonthProducts(results))
-    }, []);
-
-    let month = new Date();
-    const months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-    let goodMonth = months[month.getMonth()];
-
-    // have the news products
-    const getNewProducts = (data) => {
-        return data.filter(product => product.creationDate.includes(goodMonth)).slice(0, 9);
-    };
-
-    // have the products of the month
-    const getMonthProducts = (data) => {
-        return data.filter(product => product.name.includes(product.createDate.includes(goodMonth)).slice(0,9));
-    };
-
+        axios.get('https://givyoo.herokuapp.com/api/products')
+        .then(res => getProducts(res.data))
+        .catch(err => { console.log(err)})
+        axios.get('http://localhost:3000/api/orders/products')
+        .then(res => res.data)
+        .then(results => setMonthProducts(results))
+        .catch(err => { console.log(err)})
+      }, []);
     
-
     return(
         <div className="container-products">
             {onglets === 1 ? (
                 <>
-                <CardProduct products={newProducts} />
-                <CardProduct products={newProducts} />
-                <CardProduct products={newProducts} />
+                    {newProducts && newProducts.slice(0,8).map(product => <CardProduct key={product.id} product={product} />)}
                 </>
             ) : (
-                <CardProduct products={MonthProducts}/>
+               <>
+                    {monthProducts.slice(0,8).map(product => <CardProduct key={product.id} product={product} />)}
+                </>
             )}
         </div>
     )
 };
+const mapStateToProps = state => {
+    return {
+      newProducts: state.newProducts
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        getProducts: (products) => dispatch(actionCreators.getProducts(products)),
+    };
+  };
 
-export default HomeProductList;
+export default connect(mapStateToProps, mapDispatchToProps)(HomeProductList);

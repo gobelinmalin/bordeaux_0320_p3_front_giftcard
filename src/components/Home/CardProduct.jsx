@@ -1,11 +1,13 @@
 import React from 'react';
-import '../../styles/CardProduct.css';
+import '../../style/CardProduct.css';
+import ButtonPersonnalisation from '../../style/ButtonPersonnalisation';
 
-const CardProduct = ({products}) => {
+const CardProduct = ({product}) => {
     return (
         <div className='card-product' >
-            <div className='card-product-img' />
-            <button className='button-custom'>Je personnalise !</button>
+            <img src={product.image} alt={product.name} className='card-product-img' />
+            <p>à partir de {product.credit}€</p>
+            <ButtonPersonnalisation />
         </div>
     )
 };

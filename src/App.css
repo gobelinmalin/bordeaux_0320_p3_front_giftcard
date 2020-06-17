@@ -1,6 +1,7 @@
 body {
   overflow-x: hidden;
   outline:none;
+  color:#20124d 
 }
 
 /*TITLE*/
@@ -13,27 +14,8 @@ h3 {
   font-size: 25px;
 }
 h4 {
-  font-weight: 600;
-  font-size: 18px;
-}
-
-
-/*BUTTON*/
-/*button je personnalise*/
-.button-custom {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  background-color: #F28A2F;
-  color: #fff;
-  border-radius: 30px;
-  border:none;
-  padding: 0.5rem 1rem;
-  width: fit-content;
-}
-
-.button-custom:hover {
-  cursor: pointer;
+  font-weight: 00;
+  font-size: 15px;
 }
 
 /*button onglet*/
@@ -41,8 +23,8 @@ h4 {
   font-family: 'Montserrat', sans-serif;
   width: 50%;
   height: 3rem;
-  background: #0a0a0a;
-  color: #fff;
+  background: #20124d;
+  color: #fff2ceff;
   display: flex;
   justify-content: center;
   align-items: center;

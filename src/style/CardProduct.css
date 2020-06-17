@@ -1,0 +1,28 @@
+.card-product {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 0 1rem 1rem 1rem;
+    border-radius: 10px;
+}
+.card-product-img {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 0.7rem;
+    object-fit: contain;
+}
+
+.card-product p {
+    margin:0;
+    margin-bottom:0.5rem
+}
+
+.card-product-img:hover {
+    cursor: pointer;
+}
+
+.card-product .button-custom {
+    margin: auto;
+}

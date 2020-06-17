@@ -1,34 +1,40 @@
 .shop-slider-container {
-    background-color: #F8C597;
-    border-radius: 0 20px 20px;
+    border-radius: 0 10px 10px;
     width: 100%;
+    padding: 0.5rem 0;
+    background-color: #fff2ceff
 };
 
-.shopslidercontainer .slick-list, .slick-slider, .slick-track, .slick-initialized {
+.slick-list, .slick-slider, .slick-track, .slick-initialized {
     position: relative;
     display: block;
     width: 95%;
     margin: auto;
 }
 
-.shopslidercontainer .slick-slide {
+.slick-track {
+    top: 0;
+    left: 0;
+}
+
+.slick-slide {
     height: 15vh;
 }
 
-.shopslidercontainer .slick-slide button {
+.slick-slide button {
     border: none;
     background-color: transparent;
 }
 
-.shopslidercontainer .slick-slide button:hover {
+.slick-slide button:hover {
     cursor: pointer;
 }
 
-.shopslidercontainer .slick-slide img {
+.slick-slide img {
    display: block;
    margin: auto;
    position: unset;
-   width: 90%;
+   width: 50%;
    height: 15vh;
    object-fit: contain;
 }

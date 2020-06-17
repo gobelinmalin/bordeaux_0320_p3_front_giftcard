@@ -23,18 +23,19 @@
 }
 
 .active {
-    background: #F8C597;
-    color: #0a0a0a;
+    background: #fff2ceff;
+    color: #20124d;
 }
 
 .container-products {
-    background-color: #F8C597;
-    border-radius: 0 0 20px 20px;
-    margin: 0;
-    padding: 2rem 1rem;
+    background-color:#fff2ceff;
+    border-radius: 0 0 10px 10px;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 1rem;
 }
 
 .home .round {
-    border-radius: 0 20px 0 0;
+    border-radius: 0 10px 0 0;
 }

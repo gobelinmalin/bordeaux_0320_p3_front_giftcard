@@ -1,13 +1,13 @@
 import React from 'react';
-import HomeCarousel from './HomeCarousel';
 import HomeProductContainer from './HomeProductContainer';
 import HomeThemeContainer from './HomeThemeContainer';
 import HomeShop from './HomeShop';
+import HomerBanner from './HomeBanner';
 
 const HomeContainer = () => {
     return (
         <>
-            <HomeCarousel />
+            <HomerBanner />
             <HomeProductContainer />
             <HomeThemeContainer />
             <HomeShop />

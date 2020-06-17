@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import HomeProductList from './HomeProductList';
-import '../../styles/HomeProductContainer.css';
+import '../../style/HomeProductContainer.css';
 
 const HomeProductContainer = () => {
     const [onglets, setOnglets] = useState(1);
@@ -21,7 +21,7 @@ const HomeProductContainer = () => {
                 onClick={goMonth}
                 className={`onglets round ${onglets === 2 ? "active" : ""}`}
                 >
-                PRODUITS DU MOIS
+                CARTES DU MOIS
                 </button>
             </div>
             <HomeProductList onglets={onglets}/>

@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import HomeTheme from './HomeTheme';
 import Axios from 'axios';
-import '../../styles/HomeThemeContainer.css';
+import '../../style/HomeThemeContainer.css';
 
 const HomeThemeContainer = () => {
     const [themes, setThemes] = useState([]);
     useEffect(() => {
-        Axios.get('URL/api')
+        Axios.get('http://localhost:3000/api/themes')
             .then(res => res.data)
             .then(data => setThemes(data))
     }, []);
 
     return (
         <div className='home'>
-            <h2>NOS THÈMES</h2>
+            <h2>NOS THÈMATIQUES</h2>
            <HomeTheme themes={themes}/> 
         </div>
     )
