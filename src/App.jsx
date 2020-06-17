@@ -1,4 +1,7 @@
 import React from 'react';
+
+import Header from './components/Header';
+
 import './App.css';
 import Footer from './components/footer/Footer';
 
@@ -9,8 +12,9 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Header />
         <Route path="/contact" component={Contact} exact />
-        <Route path="/" component={Footer}  />
+        <Footer />
       </Switch>
     </Router>
   );
