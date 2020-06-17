@@ -49,6 +49,9 @@
 .Header_icon {
   text-decoration: none;
   color: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Header_icons_description {
