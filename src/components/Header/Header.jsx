@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoSvg from '../style/images/LogoGivYoo.svg';
+import logoSvg from '../../style/images/LogoGivYoo.svg';
 
-import '../style/css/Header.css';
+import '../../style/Header.css';
 
 function Header() {
   return (
@@ -20,24 +20,27 @@ function Header() {
         <Link className="Header_link" to="/">
           Enseignes
         </Link>
+        <Link className="Header_link" to="/contact">
+          Contact
+        </Link>
       </div>
       <div className="Header_icons">
         <div className="Header_icons_container">
           <Link className="Header_icon" to="/">
-            <i className="fas fa-user"></i>
-            <a className="Header_icons_description">SE CONNECTER</a>
+            <i className="fas fa-user" />
+            <p className="Header_icons_description">SE CONNECTER</p>
           </Link>
         </div>
         <div className="Header_icons_container">
           <Link className="Header_icon" to="/">
-            <i className="fas fa-heart"></i>
-            <a className="Header_icons_description">FAVORIS</a>
+            <i className="fas fa-heart" />
+            <p className="Header_icons_description">FAVORIS</p>
           </Link>
         </div>
         <div className="Header_icons_container">
           <Link className="Header_icon" to="/">
-            <i className="fas fa-shopping-cart"></i>
-            <a className="Header_icons_description">PANIER</a>
+            <i className="fas fa-shopping-cart" />
+            <p className="Header_icons_description">PANIER</p>
           </Link>
         </div>
       </div>
