@@ -12,6 +12,7 @@
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
+  z-index: 999;
 }
 
 .Header_logo {
@@ -27,7 +28,6 @@
 }
 
 .Header_link {
-  color: #0a0a0a;
   text-decoration: none;
 }
 
@@ -48,7 +48,9 @@
 
 .Header_icon {
   text-decoration: none;
-  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .Header_icons_description {
@@ -58,5 +60,4 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  color: #0a0a0a;
 }

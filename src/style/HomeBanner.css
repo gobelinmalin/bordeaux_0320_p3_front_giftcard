@@ -1,0 +1,13 @@
+.home-banner {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  background-color: #20124d;
+  color: #fff;
+  padding: 1vh;
+  text-align: center;
+  height: 15vh;
+  margin-top: 100px;
+}

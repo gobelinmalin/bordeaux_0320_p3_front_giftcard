@@ -21,7 +21,7 @@ const ContactForm = () => {
   return (
     <div>
       <div className="FormWrapper">
-        <h2>Contacter nous</h2>
+        <h2>Contactez-nous</h2>
         <form onSubmit={handleSubmit} noValidate>
           <div className="name">
             <label htmlFor="name">
