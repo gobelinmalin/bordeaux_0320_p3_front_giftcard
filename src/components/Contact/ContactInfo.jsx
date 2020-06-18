@@ -1,8 +1,5 @@
 import React from 'react';
 import './ContactInfo.css';
-import location from '../../Images/Icone/location-icone.png';
-import phone from '../../Images/Icone/phone-icone.png';
-import mail from '../../Images/Icone/mail-icone.png';
 
 const ContactInfo = () => {
   return (
@@ -10,7 +7,7 @@ const ContactInfo = () => {
       <div className="informations">
         <div className="LeftLocation">
           <div className="LeftLocationImage">
-            <img src={location} alt="location icone" />
+            <i className="fas fa-map-marker-alt Icon" />
           </div>
           <div className="LeftLocationText">
             <h2>Location</h2>
@@ -20,7 +17,7 @@ const ContactInfo = () => {
         </div>
         <div className="LeftPhone">
           <div className="LeftPhoneImage">
-            <img src={phone} alt="phone icone" />
+            <i className="fas fa-phone Icon" />
           </div>
           <div className="LeftPhoneText">
             <h2>Support</h2>
@@ -30,7 +27,7 @@ const ContactInfo = () => {
         </div>
         <div className="LeftMail">
           <div className="LeftMailImage">
-            <img src={mail} alt="mail icone" />
+            <i className="fas fa-envelope Icon" />
           </div>
           <div className="LeftMailText">
             <h2>Email</h2>
