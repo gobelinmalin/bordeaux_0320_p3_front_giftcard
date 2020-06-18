@@ -27,7 +27,6 @@
 }
 
 .Header_link {
-  color: #0a0a0a;
   text-decoration: none;
 }
 
@@ -48,7 +47,9 @@
 
 .Header_icon {
   text-decoration: none;
-  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .Header_icons_description {
@@ -58,5 +59,4 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  color: #0a0a0a;
 }

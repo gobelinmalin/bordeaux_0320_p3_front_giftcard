@@ -1,11 +1,8 @@
 body {
-  overflow-x: hidden;
-  outline:none;
-  color:#20124d 
-
-.App {
-  text-align: center;
-  font-family: 'Montserrat', 'sans-serif';
+    font-family: 'Montserrat', 'sans-serif';
+    overflow-x: hidden;
+    outline:none;
+    color:#20124d 
 }
 
 /*TITLE*/
@@ -37,3 +34,6 @@ h4 {
   font-weight: 600;
   font-size:1.1rem
 }
+
+
+
