@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import './App.css';
 import Footer from './components/footer/Footer';
 import Contact from './components/Contact/Contact';
