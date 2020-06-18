@@ -1,8 +1,12 @@
 body {
-    font-family: 'Montserrat', 'sans-serif';
-    overflow-x: hidden;
-    outline:none;
-    color:#20124d 
+  font-family: 'Montserrat', 'sans-serif';
+  overflow-x: hidden;
+  outline: none;
+  color: #20124d;
+}
+
+a {
+  color: #20124d;
 }
 
 /*TITLE*/
@@ -30,10 +34,7 @@ h4 {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border:none;
+  border: none;
   font-weight: 600;
-  font-size:1.1rem
+  font-size: 1.1rem;
 }
-
-
-
