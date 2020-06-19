@@ -19,11 +19,9 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
       <div className="FormWrapper">
         <h2>Contactez-nous</h2>
         <form onSubmit={handleSubmit} noValidate>
-          <div className="name">
             <label htmlFor="name">
               Nom *
               <input
@@ -35,8 +33,6 @@ const ContactForm = () => {
                 noValidate
               />
             </label>
-          </div>
-          <div className="email">
             <label htmlFor="email">
               Email *
               <input
@@ -48,9 +44,6 @@ const ContactForm = () => {
                 noValidate
               />
             </label>
-          </div>
-
-          <div className="phone">
             <label htmlFor="phone">
               Téléphone
               <input
@@ -62,8 +55,6 @@ const ContactForm = () => {
                 noValidate
               />
             </label>
-          </div>
-          <div className="subject">
             <label htmlFor="subject">
               Sujet
               <input
@@ -75,8 +66,6 @@ const ContactForm = () => {
                 noValidate
               />
             </label>
-          </div>
-          <div className="message">
             <label htmlFor="message">
               Message *
               <textarea
@@ -88,18 +77,14 @@ const ContactForm = () => {
                 noValidate
               />
             </label>
-          </div>
-
           <div className="info">
             <small>* required</small>
           </div>
-
           <div className="submit">
             <button type="submit">Submit</button>
           </div>
         </form>
       </div>
-    </div>
   );
 };
 

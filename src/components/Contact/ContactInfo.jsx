@@ -3,7 +3,6 @@ import './ContactInfo.css';
 
 const ContactInfo = () => {
   return (
-    <div>
       <div className="informations">
         <div className="LeftLocation">
           <div className="LeftLocationImage">
@@ -32,15 +31,13 @@ const ContactInfo = () => {
           <div className="LeftMailText">
             <h2>Email</h2>
             <p>
-              support
-              <br />
               contact@Givyoo.com
             </p>
           </div>
         </div>
+        <div className='circle circle1'/>
       </div>
-    </div>
-  );
+    );
 };
 
 export default ContactInfo;

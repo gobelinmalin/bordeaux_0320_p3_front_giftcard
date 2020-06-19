@@ -6,34 +6,17 @@
   margin: 40px 0px 40px 0px;
 }
 
-.informations {
+.FormWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin: 100px;
-  width: 480px;
-  max-width: 80%;
-  min-width: 100px;
-  min-height: 760px;
+  height: 80vh;
+  width: 50%;
   padding: 20px 40px;
-  border-radius: 6px;
+  border-radius: 10px;
   box-shadow: -1px 1px 20px 0px rgba(0, 0, 0, 0.75);
-  background-color: #fefefe;
-}
-
-.FormWrapper {
-  display: flex;
-  flex-direction: column;
-  margin: 100px;
-  width: 480px;
-  max-width: 80%;
-  min-width: 100px;
-  min-height: 400px;
-  padding: 20px 40px;
-  border-radius: 6px;
-  box-shadow: -1px 1px 20px 0px rgba(0, 0, 0, 0.75);
-  background-color: #fefefe;
+  background-color: #fff;
 }
 
 .FormWrapper h2 {
@@ -50,6 +33,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .info {
@@ -59,39 +43,36 @@
 }
 
 .info small {
-  color: red;
+  color: #e12b4d;
 }
 
 .FormWrapper label {
   margin-bottom: 0.5em;
   color: #444;
   font-weight: 600;
-}
-
-.FormWrapper .LabelBad {
-  color: #db2269;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .FormWrapper input {
-  padding: 10px 10px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 10px;
   outline: none;
   border: 1px solid #d6d1d5;
-  width: 100%;
 }
 
 .FormWrapper input:hover,
 .FormWrapper textarea:hover {
-  border: 1px solid #e12b4d;
+  border: 1px solid #fadb11;
 }
 
 .FormWrapper textarea {
-  height: 200px;
+  height: 10vh;
   padding: 10px 10px;
   border-radius: 8px;
   outline: none;
   border: 1px solid #d6d1d5;
-  width: 100%;
 }
 
 .FormWrapper textarea::placeholder {
@@ -104,25 +85,10 @@
   color: #bbb;
 }
 
-.InputLengthDefault {
-  border: 1px solid #d6d1d5;
-}
-
-.InputLengthOk {
-  border: 1px solid #10ac84;
-}
-
-.FormWrapper .InputLengthBad,
-.FormWrapper .TextareaLengthBad {
-  border: 1px solid #db2269;
-}
-
 .FormWrapper button {
   min-width: 100%;
   cursor: pointer;
-  margin-right: 0.25em;
-  margin-top: 0.5em;
-  padding: 0.938em;
+  padding: 0.8rem;
   border: none;
   border-radius: 10px;
   background-color: #231864;
@@ -133,13 +99,6 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-}
-
-.error {
-  color: #db2269;
-  font-size: 0.8em;
-  display: relative;
-  padding: 5px;
 }
 
 .name,
@@ -166,7 +125,6 @@
   flex-direction: column;
   margin-bottom: 15px;
   width: 100%;
-  height: 100%;
 }
 
 .submit {
