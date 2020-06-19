@@ -2,7 +2,10 @@
     border-radius: 0 10px 10px;
     width: 100%;
     padding: 0.5rem 0;
-    background-color: #fff2ceff
+    background-color: #fff;
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.08);
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.08);
 };
 
 .slick-list, .slick-slider, .slick-track, .slick-initialized {

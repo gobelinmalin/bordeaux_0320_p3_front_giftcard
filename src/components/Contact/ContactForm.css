@@ -82,7 +82,7 @@
 
 .FormWrapper input:hover,
 .FormWrapper textarea:hover {
-  border: 1px solid #f28a2f;
+  border: 1px solid #e12b4d;
 }
 
 .FormWrapper textarea {
@@ -125,7 +125,7 @@
   padding: 0.938em;
   border: none;
   border-radius: 10px;
-  background-color: #20124d;
+  background-color: #231864;
   color: #fefefe;
   font-size: 20px;
   font-weight: bold;

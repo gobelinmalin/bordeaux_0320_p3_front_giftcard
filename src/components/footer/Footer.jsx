@@ -9,9 +9,9 @@ const Footer = () => {
   const useStyles = makeStyles((theme) => ({
     Button: {
       color: 'white',
-      backgroundColor: '#20124d',
+      backgroundColor: '#231864',
       '&:hover': {
-        background: '#20124d',
+        background: '#231864',
       },
       borderRadius: '10px',
     },
@@ -21,12 +21,12 @@ const Footer = () => {
         width: '50ch',
       },
       '& label.Mui-focused': {
-        color: '#F28A2F',
+        color: '#231864',
       },
 
       '& .MuiOutlinedInput-root': {
         '&.Mui-focused fieldset': {
-          borderColor: '#F28A2F',
+          borderColor: '#fadb11',
         },
       },
     },

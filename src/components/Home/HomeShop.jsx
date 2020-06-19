@@ -5,6 +5,7 @@ import '../../style/HomeShop.css';
 const HomeShop = () => {
     return (
         <div className='home lastitem'>
+            <div className='circle circle3'/>
             <h2>NOS ENSEIGNES</h2>
             <div className='shop-slider-container'>
                 <HomeShopSlider />

@@ -9,22 +9,27 @@ const HomeProductContainer = () => {
 
     return (
         <div className='home'>
-            <h2>À NE PAS MANQUER</h2>
-            <div className="contBtn">
-                <button
-                onClick={goNews}
-                className={`onglets ${onglets === 1 ? "active" : ""}`}
-                >
-                NOUVEAUTÉS
-                </button>
-                <button
-                onClick={goMonth}
-                className={`onglets round ${onglets === 2 ? "active" : ""}`}
-                >
-                CARTES DU MOIS
-                </button>
+            <div className='title'>
+                <div className='circle circle1'/>
+                <h2>À NE PAS MANQUER</h2>
             </div>
-            <HomeProductList onglets={onglets}/>
+            <div className='container-prod'>
+                <div className="contBtn">
+                    <button
+                    onClick={goNews}
+                    className={`onglets ${onglets === 1 ? "active" : ""}`}
+                    >
+                    NOUVEAUTÉS
+                    </button>
+                    <button
+                    onClick={goMonth}
+                    className={`onglets round ${onglets === 2 ? "active" : ""}`}
+                    >
+                    CARTES DU MOIS
+                    </button>
+                </div>
+                <HomeProductList onglets={onglets}/>
+            </div>
         </div>
     )
 };

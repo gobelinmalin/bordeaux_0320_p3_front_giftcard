@@ -1,5 +1,5 @@
 .Banner {
-  background-color: #20124d;
+  background-color: #231864;
   width: 100%;
   height: 90px;
   display: flex;
@@ -9,7 +9,7 @@
 
 .IconAndTextContainer {
   display: flex;
-  color: white;
+  color: #fff;
   align-items: center;
 }
 

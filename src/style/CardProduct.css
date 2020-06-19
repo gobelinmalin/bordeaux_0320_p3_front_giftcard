@@ -7,16 +7,43 @@
     padding: 0 1rem 1rem 1rem;
     border-radius: 10px;
 }
+
 .card-product-img {
     width: 100%;
+    height: 60%;
     margin: auto;
-    margin-bottom: 0.7rem;
+    margin-bottom: 1.7rem;
+    position: relative;
+    border-radius: 10px;
+}
+
+.card-product-img img {
     object-fit: contain;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card-product-img::after {
+    position: absolute;
+    content: ''; 
+    display: block; 
+    top: 0; 
+    left: 0; 
+    height: 100%; 
+    width: 100%;
+}
+
+
+.card-product:hover .card-product-img::after, .card-product:hover img {
+    background: none;
+    opacity: 1
 }
 
 .card-product p {
     margin:0;
-    margin-bottom:0.5rem
+    margin-bottom:0.5rem;
+    color:#231864
 }
 
 .card-product-img:hover {

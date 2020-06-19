@@ -1,10 +1,9 @@
 .Footer {
-  margin-top: 50px;
+  padding-top: 50px;
   display: flex;
   justify-content: space-around;
-}
-
-.About {
+  background-color: #fff;
+  color:#231864
 }
 
 .About ul {
@@ -16,7 +15,6 @@
 }
 
 .About ul li a {
-  color: black;
   text-decoration: none;
 }
 
@@ -58,7 +56,7 @@
 }
 
 .vl {
-  border-left: 2px solid #20124d;
+  border-left: 2px solid #231864;
   height: 280px;
   margin-right: 50px;
 }
@@ -72,7 +70,7 @@
 .IconSocialNetwork {
   font-size: 2rem;
   margin-right: 0.5rem;
-  color: #20124d;
+  color: #231864;
 }
 
 .IconSocialNetwork:hover {

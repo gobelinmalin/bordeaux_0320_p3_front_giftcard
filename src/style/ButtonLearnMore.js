@@ -5,10 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 const ButtonLearnMore = () => {
     const useStyles = makeStyles({
         root: {
-        backgroundColor: '#fff2ceff',
+        backgroundColor: '#e12b4d',
         border: 0,
         borderRadius: 10,
-        color: '#20124d',
+        color: '#fff',
         height: '2rem',
         padding: '1rem',
         fontWeight: '500',
@@ -17,7 +17,7 @@ const ButtonLearnMore = () => {
         boxShadow:'none',
         '&:hover': {
             boxShadow: ' 0px 0px 5px 0px rgba(255,242,206,1)',
-            backgroundColor: '#fff2ceff',
+            backgroundColor: '#e12b4d',
         },
         },
     });

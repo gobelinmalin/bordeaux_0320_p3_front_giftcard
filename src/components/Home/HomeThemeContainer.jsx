@@ -13,7 +13,10 @@ const HomeThemeContainer = () => {
 
     return (
         <div className='home'>
-            <h2>NOS THÈMATIQUES</h2>
+            <div className='title'>
+                <div className='circle circle2'/>
+                <h2>THÉMATIQUES</h2>
+            </div>
            <HomeTheme themes={themes}/> 
         </div>
     )

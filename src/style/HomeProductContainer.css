@@ -2,6 +2,7 @@
     width:90%;
     margin:auto;
     padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 .home h2 {
@@ -14,7 +15,11 @@
     width: 100%;
 }
 
-
+.container-prod {
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.08);
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.08);
+}
 .container {
     width: 500px;
     height: 600px;
@@ -23,12 +28,45 @@
 }
 
 .active {
-    background: #fff2ceff;
-    color: #20124d;
+    background: #fff;
+    color: #231864;
+}
+
+.circle {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    position: absolute;
+    z-index: -1;
+}
+
+.circle1 {
+    background: #199bd5;
+    left: 1rem;
+}
+
+.circle2 {
+    background: #fadb11;
+    right:1rem;
+    margin-top: 2rem;
+}
+
+.circle3 {
+    background: #e12b4d;
+    left:40%;
+
+}
+
+
+.title {
+    display: flex;
 }
 
 .container-products {
-    background-color:#fff2ceff;
+    background-color:#fff;
+    -webkit-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.15);
+    box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.15);
     border-radius: 0 0 10px 10px;
     display: flex;
     flex-wrap: wrap;
