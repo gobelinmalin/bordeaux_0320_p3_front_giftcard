@@ -9,9 +9,9 @@ const Footer = () => {
   const useStyles = makeStyles((theme) => ({
     Button: {
       color: 'white',
-      backgroundColor: '#20124d',
+      backgroundColor: '#231864',
       '&:hover': {
-        background: '#20124d',
+        background: '#231864',
       },
       borderRadius: '10px',
     },
@@ -68,20 +68,20 @@ const Footer = () => {
           <form className={classes.root} noValidate autoComplete="off">
             <div className="FirstnameLastnameInputs">
               <TextField
-                id="outlined-basic"
+                id="newsletter-name"
                 label="Nom"
                 variant="outlined"
                 style={{ width: 210 }}
               />
               <TextField
-                id="outlined-basic"
+                id="newsletter-firstname"
                 label="Prénom"
                 variant="outlined"
                 style={{ width: 210 }}
               />
             </div>
             <TextField
-              id="outlined-basic"
+              id="newsletter-mail"
               label="Mail"
               variant="outlined"
               className={classes.TextField}

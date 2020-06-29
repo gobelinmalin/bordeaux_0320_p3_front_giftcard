@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoSvg from '../../style/images/LogoGivYoo.svg';
 
 import '../../style/Header.css';
 
-function Header() {
+function Header({isAuthenticated}) {
   return (
     <nav className="Header">
       <Link to="/">
@@ -26,10 +27,16 @@ function Header() {
       </div>
       <div className="Header_icons">
         <div className="Header_icons_container">
-          <Link className="Header_icon" to="/">
+          {isAuthenticated ? 
+          <Link className="Header_icon" to="/mon-espace/:user">
+            <i className="fas fa-user" />
+            <p className="Header_icons_description">MON ESPACE</p>
+          </Link>
+          :
+          <Link className="Header_icon" to="/connexion">
             <i className="fas fa-user" />
             <p className="Header_icons_description">SE CONNECTER</p>
-          </Link>
+          </Link>}
         </div>
         <div className="Header_icons_container">
           <Link className="Header_icon" to="/">
@@ -46,5 +53,12 @@ function Header() {
       </div>
     </nav>
   );
-}
-export default Header;
+};
+
+const mapStateToProps = state => {
+  return {
+      isAuthenticated: state.auth.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps)(Header);

@@ -6,7 +6,7 @@ import '../../style/HomeThemeContainer.css';
 const HomeThemeContainer = () => {
     const [themes, setThemes] = useState([]);
     useEffect(() => {
-        Axios.get('http://localhost:3000/api/themes')
+        Axios.get('https://givyoo.herokuapp.com/api/themes')
             .then(res => res.data)
             .then(data => setThemes(data))
     }, []);

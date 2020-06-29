@@ -18,7 +18,7 @@ const HomeShopSlider = () => {
 
     const [shops, setShops] = useState([]);
     useEffect(() => {
-        Axios.get('http://localhost:3000/api/shops')
+        Axios.get('https://givyoo.herokuapp.com/api/shops')
             .then(res => res.data)
             .then(data => setShops(data))
     }, []);

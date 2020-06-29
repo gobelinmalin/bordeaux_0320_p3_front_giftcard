@@ -1,22 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
+import { getProducts } from '../../actions/generalActions';
 import CardProduct from './CardProduct';
 import axios from 'axios';
-import * as actionCreators from '../../actions/index';
 
-
-const HomeProductList = ({onglets, getProducts, newProducts}) => {
+const HomeProductList = ({onglets, getProducts, newProducts, isAuthenticated}) => {
     const [monthProducts, setMonthProducts] = useState([]);
-
     useEffect(() => {
-        axios.get('https://givyoo.herokuapp.com/api/products')
-        .then(res => getProducts(res.data))
-        .catch(err => { console.log(err)})
-        axios.get('http://localhost:3000/api/orders/products')
+        // product reducer => new products
+        getProducts();
+        // product of the month
+        axios.get('https://givyoo.herokuapp.com/api/orders/products')
         .then(res => res.data)
         .then(results => setMonthProducts(results))
         .catch(err => { console.log(err)})
-      }, []);
+      }, [getProducts]);
     
     return(
         <div className="container-products">
@@ -32,16 +30,12 @@ const HomeProductList = ({onglets, getProducts, newProducts}) => {
         </div>
     )
 };
+
 const mapStateToProps = state => {
     return {
-      newProducts: state.newProducts
+        newProducts: state.product.newProducts,
+        isAuthenticated: state.auth.isAuthenticated
     };
-  };
-  
-  const mapDispatchToProps = dispatch => {
-    return {
-        getProducts: (products) => dispatch(actionCreators.getProducts(products)),
-    };
-  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeProductList);
+export default connect(mapStateToProps, {getProducts})(HomeProductList);
