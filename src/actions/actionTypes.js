@@ -1,6 +1,10 @@
 // products
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const PRODUCTS_LOADING = 'PRODUCTS_LOADING';
+export const FILTER_BY_THEME = 'FILTER_BY_THEME';
+export const FILTER_BY_RECIPIENT = 'FILTER_BY_RECIPIENT';
+export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
+export const FINAL_FILTER = 'FINAL_FILTER';
 
 // auth
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

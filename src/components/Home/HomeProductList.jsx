@@ -12,6 +12,7 @@ const HomeProductList = ({ onglets, getProducts, newProducts }) => {
     // product reducer => new products
     getProducts();
     // product of the month
+    console.log(process.env.REACT_APP_LOCALHOST);
     axios
       .get(`${process.env.REACT_APP_LOCALHOST}/api/orders/products`)
       .then((res) => res.data)

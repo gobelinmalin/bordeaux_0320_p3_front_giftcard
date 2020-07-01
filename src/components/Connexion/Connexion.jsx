@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -111,7 +110,7 @@ const Connexion = ({ match, login, loginShop, isAuthenticated }) => {
           <div className="connexion-bloc">
             {user === 'client' ? (
               <>
-                <h4>Vous n'êtes pas encore {user} ?</h4>
+                <h4>Vous n&apos;êtes pas encore {user} ?</h4>
                 <Link to="/devenir-membre/client">
                   <Button className={classes.Button} variant="contained">
                     Créer un compte

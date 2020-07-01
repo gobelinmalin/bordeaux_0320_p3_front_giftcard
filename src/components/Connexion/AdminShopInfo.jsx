@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
@@ -12,7 +13,9 @@ const AdminShopInfo = ({ loadShop, email, password, shop }) => {
   if (shop) {
     shopInfo = shop.authdata.user[0];
     // all info of the shop
-    Axios.get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${shopInfo.id_shop}`)
+    Axios.get(
+      `${process.env.REACT_APP_LOCALHOST}/api/shops/${shopInfo.id_shop}`
+    )
       .then((res) => res.data[0])
       .then((data) => setShopData(data));
   }
@@ -53,7 +56,7 @@ const AdminShopInfo = ({ loadShop, email, password, shop }) => {
           </div>
         </div>
       ) : ( */}
-        <p>loading...</p>
+      <p>loading...</p>
       {/* )} */}
     </div>
   );

@@ -13,6 +13,7 @@ import MemberContainer from './components/Connexion/MemberContainer';
 import ModifyClient from './components/Connexion/ModifyClient';
 import PreRegisterShop from './components/Connexion/PreRegisterShop';
 import ShopArea from './components/Connexion/ShopArea';
+import CardsContainer from './components/GiftCardPage/CardsContainer';
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
           exact
         />
         <Route path="/contact" component={Contact} exact />
+        <Route path="/filteredCards" component={CardsContainer} exact />
       </Switch>
       <Footer />
     </>

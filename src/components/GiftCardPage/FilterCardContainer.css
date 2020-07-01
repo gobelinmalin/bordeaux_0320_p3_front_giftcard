@@ -1,0 +1,54 @@
+.AllOptionContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.OptionContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.OptionContainer p {
+    margin-left: 10px;
+}
+
+
+.Select {
+    margin-left: 10px;
+}
+
+.OptionBox {
+    border: 1px solid #20124d;
+    padding: 15px;
+    border-radius: 10px;;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    width: 125px;
+    text-align: center;
+}
+
+.OptionBox:hover{
+    background-color: #20124d;
+    color: white;
+}
+
+.Container1 {
+    display: flex;
+    /* justify-content: space-evenly; */
+}
+
+.Checked {
+    background-color: #20124d;
+    color: white;
+}
+
+.BtnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
