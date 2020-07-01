@@ -6,7 +6,7 @@ import './App.css';
 import Contact from './components/Contact/Contact';
 import HomeContainer from './components/Home/HomeContainer';
 import Footer from './components/footer/Footer';
-import CardsContainer from './components/GiftCardPage/CardsContainer';
+import CardsContainer from './components/GiftCardPage/CardsContainer.jsx';
 
 const App = () => {
   return (
