@@ -14,7 +14,7 @@ function Header() {
         <Link className="Header_link" to="/">
           Comment ça marche ?
         </Link>
-        <Link className="Header_link" to="/">
+        <Link className="Header_link" to="/filteredCards">
           Cartes cadeaux
         </Link>
         <Link className="Header_link" to="/">

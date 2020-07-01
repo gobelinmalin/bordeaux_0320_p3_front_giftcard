@@ -9,10 +9,10 @@ const HomeProductList = ({onglets, getProducts, newProducts}) => {
     const [monthProducts, setMonthProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('https://givyoo.herokuapp.com/api/products')
+        axios.get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
         .then(res => getProducts(res.data))
         .catch(err => { console.log(err)})
-        axios.get('http://localhost:3000/api/orders/products')
+        axios.get(`${process.env.REACT_APP_LOCALHOST}/api/orders/products`)
         .then(res => res.data)
         .then(results => setMonthProducts(results))
         .catch(err => { console.log(err)})
