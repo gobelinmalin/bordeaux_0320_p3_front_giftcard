@@ -1,3 +1,7 @@
 export {
-    getProducts,
+  getProducts,
+  filterByTheme,
+  filterByRecipient,
+  filterByType,
+  finalFilter,
 } from './generalActions';
