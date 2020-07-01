@@ -12,25 +12,38 @@ import ClientArea from './components/Connexion/ClientArea';
 import MemberContainer from './components/Connexion/MemberContainer';
 import ModifyClient from './components/Connexion/ModifyClient';
 import PreRegisterShop from './components/Connexion/PreRegisterShop';
+import ShopArea from './components/Connexion/ShopArea';
 
 const App = () => {
   return (
     <>
       <Header />
-        <Switch>
-          <Route path="/" component={HomeContainer} exact />
-          <Route path="/connexion" component={ConnexionContainer} exact />
-          <Route path="/connexion/:user" component={Connexion} exact />
-          <Route path="/mon-compte-client" component={ClientArea} exact />
-          <Route path="/mon-compte-enseigne" component={'#'} exact />
-          <Route path="/modifier-mon-compte/:user" component={ModifyClient} exact />
-          <Route path="/devenir-membre/:user" component={MemberContainer} exact />
-          <Route path="/pre-inscription/enseigne" component={PreRegisterShop} exact />
-          <Route path="/contact" component={Contact} exact />
-        </Switch>
+      <Switch>
+        <Route path="/" component={HomeContainer} exact />
+        <Route path="/connexion" component={ConnexionContainer} exact />
+        <Route path="/connexion/:user" component={Connexion} exact />
+        <Route path="/mon-compte-client" component={ClientArea} exact />
+        <Route path="/mon-compte-enseigne" component={ShopArea} exact />
+        <Route
+          path="/modifier-mon-compte/client"
+          component={ModifyClient}
+          exact
+        />
+        <Route
+          path="/devenir-membre/client"
+          component={MemberContainer}
+          exact
+        />
+        <Route
+          path="/pre-inscription/enseigne"
+          component={PreRegisterShop}
+          exact
+        />
+        <Route path="/contact" component={Contact} exact />
+      </Switch>
       <Footer />
     </>
   );
-}
+};
 
 export default App;

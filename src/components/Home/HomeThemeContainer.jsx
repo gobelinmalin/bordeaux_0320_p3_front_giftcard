@@ -1,22 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import HomeTheme from './HomeTheme';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import HomeTheme from './HomeTheme';
 import '../../style/HomeThemeContainer.css';
 
 const HomeThemeContainer = () => {
-    const [themes, setThemes] = useState([]);
-    useEffect(() => {
-        Axios.get('https://givyoo.herokuapp.com/api/themes')
-            .then(res => res.data)
-            .then(data => setThemes(data))
-    }, []);
+  const [themes, setThemes] = useState([]);
+  useEffect(() => {
+    Axios.get(`${process.env.REACT_APP_LOCALHOST}/api/themes`)
+      .then((res) => res.data)
+      .then((data) => setThemes(data));
+  }, []);
 
-    return (
-        <div className='home'>
-            <h2>NOS THÈMATIQUES</h2>
-           <HomeTheme themes={themes}/> 
-        </div>
-    )
+  return (
+    <div className="home">
+      <h2>NOS THÈMATIQUES</h2>
+      <HomeTheme themes={themes} />
+    </div>
+  );
 };
 
 export default HomeThemeContainer;

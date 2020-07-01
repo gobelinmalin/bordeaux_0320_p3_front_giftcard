@@ -1,8 +1,9 @@
 .connexion {
     padding-top: 15vh;
-    height:85vh;
+    min-height: 85vh;
     width: 90%;
     margin: auto;
+    margin-bottom: 2rem;
 }
 
 .connexionBtn, .connexion-container {
@@ -30,6 +31,10 @@
     padding-bottom: 1rem;
 }
 
+.connexion form {
+    padding-top: 1rem;
+}
+
 .admin {
     background-color: #199bd5;
     color:#fff;
@@ -37,13 +42,31 @@
     display: flex;
     flex-direction: column;
 }
-
+.admin .active {
+    background: #199bd5;
+    color: #fff;
+} 
 .admin a {
     text-align: end;
 }
 
 .admin p {
     text-align: center;
+}
+
+.admin span {
+    text-transform: uppercase;
+}
+
+.intro_inscription p {
+    margin-right: 1rem;
+}
+
+.inscription_contact {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
 }
 
 .confirmpassword {

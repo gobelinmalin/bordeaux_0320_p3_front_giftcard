@@ -1,81 +1,63 @@
-import * as actionTypes from './actionTypes';
+/* eslint-disable no-use-before-define */
 import axios from 'axios';
+import * as actionTypes from './actionTypes';
 
 /* products */
-export const getProducts = () => dispatch => {
+export const getProducts = () => (dispatch) => {
   dispatch(setProductsLoading());
-  axios.get('https://givyoo.herokuapp.com/api/products')
-    .then(res => 
+  axios
+    .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
+    .then((res) =>
       dispatch({
-      type: actionTypes.GET_PRODUCTS,
-      payload: res.data
-    }))
-    .catch(err => dispatch(returnErrors(err.response.data, err.response.status))
+        type: actionTypes.GET_PRODUCTS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
 
 export const setProductsLoading = () => {
   return {
-    type: actionTypes.PRODUCTS_LOADING
+    type: actionTypes.PRODUCTS_LOADING,
   };
 };
-
 
 /* errors */
 // RETURN ERRORS
 export const returnErrors = (msg, status) => {
   return {
     type: actionTypes.GET_ERRORS,
-    payload: { msg, status }
+    payload: { msg, status },
   };
 };
 
 // CLEAR ERRORS
 export const clearErrors = () => {
   return {
-    type: actionTypes.CLEAR_ERRORS
+    type: actionTypes.CLEAR_ERRORS,
   };
 };
 
 /* authentification */
-// Check token & load user (client or shop)
-export const loadUser = (email, password) => (dispatch, getState) => {
-  // User loading
-  dispatch({ type: actionTypes.USER_LOADING });
-  // Request body
-  const body = JSON.stringify(email, password);
-  axios.post('https://givyoo.herokuapp.com/api/auth/profile', body, tokenConfig(getState))
-    .then(res =>
-      dispatch({
-        type: actionTypes.USER_LOADED,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: actionTypes.AUTH_ERROR
-      });
-    });
-};
-
 // Logout User
 export const logout = () => {
   return {
-    type: actionTypes.LOGOUT_SUCCESS
+    type: actionTypes.LOGOUT_SUCCESS,
   };
 };
 
 // Setup config/headers and token
 export const tokenConfig = (getState) => {
   // Get token from localstorage
-  const {token} = getState().auth;
+  const { token } = getState().auth;
   // Headers
   const config = {
     headers: {
       'Content-type': 'application/json',
-      Authorization: "Bearer " + token
-    }
+      Authorization: `Bearer ${token}`,
+    },
   };
   // If token, add to headers
   if (token) {
@@ -85,52 +67,97 @@ export const tokenConfig = (getState) => {
 };
 
 /* authentification CLIENT */
-// update data client
-export const updateUser = (id, clientNewInfo) => 
-  (dispatch) => {
-    // body
-    axios.put(`https://givyoo.herokuapp.com/api/clients/${id}`, clientNewInfo)
-    .then(res => {
-      dispatch(memberProfileUpdated(clientNewInfo));
-    })
-    .catch(err => {
+// Check token & load client
+export const loadUser = (email, password) => (dispatch, getState) => {
+  // User loading
+  dispatch({ type: actionTypes.USER_LOADING });
+  // Request body
+  const body = JSON.stringify(email, password);
+  axios
+    .post(
+      `${process.env.REACT_APP_LOCALHOST}/api/auth/profile`,
+      body,
+      tokenConfig(getState)
+    )
+    .then((res) =>
+      dispatch({
+        type: actionTypes.USER_LOADED,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: actionTypes.AUTH_ERROR
-      })})
+        type: actionTypes.AUTH_ERROR,
+      });
+    });
 };
 
-export const memberProfileUpdated = clientNewInfo => {
+// update data client
+export const updateUser = (id, clientNewInfo) => (dispatch) => {
+  // body
+  axios
+    .put(`${process.env.REACT_APP_LOCALHOST}/api/clients/${id}`, clientNewInfo)
+    .then(() => {
+      dispatch(memberProfileUpdated(clientNewInfo));
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: actionTypes.AUTH_ERROR,
+      });
+    });
+};
+
+export const memberProfileUpdated = (clientNewInfo) => {
   return {
     type: actionTypes.USER_MODIFY,
-    clientNewInfo
+    clientNewInfo,
   };
 };
 
 // Register User (creation)
-export const register = (lastname, firstname, address, phone, birthdate, email, password, createProfile) => (dispatch) => {
+export const register = (
+  lastname,
+  firstname,
+  address,
+  phone,
+  birthdate,
+  email,
+  password,
+  createProfile
+) => (dispatch) => {
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   // Request body
-  const body = JSON.stringify(lastname, firstname, address, phone, birthdate, email, password, createProfile);
+  const body = JSON.stringify(
+    lastname,
+    firstname,
+    address,
+    phone,
+    birthdate,
+    email,
+    password,
+    createProfile
+  );
   axios
-    .post('https://givyoo.herokuapp.com/api/auth/signup', body, config)
-    .then(res =>
+    .post(`${process.env.REACT_APP_LOCALHOST}/api/auth/signup`, body, config)
+    .then((res) =>
       dispatch({
         type: actionTypes.REGISTER_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(
         returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
       );
       dispatch({
-        type: actionTypes.REGISTER_FAIL
+        type: actionTypes.REGISTER_FAIL,
       });
     });
 };
@@ -140,53 +167,76 @@ export const login = (email, password) => (dispatch) => {
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   // Request body
   const body = JSON.stringify(email, password);
   axios
-    .post('https://givyoo.herokuapp.com/api/auth/login', body, config)
-    .then(res =>
+    .post(`${process.env.REACT_APP_LOCALHOST}/api/auth/login`, body, config)
+    .then((res) =>
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(
         returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
       );
       dispatch({
-        type: actionTypes.LOGIN_FAIL
+        type: actionTypes.LOGIN_FAIL,
       });
     });
 };
 
-
-
-
 /* Authentification SHOP */
-// update data shop
-// ROUTE A FAIREEEEE
-export const updateShop = (id, shopNewInfo) => 
-  (dispatch) => {
-    // body
-    axios.put(`https://givyoo.herokuapp.com/api/admin/${id}`, shopNewInfo)
-    .then(res => {
-      dispatch(shopProfileUpdated(shopNewInfo));
-    })
-    .catch(err => {
+// Check token & load shop
+export const loadShop = (email, password) => (dispatch, getState) => {
+  // User loading
+  dispatch({ type: actionTypes.SHOP_LOADING });
+  // Request body
+  const body = JSON.stringify(email, password);
+  axios
+    .post(
+      `${process.env.REACT_APP_LOCALHOST}/api/auth/profile`,
+      body,
+      tokenConfig(getState)
+    )
+    .then((res) =>
+      dispatch({
+        type: actionTypes.SHOP_LOADED,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: actionTypes.SHOPAUTH_ERROR
-      })})
+        type: actionTypes.SHOPAUTH_ERROR,
+      });
+    });
+};
+// update data shop
+// ROUTE A FAIREEEEE
+export const updateShop = (id, shopNewInfo) => (dispatch) => {
+  // body
+  axios
+    .put(`${process.env.REACT_APP_LOCALHOST}/api/admin/${id}`, shopNewInfo)
+    .then(() => {
+      dispatch(shopProfileUpdated(shopNewInfo));
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: actionTypes.SHOPAUTH_ERROR,
+      });
+    });
 };
 
-export const shopProfileUpdated = shopNewInfo => {
+export const shopProfileUpdated = (shopNewInfo) => {
   return {
     type: actionTypes.SHOP_MODIFY,
-    shopNewInfo
+    shopNewInfo,
   };
 };
 
@@ -196,19 +246,23 @@ export const requestRegisterShop = (alldatas) => (dispatch) => {
   // Request body
   const body = JSON.stringify(alldatas);
   axios
-    .post('https://givyoo.herokuapp.com/api/auth/signup/admin', body)
-    .then(res =>
+    .post(`${process.env.REACT_APP_LOCALHOST}/api/auth/signup/admin`, body)
+    .then((res) =>
       dispatch({
         type: actionTypes.REGISTERSHOP_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, 'REGISTERSHOP_FAIL')
+        returnErrors(
+          err.response.data,
+          err.response.status,
+          'REGISTERSHOP_FAIL'
+        )
       );
       dispatch({
-        type: actionTypes.REGISTERSHOP_FAIL
+        type: actionTypes.REGISTERSHOP_FAIL,
       });
     });
 };
@@ -218,25 +272,29 @@ export const loginShop = (email, password) => (dispatch) => {
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   // Request body
   const body = JSON.stringify(email, password);
   axios
-    .post('https://givyoo.herokuapp.com/api/auth/login/admin', body, config)
-    .then(res =>
+    .post(
+      `${process.env.REACT_APP_LOCALHOST}/api/auth/login/admin`,
+      body,
+      config
+    )
+    .then((res) =>
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, 'LOGINSHOP_FAIL')
+        returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
       );
       dispatch({
-        type: actionTypes.LOGIN_FAIL
+        type: actionTypes.LOGIN_FAIL,
       });
     });
 };
