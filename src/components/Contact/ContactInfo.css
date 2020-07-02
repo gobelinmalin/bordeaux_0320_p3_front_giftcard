@@ -1,0 +1,71 @@
+.informations h2 {
+  font-weight: 600;
+  color: #20124d;
+  text-transform: uppercase;
+}
+
+.LeftLocation,
+.LeftPhone,
+.LeftMail {
+  display: flex;
+  margin: 20px 0px 20px 0px;
+  justify-content: space-evenly;
+}
+
+.LeftLocationText,
+.LeftPhoneText,
+.LeftMailText {
+  text-align: left;
+  width: 45%;
+  align-self: center;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.LeftLocationText p,
+.LeftPhoneText p,
+.LeftMailText p {
+  margin: 4px;
+}
+
+.LeftLocationText h2,
+.LeftPhoneText h2,
+.LeftMailText h2 {
+  margin: 0px 0px 10px 4px;
+}
+
+.LeftLocationImage,
+.LeftPhoneImage,
+.LeftMailImage {
+  align-self: center;
+}
+
+.LeftLocationImage:hover,
+.LeftPhoneImage:hover,
+.LeftMailImage:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+.informations {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 100px;
+  width: 480px;
+  max-width: 80%;
+  min-width: 100px;
+  min-height: 760px;
+  padding: 20px 40px;
+  border-radius: 6px;
+  box-shadow: -1px 1px 20px 0px rgba(0, 0, 0, 0.75);
+  background-color: #fefefe;
+}
+
+.Icon {
+  font-size: 2.5rem;
+}

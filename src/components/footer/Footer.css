@@ -1,0 +1,88 @@
+.Footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.About {
+}
+
+.About ul {
+  list-style-type: none;
+}
+
+.About ul li {
+  margin-bottom: 37px;
+}
+
+.About ul li a {
+  color: black;
+  text-decoration: none;
+}
+
+.Newsletter form {
+  display: flex;
+  flex-direction: column;
+}
+
+.FirstnameLastnameInputs {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+}
+
+.FirstnameLastnameInputs fieldset {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.Newsletter fieldset {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.SocialNetwork {
+  display: flex;
+}
+
+.SocialNetworkItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.vl {
+  border-left: 2px solid #20124d;
+  height: 280px;
+  margin-right: 50px;
+}
+
+.SocialNetworkContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.IconSocialNetwork {
+  font-size: 2rem;
+  margin-right: 0.5rem;
+  color: #20124d;
+}
+
+.IconSocialNetwork:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+.SubscribeBtn {
+  margin-left: 10px;
+}
