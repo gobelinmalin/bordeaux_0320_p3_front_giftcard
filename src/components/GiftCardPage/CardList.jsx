@@ -27,7 +27,7 @@ CardList.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    state,
+    state: state.product,
   };
 };
 

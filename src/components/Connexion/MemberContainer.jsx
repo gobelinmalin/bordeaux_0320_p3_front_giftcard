@@ -1,5 +1,5 @@
-/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,8 +12,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { register, clearErrors } from '../../actions/generalActions';
 
-const MemberContainer = ({ match, register, isAuthenticated }) => {
-  const { user } = match.params;
+const MemberContainer = ({ register, isAuthenticated }) => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [address, setAddress] = useState('');
@@ -90,12 +89,13 @@ const MemberContainer = ({ match, register, isAuthenticated }) => {
   }));
 
   const classes = useStyles();
+  const client = 'client';
 
   return (
     <div className="connexion">
       <h2>DEVENIR MEMBRE</h2>
-      {isAuthenticated ? (
-        <Redirect to={`/mon-compte/${user}`} />
+      {isAuthenticated === false ? (
+        <Redirect to={`/connexion/${client}`} />
       ) : (
         <>
           <form
@@ -112,8 +112,8 @@ const MemberContainer = ({ match, register, isAuthenticated }) => {
                   onChange={handleChangeCivility}
                   label="Civilité"
                 >
-                  <MenuItem value={'M.'}>M.</MenuItem>
-                  <MenuItem value={'Mme'}>Mme</MenuItem>
+                  <MenuItem value="M.">M.</MenuItem>
+                  <MenuItem value="Mme">Mme</MenuItem>
                 </Select>
               </FormControl>
               <TextField
@@ -217,7 +217,7 @@ const MemberContainer = ({ match, register, isAuthenticated }) => {
                       ) : (
                         <div className="confirmpassword">
                           <i className="fas fa-times" />
-                          <p>Le mot de passe n'est pas valide</p>
+                          <p>Le mot de passe n&apos;est pas valide</p>
                         </div>
                       )}
                     </>

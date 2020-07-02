@@ -18,6 +18,7 @@ const ButtonModify = () => {
       boxShadow: 'none',
       margin: 'auto',
       marginRight: '1rem',
+      marginTop: '1rem',
       '&:hover': {
         boxShadow: '0px 0px 5px 0px rgba(32,18,77,1)',
         backgroundColor: '#fadb11',

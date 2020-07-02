@@ -1,43 +1,69 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import { loadShop } from '../../actions/generalActions';
+import '../../style/AdminShop.css';
 
 const AdminShopInfo = ({ loadShop, email, password, shop }) => {
   const [shopData, setShopData] = useState([]);
+
   let shopInfo;
   if (shop) {
     shopInfo = shop.authdata.user[0];
-    // all info of the shop
-    Axios.get(
-      `${process.env.REACT_APP_LOCALHOST}/api/shops/${shopInfo.id_shop}`
-    )
-      .then((res) => res.data[0])
-      .then((data) => setShopData(data));
   }
 
   useEffect(() => {
     loadShop(email, password);
   }, [loadShop, email, password]);
 
+  // all info of the shop
+  useEffect(() => {
+    if (shopInfo) {
+      Axios.get(
+        `${process.env.REACT_APP_LOCALHOST}/api/shops/${shopInfo.id_shop}`
+      )
+        .then((res) => res.data[0])
+        .then((data) => setShopData(data));
+    }
+  }, [shopInfo]);
+
+  const useStyles = makeStyles(() => ({
+    Button: {
+      color: '#231864',
+      backgroundColor: '#fff',
+      '&:hover': {
+        background: '#fff',
+      },
+      borderRadius: '10px',
+      border: '0.1rem solid #231864',
+      textTransform: 'inherit',
+      textAlign: 'center',
+      margin: 'auto',
+      marginBottom: '1rem',
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
-    <div>
-      {/* {shop ? (
+    <div className="info_adminshop">
+      {shop ? (
         <div className="info-content">
           <div className="info-text">
-            <p>Nom de l'enseigne</p>
+            <p>Nom de l&apos;enseigne</p>
             <hr />
             <p>Personne à contacter</p>
             <hr />
-            <p>Adresse du siège social</p>
+            <p>E-mail</p>
             <hr />
             <p>Téléphone</p>
             <hr />
-            <p>E-mail</p>
+            <p>Adresse du siège social</p>
           </div>
           <hr />
           <div className="info-text">
@@ -45,19 +71,22 @@ const AdminShopInfo = ({ loadShop, email, password, shop }) => {
             <hr />
             <p>{shopInfo.contactPerson}</p>
             <hr />
-            <p>
-              {shopData.address}, {shopData.zipcode} {shopData.city},
-              {shopData.country}
-            </p>
-            <hr />
-            <p>{shopData.phone}</p>
-            <hr />
             <p>{shopInfo.email}</p>
+            <hr />
+            <p>{shopInfo.phone}</p>
+            <hr />
+            <p>
+              {shopInfo.headOfficeAddress}, {shopInfo.headOfficeZipcode}{' '}
+              {shopInfo.headOfficeCity}, {shopInfo.headOfficeCountry}
+            </p>
           </div>
         </div>
-      ) : ( */}
-      <p>loading...</p>
-      {/* )} */}
+      ) : (
+        <p>loading...</p>
+      )}
+      <Button className={classes.Button} variant="contained">
+        Indiquer un changement
+      </Button>
     </div>
   );
 };

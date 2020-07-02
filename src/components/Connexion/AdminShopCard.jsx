@@ -1,48 +1,53 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadShop } from '../../actions/generalActions';
 
-// import ButtonLearnMore from '../../style/ButtonLearnMore';
-
 const AdminShopCard = ({ loadShop, email, password, shop }) => {
   const [cards, setCards] = useState([]);
   const [shopData, setShopData] = useState([]);
+
   let shopInfo;
   if (shop) {
-    // eslint-disable-next-line react/prop-types
     shopInfo = shop.authdata.user[0];
-    //  all info of the shop
-    axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${shopInfo.id_shop}`)
-      .then((res) => console.log('1', res.data[0]));
-    // .then((data) => setShopData(data));
-    //  all cards of the shop
-    if (shopData) {
-      axios
-        .get(`http://localhost:5000/api/products?shop=${shopData.name}`)
-        .then((res) => console.log(res));
-      // .then((data) => setCards(data));
-    }
   }
 
   useEffect(() => {
     loadShop(email, password);
   }, [loadShop, email, password]);
 
+  // all info of the shop
+  useEffect(() => {
+    if (shopInfo) {
+      axios
+        .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${shopInfo.id_shop}`)
+        .then((res) => res.data[0])
+        .then((data) => setShopData(data));
+    }
+  }, [shopInfo]);
+
+  useEffect(() => {
+    if (shopData) {
+      axios
+        .get(
+          `${process.env.REACT_APP_LOCALHOST}/api/products?shop=${shopData.name}`
+        )
+        .then((res) => res.data)
+        .then((data) => setCards(data));
+    }
+  }, [shopData]);
+
   return (
-    <div>
-      {/* {shop ? (
-        cards.map((card) => (
-          <div>
-            <img src={card.img} alt={shopData.name} />
-            <ButtonLearnMore />
-          </div>
-        ))
-      ) : ( */}
-      <p>loading...</p>
-      {/* )} */}
+    <div className="cards_online">
+      {shop ? (
+        cards.map((card) => <img src={card.image} alt={shopData.name} />)
+      ) : (
+        <p>loading...</p>
+      )}
     </div>
   );
 };

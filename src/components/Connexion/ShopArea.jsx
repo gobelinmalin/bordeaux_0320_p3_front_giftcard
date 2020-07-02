@@ -6,7 +6,7 @@ const ShopArea = () => {
   return (
     <div className="connexion">
       <div className="profile-title">
-        <h2>ESPACE SHOP</h2>
+        <h2>ESPACE ENSEIGNE</h2>
         <ButtonLogout />
       </div>
       <AdminShop />

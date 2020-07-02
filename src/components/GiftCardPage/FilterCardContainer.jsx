@@ -4,7 +4,6 @@ import './FilterCardContainer.css';
 import axios from 'axios';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
-// import { makeStyles } from '@material-ui/core/styles';
 import * as actionCreators from '../../actions/index';
 
 const options = [
@@ -30,25 +29,6 @@ const customStyles = {
 };
 
 const FilterCardContainer = (props) => {
-  //   const useStyles = makeStyles({
-  //     root: {
-  //       backgroundColor: '#20124d',
-  //       border: 0,
-  //       borderRadius: 10,
-  //       color: '#fff2ceff',
-  //       height: '2.5rem',
-  //       padding: '1.5rem',
-  //       fontWeight: '500',
-  //       fontFamily: 'Montserrat',
-  //       boxShadow: 'none',
-  //       '&:hover': {
-  //         boxShadow: '0px 0px 5px 0px rgba(32,18,77,1)',
-  //         backgroundColor: '#20124d',
-  //       },
-  //     },
-  //   });
-
-  //   const classes = useStyles();
   const {
     filterCardType,
     filterRecipient,
@@ -177,6 +157,19 @@ const FilterCardContainer = (props) => {
             >
               Couple
             </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onKeyDown={() => {}}
+              name="famille"
+              className={[
+                filterRecipient.famille ? 'Checked' : null,
+                'OptionBox',
+              ].join(' ')}
+              onClick={() => onClickRecipient('famille')}
+            >
+              Famille
+            </div>
           </div>
           <div>
             <div
@@ -196,14 +189,14 @@ const FilterCardContainer = (props) => {
               role="button"
               tabIndex={0}
               onKeyDown={() => {}}
-              name="animal"
+              name="animal de compagnie"
               className={[
-                filterRecipient.animaux ? 'Checked' : null,
+                filterRecipient['animal de compagnie'] ? 'Checked' : null,
                 'OptionBox',
               ].join(' ')}
-              onClick={() => onClickRecipient('animaux')}
+              onClick={() => onClickRecipient('Animal de compagnie')}
             >
-              Animaux
+              Animal de compagnie
             </div>
             <div
               role="button"
@@ -355,7 +348,7 @@ const FilterCardContainer = (props) => {
               ].join(' ')}
               onClick={() => onClickTheme('magasins specialises')}
             >
-              Spécial
+              Spécialisé
             </div>
           </div>
         </div>
@@ -363,6 +356,7 @@ const FilterCardContainer = (props) => {
     </div>
   );
 };
+
 FilterCardContainer.propTypes = {
   filterByTheme: PropTypes.func,
   filterByType: PropTypes.func,
@@ -379,7 +373,6 @@ FilterCardContainer.propTypes = {
   finalFilter: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
-  // state: PropTypes.InstanceOf(Array).isRequired,
 };
 
 FilterCardContainer.defaultProps = {
@@ -394,10 +387,9 @@ FilterCardContainer.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    // state,
-    filterCardType: state.filterCardType,
-    filterRecipient: state.filterRecipient,
-    filterTheme: state.filterTheme,
+    filterCardType: state.product.filterCardType,
+    filterRecipient: state.product.filterRecipient,
+    filterTheme: state.product.filterTheme,
   };
 };
 

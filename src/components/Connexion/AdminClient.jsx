@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ButtonModify from '../../style/ButtonModify';
-import AdminClientInfo from './AdminClienInfo';
+import AdminClientInfo from './AdminClientInfo';
+import AdminClientOrder from './AdminClientOrder';
 
 const AdminClient = () => {
   const [onglets, setOnglets] = useState(1);
@@ -48,7 +49,7 @@ const AdminClient = () => {
         ) : (
           <>
             {onglets === 2 ? (
-              <p>Vous n&apos;avez pas de commandes</p>
+              <AdminClientOrder />
             ) : (
               <p>Vous n&apos;avez pas de commandes</p>
             )}

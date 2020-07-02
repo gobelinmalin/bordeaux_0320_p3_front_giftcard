@@ -149,8 +149,8 @@ const ModifyClient = ({ updateUser, login, client, history }) => {
                   onChange={handleChangeCivility}
                   label="Civilité"
                 >
-                  <MenuItem value={'M.'}>M.</MenuItem>
-                  <MenuItem value={'Mme'}>Mme</MenuItem>
+                  <MenuItem value="M.">M.</MenuItem>
+                  <MenuItem value="Mme">Mme</MenuItem>
                 </Select>
               </FormControl>
               <TextField

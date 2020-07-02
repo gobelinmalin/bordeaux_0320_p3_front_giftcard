@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable prefer-destructuring */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loadUser } from '../../actions/generalActions';
 
-const AdminClientInfo = ({ loadUser, email, password, client }) => {
+const AdminClientInfo = ({ email, password, client }) => {
   useEffect(() => {
     loadUser(email, password);
   }, [loadUser, email, password]);

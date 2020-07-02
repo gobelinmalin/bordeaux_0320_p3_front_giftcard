@@ -1,0 +1,16 @@
+.cards_online {
+  display: flex;
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.cards_online img {
+  width: 25%;
+  margin: 1rem;
+}
+
+.info_adminshop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

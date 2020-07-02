@@ -1,5 +1,5 @@
-/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
