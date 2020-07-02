@@ -4,6 +4,8 @@ import './FilterCardContainer.css';
 import axios from 'axios';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import * as actionCreators from '../../actions/index';
 
 const options = [
@@ -29,6 +31,27 @@ const customStyles = {
 };
 
 const FilterCardContainer = (props) => {
+  const useStyles = makeStyles({
+    root: {
+      backgroundColor: '#20124d',
+      border: 0,
+      borderRadius: 10,
+      color: '#fff2ceff',
+      height: '2.5rem',
+      marginLeft: '-65px',
+      marginTop: '50px',
+      padding: '1.5rem',
+      fontWeight: '500',
+      fontFamily: 'Montserrat',
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: '0px 0px 5px 0px rgba(32,18,77,1)',
+        backgroundColor: '#20124d',
+      },
+    },
+  });
+
+  const classes = useStyles();
   const {
     filterCardType,
     filterRecipient,
@@ -48,25 +71,22 @@ const FilterCardContainer = (props) => {
   const onClickTheme = (theme) => {
     axios
       .get(`${process.env.REACT_APP_LOCALHOST}/api/products?theme=${theme}`)
-      .then((res) => filterByTheme(theme, res.data))
-      .then(() => finalFilter());
+      .then((res) => filterByTheme(theme, res.data));
   };
 
   const onClickRecipient = (recipient) => {
     axios
       .get(`${process.env.REACT_APP_LOCALHOST}/api/products?tag=${recipient}`)
-      .then((res) => filterByRecipient(recipient, res.data))
-      .then(() => finalFilter());
-
-    finalFilter();
+      .then((res) => filterByRecipient(recipient, res.data));
   };
 
   const onClickType = (bool, type) => {
     axios
       .get(`${process.env.REACT_APP_LOCALHOST}/api/products/format/${bool}`)
-      .then((res) => filterByType(type, res.data))
-      .then(() => finalFilter());
+      .then((res) => filterByType(type, res.data));
+  };
 
+  const filter = () => {
     finalFilter();
   };
 
@@ -349,6 +369,16 @@ const FilterCardContainer = (props) => {
               onClick={() => onClickTheme('magasins specialises')}
             >
               Spécialisé
+            </div>
+            <div>
+              <Button
+                onClick={filter}
+                variant="contained"
+                color="primary"
+                className={classes.root}
+              >
+                Je filtre !
+              </Button>
             </div>
           </div>
         </div>

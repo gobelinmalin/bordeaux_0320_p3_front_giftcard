@@ -328,3 +328,10 @@ export const finalFilter = () => {
     type: actionTypes.FINAL_FILTER,
   };
 };
+
+export const setFinalArray = (array) => {
+  return {
+    type: actionTypes.SET_FINAL_ARRAY,
+    finalArray: array,
+  };
+};

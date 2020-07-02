@@ -4,4 +4,5 @@ export {
   filterByRecipient,
   filterByType,
   finalFilter,
+  setFinalArray,
 } from './generalActions';

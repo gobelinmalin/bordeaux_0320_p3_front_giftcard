@@ -71,22 +71,40 @@ export default function productReducer(state = initialState, action) {
         ...state,
         loading: true,
       };
+    case actionTypes.SET_FINAL_ARRAY: {
+      const { finalArray } = action;
+      return {
+        ...state,
+        finalArray,
+      };
+    }
     case actionTypes.FILTER_BY_TYPE: {
       const type = action.type2;
-      const newTypeArray = action.dataType;
+      let newTypeArray = action.dataType;
+      let trueOrFalse = true;
+      if (state.filterCardType[type]) {
+        trueOrFalse = false;
+        newTypeArray = [];
+      }
       return {
         ...state,
         filterCardType: {
           ...state.filterCardType,
           eCard: false,
           realCard: false,
-          [type]: true,
+          [type]: trueOrFalse,
           filteredArray: newTypeArray,
         },
       };
     }
     case actionTypes.FILTER_BY_THEME: {
-      const { theme, dataTheme } = action;
+      const { theme } = action;
+      let { dataTheme } = action;
+      let trueOrFalse = true;
+      if (state.filterTheme[theme]) {
+        dataTheme = [];
+        trueOrFalse = false;
+      }
       return {
         ...state,
         filterTheme: {
@@ -101,13 +119,19 @@ export default function productReducer(state = initialState, action) {
           evasion: false,
           education: false,
           'magasins specialises': false,
-          [theme]: true,
+          [theme]: trueOrFalse,
           filteredArray: dataTheme,
         },
       };
     }
     case actionTypes.FILTER_BY_RECIPIENT: {
-      const { recipient, dataRecipient } = action;
+      const { recipient } = action;
+      let { dataRecipient } = action;
+      let trueOrFalse = true;
+      if (state.filterRecipient[recipient]) {
+        dataRecipient = [];
+        trueOrFalse = false;
+      }
       return {
         ...state,
         filterRecipient: {
@@ -118,7 +142,7 @@ export default function productReducer(state = initialState, action) {
           'animal de compagnie': false,
           couple: false,
           enfant: false,
-          [recipient]: true,
+          [recipient]: trueOrFalse,
           filteredArray: dataRecipient,
         },
       };
