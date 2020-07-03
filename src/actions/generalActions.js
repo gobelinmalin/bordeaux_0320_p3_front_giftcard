@@ -48,9 +48,10 @@ export const filterByType = (type2, data) => {
   };
 };
 
-export const finalFilter = () => {
+export const finalFilter = (data) => {
   return {
     type: actionTypes.FINAL_FILTER,
+    data,
   };
 };
 
