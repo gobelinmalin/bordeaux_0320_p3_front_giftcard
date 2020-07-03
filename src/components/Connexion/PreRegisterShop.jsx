@@ -10,6 +10,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from 'react-router-dom';
 
@@ -24,7 +26,10 @@ const MemberContainer = () => {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [siren, setSiren] = useState('');
+  const [desc, setDesc] = useState('');
+  const [gyl, setGyl] = useState('');
   const [format, setFormat] = useState(''); // type d'enseigne
+  const [type, setType] = useState(''); // cartes ou abonnements
   const [category, setCategory] = useState([]); // thème (sport, beauté...)
   const [allcat, setAllcat] = useState([]);
 
@@ -44,10 +49,16 @@ const MemberContainer = () => {
   const handleChangeZipcode = (e) => setZipcode(e.target.value);
   const handleChangeCity = (e) => setCity(e.target.value);
   const handleChangeCountry = (e) => setCountry(e.target.value);
+  const handleChangeDesc = (e) => setDesc(e.target.value);
   const handleChangeSiren = (e) => setSiren(e.target.value);
+  const handleChangeGyl = (e) => setGyl(e.target.value);
   const handleChangeFormat = (e) => {
     const newformat = [...format, e.target.value];
     setFormat([...new Set(newformat)]);
+  };
+  const handleChangeType = (e) => {
+    const newType = [...type, e.target.value];
+    setType([...new Set(newType)]);
   };
   const handleChangeCategory = (e) => {
     const newcat = [...category, e.target.value];
@@ -68,7 +79,7 @@ const MemberContainer = () => {
     e.preventDefault();
     const templateId = 'template_preinsc';
     sendFeedback(templateId, {
-      contactPerson: contactPerson,
+      contact_shop: contactPerson,
       mail_shop: email,
       tel_shop: phone,
       website_shop: website,
@@ -76,9 +87,12 @@ const MemberContainer = () => {
       zipcode_shop: zipcode,
       city_shop: city,
       country_shop: country,
+      desc_shop: desc,
+      type_shop: type,
       siren_shop: siren,
       format_shop: format,
       category_shop: category,
+      gyl_shop: gyl,
       from_name: shop,
       reply_to: email,
     });
@@ -122,6 +136,12 @@ const MemberContainer = () => {
       textAlign: 'center',
       marginBottom: '0.5rem',
     },
+    Button3: {
+      lineHeight: 0.4,
+      '& .MuiButton-label': {
+        fontSize: '0.5rem',
+      },
+    },
     formControl: {
       color: 'rgba(0, 0, 0, 0.54)',
       '& .MuiIconButton-colorSecondary': {
@@ -133,6 +153,9 @@ const MemberContainer = () => {
       '& .MuiFormControlLabel-root': {
         marginRight: '1rem',
         width: '45%',
+      },
+      '& .MuiRadio-root': {
+        color: '#F28A2F',
       },
     },
   }));
@@ -256,13 +279,24 @@ const MemberContainer = () => {
             style={{ width: 300 }}
             required
           />
+          <TextField
+            id="login-descr"
+            label="Description de l'enseigne"
+            placeholder="Placeholder"
+            value={desc}
+            onChange={handleChangeDesc}
+            required
+            multiline
+            rows={6}
+            variant="outlined"
+          />
           <FormControl
             component="fieldset"
             className={classes.formControl}
             style={{ width: 300 }}
           >
             <FormLabel component="legend" required>
-              Type d'enseigne
+              Type d&apos;enseigne
             </FormLabel>
             <FormHelperText>Sélection multiple possible</FormHelperText>
             <FormGroup aria-label="position" row required>
@@ -288,6 +322,40 @@ const MemberContainer = () => {
               />
             </FormGroup>
           </FormControl>
+        </div>
+        <div className="memberform">
+          <FormControl
+            component="fieldset"
+            className={classes.formControl}
+            style={{ width: 300 }}
+          >
+            <FormLabel component="legend" required>
+              Type d&apos;offres
+            </FormLabel>
+            <FormHelperText>Sélection multiple possible</FormHelperText>
+            <FormGroup aria-label="position" row required>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={handleChangeType}
+                    name="Carte cadeau"
+                    value="Carte cadeau"
+                  />
+                }
+                label="Carte cadeau"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={handleChangeType}
+                    name="Abonnement"
+                    value="Abonnement"
+                  />
+                }
+                label="Abonnement"
+              />
+            </FormGroup>
+          </FormControl>
           <FormControl
             component="fieldset"
             className={classes.formControl}
@@ -308,6 +376,46 @@ const MemberContainer = () => {
                 />
               ))}
             </FormGroup>
+          </FormControl>
+          <FormControl
+            component="fieldset"
+            className={classes.formControl}
+            style={{ width: 300 }}
+          >
+            <FormLabel component="legend" required>
+              Participation au programme de charité Give You Love ?
+            </FormLabel>
+            <Button className={classes.Button3} variant="contained">
+              En savoir plus
+            </Button>
+            <RadioGroup
+              row
+              aria-label="position"
+              name="position"
+              defaultValue="top"
+            >
+              <FormControlLabel
+                value="Oui"
+                control={<Radio color="primary" />}
+                label="Oui"
+                labelPlacement="right"
+                onChange={handleChangeGyl}
+              />
+              <FormControlLabel
+                value="Non"
+                control={<Radio color="primary" />}
+                label="Non"
+                labelPlacement="right"
+                onChange={handleChangeGyl}
+              />
+              <FormControlLabel
+                value="Ultérieurment"
+                control={<Radio color="primary" />}
+                label="Ultérieurement"
+                labelPlacement="right"
+                onChange={handleChangeGyl}
+              />
+            </RadioGroup>
           </FormControl>
         </div>
       </form>

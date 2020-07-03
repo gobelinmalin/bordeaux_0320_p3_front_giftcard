@@ -3,7 +3,9 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import '../../style/AdminShop.css';
 import { connect } from 'react-redux';
 import { loadShop } from '../../actions/generalActions';
 
@@ -34,7 +36,7 @@ const AdminShopCard = ({ loadShop, email, password, shop }) => {
     if (shopData) {
       axios
         .get(
-          `${process.env.REACT_APP_LOCALHOST}/api/products?shop=${shopData.name}`
+          `${process.env.REACT_APP_LOCALHOST}/api/products?shop=${shopData.id}`
         )
         .then((res) => res.data)
         .then((data) => setCards(data));
@@ -44,7 +46,14 @@ const AdminShopCard = ({ loadShop, email, password, shop }) => {
   return (
     <div className="cards_online">
       {shop ? (
-        cards.map((card) => <img src={card.image} alt={shopData.name} />)
+        cards.map((card) => (
+          <Link to="/">
+            <div className="card_content">
+              <h3>{card.name}</h3>
+              <img src={card.image} alt={shopData.name} />
+            </div>
+          </Link>
+        ))
       ) : (
         <p>loading...</p>
       )}

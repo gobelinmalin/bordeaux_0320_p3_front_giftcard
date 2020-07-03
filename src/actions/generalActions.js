@@ -24,6 +24,43 @@ export const setProductsLoading = () => {
   };
 };
 
+export const filterByTheme = (theme, data) => {
+  return {
+    type: actionTypes.FILTER_BY_THEME,
+    theme,
+    dataTheme: data,
+  };
+};
+
+export const filterByRecipient = (recipient, data) => {
+  return {
+    type: actionTypes.FILTER_BY_RECIPIENT,
+    recipient,
+    dataRecipient: data,
+  };
+};
+
+export const filterByType = (type2, data) => {
+  return {
+    type: actionTypes.FILTER_BY_TYPE,
+    type2,
+    dataType: data,
+  };
+};
+
+export const finalFilter = () => {
+  return {
+    type: actionTypes.FINAL_FILTER,
+  };
+};
+
+export const setFinalArray = (array) => {
+  return {
+    type: actionTypes.SET_FINAL_ARRAY,
+    finalArray: array,
+  };
+};
+
 /* errors */
 // RETURN ERRORS
 export const returnErrors = (msg, status) => {
@@ -217,7 +254,6 @@ export const loadShop = (email, password) => (dispatch, getState) => {
     });
 };
 // update data shop
-// ROUTE A FAIREEEEE
 export const updateShop = (id, shopNewInfo) => (dispatch) => {
   // body
   axios
@@ -241,7 +277,6 @@ export const shopProfileUpdated = (shopNewInfo) => {
 };
 
 // request register shop
-// CREER UNE ROUTE ENVOI MAIL ?
 export const requestRegisterShop = (alldatas) => (dispatch) => {
   // Request body
   const body = JSON.stringify(alldatas);
@@ -297,41 +332,4 @@ export const loginShop = (email, password) => (dispatch) => {
         type: actionTypes.LOGIN_FAIL,
       });
     });
-};
-
-export const filterByTheme = (theme, data) => {
-  return {
-    type: actionTypes.FILTER_BY_THEME,
-    theme,
-    dataTheme: data,
-  };
-};
-
-export const filterByRecipient = (recipient, data) => {
-  return {
-    type: actionTypes.FILTER_BY_RECIPIENT,
-    recipient,
-    dataRecipient: data,
-  };
-};
-
-export const filterByType = (type2, data) => {
-  return {
-    type: actionTypes.FILTER_BY_TYPE,
-    type2,
-    dataType: data,
-  };
-};
-
-export const finalFilter = () => {
-  return {
-    type: actionTypes.FINAL_FILTER,
-  };
-};
-
-export const setFinalArray = (array) => {
-  return {
-    type: actionTypes.SET_FINAL_ARRAY,
-    finalArray: array,
-  };
 };

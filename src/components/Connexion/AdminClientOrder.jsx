@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable prefer-destructuring */
 import React, { useEffect, useState } from 'react';
@@ -38,10 +39,11 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminClientOrder = ({ email, password, client }) => {
+const AdminClientOrder = ({ loadUser, email, password, client }) => {
   const classes = useStyles();
 
   const [orders, setOrders] = useState([]);
+  const [deliveries, setDeliveries] = useState([]);
 
   let clientInfo;
   if (client) {
@@ -60,12 +62,21 @@ const AdminClientOrder = ({ email, password, client }) => {
       .then((data) => setOrders(data));
   }, [clientInfo.id]);
 
-  // eslint-disable-next-line no-console
-  console.log(orders);
+  useEffect(() => {
+    if (orders) {
+      orders.map((order) =>
+        Axios.get(
+          `${process.env.REACT_APP_LOCALHOST}/api/orders/${order.id_delivery}/delivery`
+        )
+          .then((res) => res.data)
+          .then((data) => setDeliveries(data))
+      );
+    }
+  }, [orders]);
 
   return (
     <div>
-      {orders.filter((order) => order.status === false) ? (
+      {client && orders.filter((order) => order.status === 0) ? (
         <div className="info-content">
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
@@ -81,22 +92,20 @@ const AdminClientOrder = ({ email, password, client }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.filter(
-                  (order) =>
-                    order.status === false && (
-                      <StyledTableRow key={order.id}>
-                        <StyledTableCell component="th" scope="row">
-                          {order.createDate}
-                        </StyledTableCell>
-                        <StyledTableCell>num commande</StyledTableCell>
-                        <StyledTableCell>nom de la carte</StyledTableCell>
-                        <StyledTableCell>physique ou en ligne</StyledTableCell>
-                        <StyledTableCell>adresse</StyledTableCell>
-                        <StyledTableCell>{order.delivery_date}</StyledTableCell>
-                        <StyledTableCell>xxx€</StyledTableCell>
-                      </StyledTableRow>
-                    )
-                )}
+                {orders.filter((order) => order.status === 0) &&
+                  orders.map((order) => (
+                    <StyledTableRow key={order.id}>
+                      <StyledTableCell component="th" scope="row">
+                        {order.createDate}
+                      </StyledTableCell>
+                      <StyledTableCell>num commande</StyledTableCell>
+                      <StyledTableCell>nom de la carte</StyledTableCell>
+                      <StyledTableCell>physique ou en ligne</StyledTableCell>
+                      <StyledTableCell>{deliveries.address}</StyledTableCell>
+                      <StyledTableCell>{order.delivery_date}</StyledTableCell>
+                      <StyledTableCell>xxx€</StyledTableCell>
+                    </StyledTableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>

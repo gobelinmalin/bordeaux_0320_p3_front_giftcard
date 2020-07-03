@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
@@ -6,7 +7,7 @@ import axios from 'axios';
 import { getProducts } from '../../actions/generalActions';
 import CardProduct from './CardProduct';
 
-const HomeProductList = ({ onglets, newProducts }) => {
+const HomeProductList = ({ getProducts, onglets, newProducts }) => {
   const [monthProducts, setMonthProducts] = useState([]);
   useEffect(() => {
     // product reducer => new products

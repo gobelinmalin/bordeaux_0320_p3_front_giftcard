@@ -4,10 +4,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import '../../style/AdminShop.css';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { loadShop } from '../../actions/generalActions';
-import '../../style/AdminShop.css';
 
 const AdminShopInfo = ({ loadShop, email, password, shop }) => {
   const [shopData, setShopData] = useState([]);
@@ -64,6 +65,8 @@ const AdminShopInfo = ({ loadShop, email, password, shop }) => {
             <p>Téléphone</p>
             <hr />
             <p>Adresse du siège social</p>
+            <hr />
+            <p>Site internet</p>
           </div>
           <hr />
           <div className="info-text">
@@ -79,14 +82,18 @@ const AdminShopInfo = ({ loadShop, email, password, shop }) => {
               {shopInfo.headOfficeAddress}, {shopInfo.headOfficeZipcode}{' '}
               {shopInfo.headOfficeCity}, {shopInfo.headOfficeCountry}
             </p>
+            <hr />
+            <p>{shopData.website}</p>
           </div>
         </div>
       ) : (
         <p>loading...</p>
       )}
-      <Button className={classes.Button} variant="contained">
-        Indiquer un changement
-      </Button>
+      <Link to="/contact">
+        <Button className={classes.Button} variant="contained">
+          Indiquer un changement
+        </Button>
+      </Link>
     </div>
   );
 };

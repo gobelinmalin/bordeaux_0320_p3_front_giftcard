@@ -51,7 +51,7 @@ const AdminClient = () => {
             {onglets === 2 ? (
               <AdminClientOrder />
             ) : (
-              <p>Vous n&apos;avez pas de commandes</p>
+              <p>Vous n&apos;avez pas de commandes passées</p>
             )}
           </>
         )}
