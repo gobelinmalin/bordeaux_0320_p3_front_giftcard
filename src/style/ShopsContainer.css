@@ -1,0 +1,69 @@
+.shops-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 150px auto 0 auto;
+  padding-bottom: 1rem;
+  height: 70vh;
+}
+
+.shops-filter-and-list {
+  display: flex;
+  height: 60vh;
+}
+
+.shops-filter {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  padding: 1rem;
+}
+
+.town {
+  width: 80%;
+  height: 2rem;
+  border-radius: 10px;
+}
+
+.shops-button {
+  width: 80%;
+  height: 2.5rem;
+  border-radius: 10px;
+  background-color: white;
+  color: #20124d;
+  border: 1px solid #20124d;
+  margin-bottom: 1rem;
+}
+
+.shops-button-filter {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.shops-filter-box {
+  display: flex;
+  width: 100%;
+}
+
+.shoplist-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 80%;
+  padding: 1rem;
+}
+
+.shoplist-button {
+  width: 25%;
+  height: 20%;
+  background-color: #ffffff;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+.shoplist-logo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
