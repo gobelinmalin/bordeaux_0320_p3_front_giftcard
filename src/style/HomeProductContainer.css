@@ -1,41 +1,40 @@
 .home {
-    width:90%;
-    margin:auto;
-    padding-bottom: 1rem;
+  width: 90%;
+  margin: auto;
+  padding-bottom: 1rem;
 }
 
 .home h2 {
-    margin-top: 3rem;
+  margin-top: 3rem;
 }
 
 .contBtn {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-
 .container {
-    width: 500px;
-    height: 600px;
-    text-align: justify;
-    border-top: none;
+  width: 500px;
+  height: 600px;
+  text-align: justify;
+  border-top: none;
 }
 
 .active {
-    background: #fff2ceff;
-    color: #231864;
+  background: #fff2ceff;
+  color: #231864;
 }
 
 .container-products {
-    background-color:#fff2ceff;
-    border-radius: 0 0 10px 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-bottom: 1rem;
+  background-color: #fff2ceff;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
 
 .home .round {
-    border-radius: 0 10px 0 0;
+  border-radius: 0 10px 0 0;
 }
