@@ -177,6 +177,19 @@ const FilterCardContainer = (props) => {
             >
               Couple
             </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onKeyDown={() => {}}
+              name="famille"
+              className={[
+                filterRecipient.famille ? 'Checked' : null,
+                'OptionBox',
+              ].join(' ')}
+              onClick={() => onClickRecipient('famille')}
+            >
+              Famille
+            </div>
           </div>
           <div>
             <div
@@ -196,14 +209,14 @@ const FilterCardContainer = (props) => {
               role="button"
               tabIndex={0}
               onKeyDown={() => {}}
-              name="animal"
+              name="animal de compagnie"
               className={[
-                filterRecipient.animaux ? 'Checked' : null,
+                filterRecipient['animal de compagnie'] ? 'Checked' : null,
                 'OptionBox',
               ].join(' ')}
-              onClick={() => onClickRecipient('animaux')}
+              onClick={() => onClickRecipient('Animal de compagnie')}
             >
-              Animaux
+              Animal de compagnie
             </div>
             <div
               role="button"
@@ -355,7 +368,7 @@ const FilterCardContainer = (props) => {
               ].join(' ')}
               onClick={() => onClickTheme('magasins specialises')}
             >
-              Spécial
+              Spécialisé
             </div>
             <div>
               <Button
@@ -373,6 +386,7 @@ const FilterCardContainer = (props) => {
     </div>
   );
 };
+
 FilterCardContainer.propTypes = {
   filterByTheme: PropTypes.func,
   filterByType: PropTypes.func,
@@ -403,9 +417,9 @@ FilterCardContainer.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    filterCardType: state.filterCardType,
-    filterRecipient: state.filterRecipient,
-    filterTheme: state.filterTheme,
+    filterCardType: state.product.filterCardType,
+    filterRecipient: state.product.filterRecipient,
+    filterTheme: state.product.filterTheme,
   };
 };
 

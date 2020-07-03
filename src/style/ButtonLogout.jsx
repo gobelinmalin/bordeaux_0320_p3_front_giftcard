@@ -1,14 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { logout } from '../actions/generalActions';
 
-const ButtonPersonnalisation = () => {
+const ButtonLogout = ({ logout }) => {
   const useStyles = makeStyles({
     root: {
       backgroundColor: '#231864',
       border: 0,
       borderRadius: 10,
-      color: '#fff2ceff',
+      textDecoration: 'none',
+      color: '#fff',
       height: '2rem',
       padding: '1rem',
       fontWeight: '500',
@@ -24,15 +28,18 @@ const ButtonPersonnalisation = () => {
   const classes = useStyles();
 
   return (
-    <Button
-      variant="contained"
-      color="primary"
-      className={classes.root}
-      href="#"
-    >
-      Je personnalise !
-    </Button>
+    <Link to="/connexion">
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.root}
+        href="#"
+        onClick={logout}
+      >
+        Déconnexion
+      </Button>
+    </Link>
   );
 };
 
-export default ButtonPersonnalisation;
+export default connect(null, { logout })(ButtonLogout);

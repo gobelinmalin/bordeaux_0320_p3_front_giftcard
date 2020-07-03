@@ -1,11 +1,10 @@
 .Icon img {
-    height: 25px;
-    width: 25px;
-    
+  height: 25px;
+  width: 25px;
 }
 
 .Icon {
-    align-items: center;
-    display: flex;
-    margin-right: 10px;
+  align-items: center;
+  display: flex;
+  margin-right: 10px;
 }

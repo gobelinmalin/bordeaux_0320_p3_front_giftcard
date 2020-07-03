@@ -13,7 +13,7 @@ const CardList = (props) => {
     axios
       .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
       .then((res) => setFinalArray(res.data));
-  }, []);
+  }, [setFinalArray]);
 
   return (
     <div>
@@ -46,7 +46,7 @@ CardList.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    state,
+    state: state.product,
   };
 };
 

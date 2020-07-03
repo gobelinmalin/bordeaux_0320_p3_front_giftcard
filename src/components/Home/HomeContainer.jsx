@@ -5,14 +5,14 @@ import HomeShop from './HomeShop';
 import HomerBanner from './HomeBanner';
 
 const HomeContainer = () => {
-    return (
-        <>
-            <HomerBanner />
-            <HomeProductContainer />
-            <HomeThemeContainer />
-            <HomeShop />
-        </>
-    )
-}
+  return (
+    <>
+      <HomerBanner />
+      <HomeProductContainer />
+      <HomeThemeContainer />
+      <HomeShop />
+    </>
+  );
+};
 
 export default HomeContainer;
