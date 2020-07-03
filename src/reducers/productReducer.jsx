@@ -1,6 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
+  products: [],
+  newProducts: [],
+  loading: false,
   allCards: [],
   filterCardType: {
     eCard: false,
@@ -11,9 +14,10 @@ const initialState = {
     femme: false,
     homme: false,
     bébé: false,
-    animaux: false,
+    'animal de compagnie': false,
     couple: false,
     enfant: false,
+    famille: false,
     filteredArray: [],
   },
   filterTheme: {
@@ -35,8 +39,7 @@ const initialState = {
 export default function productReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.GET_PRODUCTS: {
-      const product = action.products;
-      const listProducts = action.products;
+      const listProducts = action.payload;
       const month = new Date();
       const months = [
         '01',
@@ -53,16 +56,21 @@ export default function productReducer(state = initialState, action) {
         '12',
       ];
       const actualMonth = months[month.getMonth()];
-      const newProducts = listProducts.filter((element) =>
-        element.creationDate.includes(actualMonth)
+      const news = listProducts.filter((product) =>
+        product.creationDate.includes(actualMonth)
       );
-
       return {
         ...state,
-        product,
-        newProducts,
+        products: action.payload,
+        newProducts: news,
+        loading: false,
       };
     }
+    case actionTypes.PRODUCTS_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case actionTypes.SET_FINAL_ARRAY: {
       const { finalArray } = action;
       return {
@@ -70,7 +78,6 @@ export default function productReducer(state = initialState, action) {
         finalArray,
       };
     }
-
     case actionTypes.FILTER_BY_TYPE: {
       const type = action.type2;
       let newTypeArray = action.dataType;
@@ -132,7 +139,7 @@ export default function productReducer(state = initialState, action) {
           femme: false,
           homme: false,
           bébé: false,
-          animaux: false,
+          'animal de compagnie': false,
           couple: false,
           enfant: false,
           [recipient]: trueOrFalse,
@@ -144,15 +151,23 @@ export default function productReducer(state = initialState, action) {
       const arrayType = state.filterCardType.filteredArray;
       const arrayRecipient = state.filterRecipient.filteredArray;
       const arrayTheme = state.filterTheme.filteredArray;
+      const baseArray = action.data;
+      let finalFilteredArray = [];
 
-      const finalFilteredArray = [];
-
-      // Filter if only array1 is not empty
+      // Filter when all array are empty
+      if (
+        arrayType.length === 0 &&
+        arrayRecipient.length === 0 &&
+        arrayTheme.length === 0
+      ) {
+        finalFilteredArray = baseArray;
+      }
       if (
         arrayType.length > 0 &&
         arrayRecipient.length === 0 &&
         arrayTheme.length === 0
       ) {
+        // Filter if only array1 is not empty
         arrayType.map((element) => finalFilteredArray.push(element));
       }
       // Filter if Only array2 is not empty

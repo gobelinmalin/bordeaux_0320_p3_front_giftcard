@@ -80,19 +80,22 @@ const FilterCardContainer = (props) => {
       .then((res) => filterByRecipient(recipient, res.data));
   };
 
-  const onClickType = (bool, type) => {
+  const onClickType = (type) => {
     axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/format/${bool}`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/${type}`)
       .then((res) => filterByType(type, res.data));
   };
 
   const filter = () => {
-    finalFilter();
+    axios
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
+      .then((res) => finalFilter(res.data));
   };
 
   return (
     <div className="AllOptionContainer">
       <div className="OptionContainer">
+        <p>VILLE</p>
         <div className="Select">
           <Select
             styles={customStyles}
@@ -114,7 +117,7 @@ const FilterCardContainer = (props) => {
               filterCardType.eCard ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
-            onClick={() => onClickType(0, 'eCard')}
+            onClick={() => onClickType('eCard')}
             onKeyDown={() => {}}
           >
             E-carte
@@ -128,7 +131,7 @@ const FilterCardContainer = (props) => {
               filterCardType.realCard ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
-            onClick={() => onClickType(1, 'realCard')}
+            onClick={() => onClickType('realCard')}
           >
             Carte physique
           </div>
@@ -177,6 +180,19 @@ const FilterCardContainer = (props) => {
             >
               Couple
             </div>
+            <div
+              role="button"
+              tabIndex={0}
+              onKeyDown={() => {}}
+              name="famille"
+              className={[
+                filterRecipient.famille ? 'Checked' : null,
+                'OptionBox',
+              ].join(' ')}
+              onClick={() => onClickRecipient('famille')}
+            >
+              Famille
+            </div>
           </div>
           <div>
             <div
@@ -196,14 +212,14 @@ const FilterCardContainer = (props) => {
               role="button"
               tabIndex={0}
               onKeyDown={() => {}}
-              name="animal"
+              name="animal de compagnie"
               className={[
-                filterRecipient.animaux ? 'Checked' : null,
+                filterRecipient['animal de compagnie'] ? 'Checked' : null,
                 'OptionBox',
               ].join(' ')}
-              onClick={() => onClickRecipient('animaux')}
+              onClick={() => onClickRecipient('Animal de compagnie')}
             >
-              Animaux
+              Animal de compagnie
             </div>
             <div
               role="button"
@@ -355,7 +371,7 @@ const FilterCardContainer = (props) => {
               ].join(' ')}
               onClick={() => onClickTheme('magasins specialises')}
             >
-              Spécial
+              Spécialisé
             </div>
             <div>
               <Button
@@ -373,6 +389,7 @@ const FilterCardContainer = (props) => {
     </div>
   );
 };
+
 FilterCardContainer.propTypes = {
   filterByTheme: PropTypes.func,
   filterByType: PropTypes.func,
@@ -403,9 +420,9 @@ FilterCardContainer.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    filterCardType: state.filterCardType,
-    filterRecipient: state.filterRecipient,
-    filterTheme: state.filterTheme,
+    filterCardType: state.product.filterCardType,
+    filterRecipient: state.product.filterRecipient,
+    filterTheme: state.product.filterTheme,
   };
 };
 
@@ -417,7 +434,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.filterByTheme(theme, data)),
     filterByRecipient: (recipient, data) =>
       dispatch(actionCreators.filterByRecipient(recipient, data)),
-    finalFilter: () => dispatch(actionCreators.finalFilter()),
+    finalFilter: (data) => dispatch(actionCreators.finalFilter(data)),
   };
 };
 

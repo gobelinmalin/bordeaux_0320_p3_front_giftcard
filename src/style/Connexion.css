@@ -1,0 +1,124 @@
+.connexion {
+  padding-top: 15vh;
+  min-height: 85vh;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.connexionBtn,
+.connexion-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: 20vh;
+}
+
+.connexionBtn a,
+.connexion a {
+  text-decoration: none;
+}
+
+.connexion-bloc form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inscription,
+.member {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+  height: auto;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+
+.inscription {
+  width: 90%;
+}
+.connexion form {
+  padding-top: 1rem;
+}
+
+.admin {
+  background-color: #199bd5;
+  color: #fff;
+  border-radius: 0 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.admin .active {
+  background: #199bd5;
+  color: #fff;
+}
+.admin a {
+  text-align: end;
+}
+
+.admin p {
+  text-align: center;
+}
+
+.admin span {
+  text-transform: uppercase;
+}
+
+.intro_inscription p {
+  margin-right: 1rem;
+}
+
+.inscription_contact {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.confirmpassword {
+  display: flex;
+  align-items: center;
+}
+.confirmpassword p {
+  margin-left: 0.5rem;
+}
+
+.info-content {
+  background-color: #231864;
+  border-radius: 10px;
+  display: flex;
+  margin: 1rem;
+  justify-content: center;
+}
+
+.info-content hr {
+  border-radius: 5px;
+  border: 0.5px solid #fff;
+  opacity: 0.5;
+  margin: 0;
+}
+
+.info-text {
+  width: 50%;
+}
+
+.info-text p {
+  margin-left: 3rem;
+}
+
+.memberform {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmmember {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+}

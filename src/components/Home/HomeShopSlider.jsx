@@ -24,9 +24,9 @@ const HomeShopSlider = () => {
   }, []);
 
   return (
-    <Slider {...settings}>
+    <Slider settings={settings}>
       {shops.map((shop) => (
-        <button key={shop.id}>
+        <button type="button" key={shop.id}>
           <img src={shop.logo} alt={shop.name} />
         </button>
       ))}
