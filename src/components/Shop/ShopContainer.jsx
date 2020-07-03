@@ -30,13 +30,6 @@ const ShopContainer = ({ match }) => {
   );
 };
 
-/* ShopContainer.defaultProps = {
-  match: Proptypes.shape({
-    params: Proptypes.shape({
-      id: Proptypes.string,
-    }),
-  }).isRequired,
-}; */
 ShopContainer.propTypes = {
   match: Proptypes.shape({
     params: Proptypes.shape({
