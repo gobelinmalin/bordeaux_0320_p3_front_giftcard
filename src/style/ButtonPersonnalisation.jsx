@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const ButtonPersonnalisation = () => {
   const useStyles = makeStyles({
     root: {
-      backgroundColor: '#231864',
+      backgroundColor: '#20124d',
       border: 0,
       borderRadius: 10,
       color: '#fff2ceff',
@@ -16,7 +16,7 @@ const ButtonPersonnalisation = () => {
       boxShadow: 'none',
       '&:hover': {
         boxShadow: '0px 0px 5px 0px rgba(32,18,77,1)',
-        backgroundColor: '#231864',
+        backgroundColor: '#20124d',
       },
     },
   });

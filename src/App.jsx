@@ -6,6 +6,8 @@ import './App.css';
 import Contact from './components/Contact/Contact';
 import HomeContainer from './components/Home/HomeContainer';
 import Footer from './components/footer/Footer';
+import ShopsContainer from './components/Shops/ShopsContainer';
+import ShopContainer from './components/Shop/ShopContainer';
 import ConnexionContainer from './components/Connexion/ConnexionContainer';
 import Connexion from './components/Connexion/Connexion';
 import ClientArea from './components/Connexion/ClientArea';
@@ -42,6 +44,8 @@ const App = () => {
         />
         <Route path="/contact" component={Contact} exact />
         <Route path="/filteredCards" component={CardsContainer} exact />
+        <Route path="/enseignes" component={ShopsContainer} exact />
+        <Route path="/enseignes/:id" component={ShopContainer} exact />
       </Switch>
       <Footer />
     </>

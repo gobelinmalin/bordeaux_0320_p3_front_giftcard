@@ -8,7 +8,7 @@ const ButtonLearnMore = () => {
       backgroundColor: '#fff2ceff',
       border: 0,
       borderRadius: 10,
-      color: '#231864',
+      color: '#20124d',
       height: '2rem',
       padding: '1rem',
       fontWeight: '500',
