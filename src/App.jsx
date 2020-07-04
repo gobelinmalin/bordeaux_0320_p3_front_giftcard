@@ -41,7 +41,7 @@ const App = () => {
           exact
         />
         <Route path="/contact" component={Contact} exact />
-        <Route path="/filteredCards" component={CardsContainer} exact />
+        <Route path="/cartes-cadeaux" component={CardsContainer} exact />
       </Switch>
       <Footer />
     </>

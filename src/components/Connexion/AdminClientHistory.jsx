@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminClientOrder = ({ loadUser, email, password, client }) => {
+const AdminClientHistory = ({ loadUser, email, password, client }) => {
   const classes = useStyles();
 
   const [orders, setOrders] = useState([]);
@@ -92,7 +92,9 @@ const AdminClientOrder = ({ loadUser, email, password, client }) => {
 
   return (
     <div>
-      {deliveries.length > 0 && orders.filter((order) => order.status === 0) ? (
+      {orders.filter((order) => order.status === 0) ? (
+        <p>Vous n&apos;avez pas de commandes passées</p>
+      ) : (
         <div className="info-content">
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
@@ -108,8 +110,9 @@ const AdminClientOrder = ({ loadUser, email, password, client }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.filter((order) => order.status === 0) &&
-                  orders.map((order) =>
+                {orders.filter(
+                  (order) =>
+                    order.status === 1 &&
                     deliveries.map((delivery) =>
                       products.map((product) =>
                         product.map((prod) => (
@@ -147,13 +150,11 @@ const AdminClientOrder = ({ loadUser, email, password, client }) => {
                         ))
                       )
                     )
-                  )}
+                )}
               </TableBody>
             </Table>
           </TableContainer>
         </div>
-      ) : (
-        <p>Vous n&apos;avez pas de commandes en cours</p>
       )}
     </div>
   );
@@ -165,4 +166,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { loadUser })(AdminClientOrder);
+export default connect(mapStateToProps, { loadUser })(AdminClientHistory);
