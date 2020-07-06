@@ -16,7 +16,7 @@ function Header({ isAuthenticated, isAuthenticatedShop, client }) {
         <Link className="Header_link" to="/">
           Comment ça marche ?
         </Link>
-        <Link className="Header_link" to="/filteredCards">
+        <Link className="Header_link" to="/cartes-cadeaux">
           Cartes cadeaux
         </Link>
         <Link className="Header_link" to="/enseignes">
