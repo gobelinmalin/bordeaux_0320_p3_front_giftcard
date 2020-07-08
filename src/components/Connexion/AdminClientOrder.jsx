@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
@@ -44,18 +45,19 @@ const AdminClientOrder = ({ loadUser, email, password, client }) => {
   const classes = useStyles();
 
   const [orders, setOrders] = useState([]);
-  const [deliveries, setDeliveries] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [infos, setInfos] = useState([]);
 
   let clientInfo;
   if (client) {
     clientInfo = client.authdata.user[0];
   }
 
+  // charger les données liées au client
   useEffect(() => {
     loadUser(email, password);
   }, [loadUser, email, password]);
 
+  // accèder aux commandes liées au client
   useEffect(() => {
     Axios.get(
       `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders`
@@ -64,41 +66,29 @@ const AdminClientOrder = ({ loadUser, email, password, client }) => {
       .then((data) => setOrders(data));
   }, [clientInfo.id]);
 
+  const allinfos = [];
+  // accèder à toutes les données de chaque commande
   useEffect(() => {
-    const delivery = [];
-    if (orders) {
-      orders.map((order) =>
+    orders.map(
+      (order) =>
         Axios.get(
-          `${process.env.REACT_APP_LOCALHOST}/api/orders/${order.id_delivery}/delivery`
+          `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
         )
-          .then((res) => delivery.push(res.data))
-          .then(() => setDeliveries(delivery))
-      );
-    }
-  }, [orders]);
-
-  useEffect(() => {
-    const product = [];
-    if (deliveries.length > 0) {
-      orders.map((order) =>
-        Axios.get(
-          `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/products`
-        )
-          .then((res) => product.push(res.data.products_order_client))
-          .then(() => setProducts(product))
-      );
-    }
-  }, [clientInfo.id, orders, deliveries.length]);
+          .then((res) => res.data[0])
+          .then((data) => allinfos.push(data))
+      // .then(() => console.log(allinfos))
+    );
+  }, [clientInfo.id, orders, allinfos]);
 
   return (
     <div>
-      {deliveries.length > 0 && orders.filter((order) => order.status === 0) ? (
+      {infos.length > 0 && infos.filter((info) => info.status === 0) ? (
         <div className="info-content">
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Date</StyledTableCell>
+                  <StyledTableCell>Date de commande</StyledTableCell>
                   <StyledTableCell>N° de commande</StyledTableCell>
                   <StyledTableCell>Carte</StyledTableCell>
                   <StyledTableCell>Type</StyledTableCell>
@@ -108,46 +98,33 @@ const AdminClientOrder = ({ loadUser, email, password, client }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.filter((order) => order.status === 0) &&
-                  orders.map((order) =>
-                    deliveries.map((delivery) =>
-                      products.map((product) =>
-                        product.map((prod) => (
-                          <StyledTableRow key={delivery.id}>
-                            <StyledTableCell component="th" scope="row">
-                              {new Date(order.createDate).toLocaleDateString()}
-                            </StyledTableCell>
-                            <StyledTableCell>
-                              {prod.commande_nb}
-                            </StyledTableCell>
-                            <StyledTableCell>{prod.name}</StyledTableCell>
-                            {prod.realCard === 0 ? (
-                              <>
-                                <StyledTableCell>E-card</StyledTableCell>
-                                <StyledTableCell>
-                                  {delivery.mail}
-                                </StyledTableCell>
-                              </>
-                            ) : (
-                              <>
-                                <StyledTableCell>Physique</StyledTableCell>
-                                <StyledTableCell>
-                                  {delivery.address}, {delivery.zipcode}{' '}
-                                  {delivery.city}, {delivery.country}
-                                </StyledTableCell>
-                              </>
-                            )}
-                            <StyledTableCell>
-                              {new Date(
-                                order.delivery_date
-                              ).toLocaleDateString()}
-                            </StyledTableCell>
-                            <StyledTableCell>{prod.credit}€</StyledTableCell>
-                          </StyledTableRow>
-                        ))
-                      )
-                    )
-                  )}
+                {infos.map((info) => (
+                  <StyledTableRow key={info.id}>
+                    <StyledTableCell component="th" scope="row">
+                      {new Date(info.createDate).toLocaleDateString()}
+                    </StyledTableCell>
+                    <StyledTableCell>{info.id}</StyledTableCell>
+                    <StyledTableCell>{info.name}</StyledTableCell>
+                    {info.realCard === 0 ? (
+                      <>
+                        <StyledTableCell>E-card</StyledTableCell>
+                        <StyledTableCell>{info.mail}</StyledTableCell>
+                      </>
+                    ) : (
+                      <>
+                        <StyledTableCell>Physique</StyledTableCell>
+                        <StyledTableCell>
+                          {info.address}, {info.zipcode} {info.city},{' '}
+                          {info.country}
+                        </StyledTableCell>
+                      </>
+                    )}
+                    <StyledTableCell>
+                      {new Date(info.delivery_date).toLocaleDateString()}
+                    </StyledTableCell>
+                    <StyledTableCell>{info.credit}€</StyledTableCell>
+                  </StyledTableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
