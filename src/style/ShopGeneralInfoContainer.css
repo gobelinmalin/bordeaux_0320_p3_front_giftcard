@@ -1,0 +1,36 @@
+.shop-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  height: 40vh;
+  margin: 100px auto 0 auto;
+}
+.shop-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.shop-logo-container {
+  display: flex;
+  height: 80%;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  border-right: solid 2px #20124d;
+}
+
+.shop-info-logo {
+  width: 20vw;
+  height: 10vh;
+  object-fit: contain;
+}
+
+.shop-info-description {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 50%;
+  height: 80%;
+  padding-left: 2rem;
+}

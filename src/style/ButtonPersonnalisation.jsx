@@ -5,10 +5,9 @@ import PropTypes from 'prop-types';
 
 const ButtonPersonnalisation = (props) => {
   const { addToCart } = props;
-
   const useStyles = makeStyles({
     root: {
-      backgroundColor: '#231864',
+      backgroundColor: '#20124d',
       border: 0,
       borderRadius: 10,
       color: '#fff2ceff',
@@ -19,7 +18,7 @@ const ButtonPersonnalisation = (props) => {
       boxShadow: 'none',
       '&:hover': {
         boxShadow: '0px 0px 5px 0px rgba(32,18,77,1)',
-        backgroundColor: '#231864',
+        backgroundColor: '#20124d',
       },
     },
   });

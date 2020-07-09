@@ -103,7 +103,7 @@ export const clearErrors = () => {
 
 /* authentification */
 // Logout User
-export const logout = () => {
+export const logOut = () => {
   return {
     type: actionTypes.LOGOUT_SUCCESS,
   };
