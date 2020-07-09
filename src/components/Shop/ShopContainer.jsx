@@ -12,15 +12,15 @@ const ShopContainer = ({ match }) => {
   useEffect(() => {
     const idEnseigne = match.params.id;
     axios
-      .get(`http://localhost:3000/api/shops/${idEnseigne}`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${idEnseigne}`)
       .then((res) => res.data)
       .then((data) => setEnseigne(data));
 
     axios
-      .get(`http://localhost:3000/api/products?shop=${idEnseigne}`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/products?shop=${idEnseigne}`)
       .then((res) => res.data)
       .then((data) => setProducts(data));
-  }, []);
+  }, [match.params.id]);
 
   return (
     <>

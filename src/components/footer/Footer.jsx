@@ -39,9 +39,7 @@ const Footer = () => {
         <div className="About">
           <ul>
             <li>
-              <p>
-                <strong>A propos</strong>
-              </p>
+              <a href="/">Informations</a>
             </li>
             <li>
               <a href="/">Comment ça marche?</a>
