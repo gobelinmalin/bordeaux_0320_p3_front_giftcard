@@ -5,4 +5,7 @@ export {
   filterByType,
   finalFilter,
   setFinalArray,
+  addToCart,
+  removeFromCart,
+  saveDelivery,
 } from './generalActions';

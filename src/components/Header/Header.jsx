@@ -56,7 +56,7 @@ function Header({ isAuthenticated, isAuthenticatedShop, client }) {
           </Link>
         </div>
         <div className="Header_icons_container">
-          <Link className="Header_icon" to="/">
+          <Link className="Header_icon" to="/panier">
             <i className="fas fa-shopping-cart" />
             <p className="Header_icons_description">PANIER</p>
           </Link>

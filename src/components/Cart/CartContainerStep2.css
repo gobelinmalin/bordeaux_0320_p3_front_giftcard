@@ -1,0 +1,33 @@
+.CartInformation {
+    padding-top: 15vh;
+    min-height: 85vh;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.ContactInformation, .DeliveryInformation {
+    display:flex;
+    flex-direction: column;
+}
+
+.InformationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.FormFirstPart,
+.FormSecondPart {
+    display: flex;
+    flex-direction: column;
+}
+
+.TotalForm {
+    display: flex;
+}
+
+.DeliveryInformation h3 {
+    width: 600px;
+    margin-right: 1rem;
+}
