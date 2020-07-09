@@ -2,6 +2,29 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
+/* Cart */
+
+export const saveDelivery = (data) => {
+  return {
+    type: actionTypes.SAVE_DELIVERY,
+    deliveryData: data,
+  };
+};
+
+export const addToCart = (item) => {
+  return {
+    type: actionTypes.ADD_TO_CART,
+    item,
+  };
+};
+
+export const removeFromCart = (id) => {
+  return {
+    type: actionTypes.REMOVE_FROM_CART,
+    id,
+  };
+};
+
 /* products */
 export const getProducts = () => (dispatch) => {
   dispatch(setProductsLoading());

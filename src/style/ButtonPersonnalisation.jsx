@@ -1,8 +1,11 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
-const ButtonPersonnalisation = () => {
+const ButtonPersonnalisation = (props) => {
+  const { addToCart } = props;
+
   const useStyles = makeStyles({
     root: {
       backgroundColor: '#231864',
@@ -25,6 +28,7 @@ const ButtonPersonnalisation = () => {
 
   return (
     <Button
+      onClick={addToCart}
       variant="contained"
       color="primary"
       className={classes.root}
@@ -33,6 +37,14 @@ const ButtonPersonnalisation = () => {
       Je personnalise !
     </Button>
   );
+};
+
+ButtonPersonnalisation.propTypes = {
+  addToCart: PropTypes.func,
+};
+
+ButtonPersonnalisation.defaultProps = {
+  addToCart: '',
 };
 
 export default ButtonPersonnalisation;
