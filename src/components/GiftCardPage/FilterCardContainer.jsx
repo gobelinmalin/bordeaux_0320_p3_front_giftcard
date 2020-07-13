@@ -88,7 +88,7 @@ const FilterCardContainer = (props) => {
 
   const filter = () => {
     axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/cards`)
       .then((res) => finalFilter(res.data));
   };
 
@@ -394,28 +394,51 @@ FilterCardContainer.propTypes = {
   filterByTheme: PropTypes.func,
   filterByType: PropTypes.func,
   filterByRecipient: PropTypes.func,
-  filterCardType: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  filterRecipient: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  filterTheme: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  finalFilter: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+  filterCardType: PropTypes.shape({
+    eCard: PropTypes.bool,
+    realCard: PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  filterRecipient: PropTypes.shape({
+    femme: PropTypes.bool,
+    homme: PropTypes.bool,
+    bébé: PropTypes.bool,
+    'animal de compagnie': PropTypes.bool,
+    couple: PropTypes.bool,
+    enfant: PropTypes.bool,
+    famille: PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  filterTheme: PropTypes.shape({
+    mode: PropTypes.bool,
+    maison: PropTypes.bool,
+    gastronomie: PropTypes.bool,
+    culture: PropTypes.bool,
+    adulte: PropTypes.bool,
+    'bien-être': PropTypes.bool,
+    sport: PropTypes.bool,
+    evasion: PropTypes.bool,
+    education: PropTypes.bool,
+    'magasins specialises': PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  finalFilter: PropTypes.func,
 };
 
 FilterCardContainer.defaultProps = {
   filterByTheme: '',
   filterByType: '',
   filterByRecipient: '',
-  filterCardType: '',
-  filterRecipient: '',
-  filterTheme: '',
-  finalFilter: '',
+  filterCardType: [],
+  filterRecipient: [],
+  filterTheme: [],
+  finalFilter: [],
 };
 
 const mapStateToProps = (state) => {

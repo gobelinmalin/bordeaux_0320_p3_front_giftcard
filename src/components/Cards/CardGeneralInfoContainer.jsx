@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -11,8 +12,22 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 const CardGeneralInfoContainer = ({ product, shop }) => {
+  const [priceCard, setPriceCard] = useState();
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/${product.id}`)
+      .then((res) => res.data)
+      .then((data) => Math.min(...data.map((o) => o.credit)))
+      .then((results) => setPriceCard(results))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [product.id]);
+
   const useStyles = makeStyles(() => ({
     formControl: {
       color: 'rgba(0, 0, 0, 0.54)',
@@ -75,7 +90,7 @@ const CardGeneralInfoContainer = ({ product, shop }) => {
             <h2>{product.name}</h2>
             <div className="product_price">
               <h3>{shop.name}</h3>
-              <p>à partir de {product.credit}€</p>
+              {priceCard && <p>à partir de {priceCard}€</p>}
             </div>
             <p>{product.description}</p>
             <div className="product_choice">

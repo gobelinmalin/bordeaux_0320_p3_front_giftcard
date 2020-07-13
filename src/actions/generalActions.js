@@ -29,7 +29,7 @@ export const removeFromCart = (id) => {
 export const getProducts = () => (dispatch) => {
   dispatch(setProductsLoading());
   axios
-    .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
+    .get(`${process.env.REACT_APP_LOCALHOST}/api/products/cards`)
     .then((res) =>
       dispatch({
         type: actionTypes.GET_PRODUCTS,

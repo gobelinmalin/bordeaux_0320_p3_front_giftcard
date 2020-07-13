@@ -72,7 +72,7 @@ const CartTotal = (props) => {
       {step1 ? (
         <Select
           styles={customStyles}
-          isDisabled={step1}
+          // isDisabled={step1}
           value={selectedDelivery}
           onChange={handleChange}
           options={options}
