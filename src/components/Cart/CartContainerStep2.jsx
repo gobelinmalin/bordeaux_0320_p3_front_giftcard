@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import React, { useEffect, useState } from 'react';
 import './CartContainer.css';
 import { connect } from 'react-redux';
@@ -41,7 +42,7 @@ const CartContainerStep2 = (props) => {
 
   useEffect(() => {
     loadUser(email, password);
-  }, [loadUser, email, password]);
+  }, [email, password]);
 
   let clientInfo;
   if (client) {

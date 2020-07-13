@@ -22,12 +22,34 @@ const HomeProductList = ({ getProducts, onglets, newProducts }) => {
       });
   }, [getProducts]);
 
+  let unique;
+  const getUniqueNew = (arr, comp) => {
+    unique = arr
+      .map((e) => e[comp])
+      .map((e, i, final) => final.indexOf(e) === i && i)
+      .filter((e) => arr[e])
+      .map((e) => arr[e]);
+  };
+
+  getUniqueNew(newProducts, 'id');
+
+  let uniqueMonth;
+  const getUniqueMonth = (arr, comp) => {
+    uniqueMonth = arr
+      .map((e) => e[comp])
+      .map((e, i, final) => final.indexOf(e) === i && i)
+      .filter((e) => arr[e])
+      .map((e) => arr[e]);
+  };
+
+  getUniqueMonth(monthProducts, 'id');
+
   return (
     <div className="container-products">
       {onglets === 1 ? (
         <>
           {newProducts.length > 0 ? (
-            newProducts
+            unique
               .slice(0, 8)
               .map((product) => (
                 <CardProduct key={product.id} product={product} />
@@ -39,7 +61,7 @@ const HomeProductList = ({ getProducts, onglets, newProducts }) => {
       ) : (
         <>
           {monthProducts.length > 0 ? (
-            monthProducts
+            uniqueMonth
               .slice(0, 8)
               .map((product) => (
                 <CardProduct key={product.id} product={product} />

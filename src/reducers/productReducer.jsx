@@ -5,11 +5,7 @@ const initialState = {
   newProducts: [],
   loading: false,
   allCards: [],
-  filterCardType: {
-    eCard: false,
-    realCard: false,
-    filteredArray: [],
-  },
+  filterCardType: { eCard: false, realCard: false, filteredArray: [] },
   filterRecipient: {
     femme: false,
     homme: false,
