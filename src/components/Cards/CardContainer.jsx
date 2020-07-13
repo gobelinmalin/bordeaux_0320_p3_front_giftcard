@@ -17,26 +17,30 @@ const CardContainer = ({ match }) => {
     // get product by it's id
     axios
       .get(`${process.env.REACT_APP_LOCALHOST}/api/products/${idCard}`)
-      .then((res) => res.data[0])
+      .then((res) => res.data)
       .then((data) => setProduct(data));
   }, [match.params.id]);
 
+  const infoProduct = product[0];
+
   useEffect(() => {
-    if (product.id_shop) {
+    if (infoProduct.id_shop) {
       // get shop of one product
       axios
-        .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${product.id_shop}`)
+        .get(
+          `${process.env.REACT_APP_LOCALHOST}/api/shops/${infoProduct.id_shop}`
+        )
         .then((res) => res.data[0])
         .then((data) => setShop(data));
       // get theme by it's id
       axios
         .get(
-          `${process.env.REACT_APP_LOCALHOST}/api/themes/${product.id_theme}`
+          `${process.env.REACT_APP_LOCALHOST}/api/themes/${infoProduct.id_theme}`
         )
         .then((res) => res.data[0])
         .then((data) => setTheme(data));
     }
-  }, [product.id_shop, product.id_theme]);
+  }, [infoProduct.id_shop, infoProduct.id_theme]);
 
   useEffect(() => {
     if (theme.name) {

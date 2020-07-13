@@ -14,19 +14,24 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-const CardGeneralInfoContainer = ({ product, shop }) => {
+const CardGeneralInfoContainer = ({ product }) => {
   const [priceCard, setPriceCard] = useState();
 
+  const infoProduct = product[0];
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/${product.id}`)
-      .then((res) => res.data)
-      .then((data) => Math.min(...data.map((o) => o.credit)))
-      .then((results) => setPriceCard(results))
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [product.id]);
+    if (infoProduct) {
+      axios
+        .get(
+          `${process.env.REACT_APP_LOCALHOST}/api/products/${infoProduct.id}`
+        )
+        .then((res) => res.data)
+        .then((data) => Math.min(...data.map((o) => o.credit)))
+        .then((results) => setPriceCard(results))
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [product.id, infoProduct]);
 
   const useStyles = makeStyles(() => ({
     formControl: {
@@ -76,23 +81,23 @@ const CardGeneralInfoContainer = ({ product, shop }) => {
 
   return (
     <div className="product-info-container">
-      {product && (
+      {infoProduct && (
         <>
           <div className="product-img-container">
             <img
               className="product-info-img"
-              src={product.image}
-              alt={product.name}
+              src={infoProduct.image}
+              alt={infoProduct.name}
             />
           </div>
           <hr />
           <div className="product-info-description">
-            <h2>{product.name}</h2>
+            <h2>{infoProduct.name}</h2>
             <div className="product_price">
-              <h3>{shop.name}</h3>
+              <h3>{infoProduct.name}</h3>
               {priceCard && <p>à partir de {priceCard}€</p>}
             </div>
-            <p>{product.description}</p>
+            <p>{infoProduct.description}</p>
             <div className="product_choice">
               <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel id="label">Choisissez une valeur</InputLabel>
