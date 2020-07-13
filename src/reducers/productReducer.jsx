@@ -138,6 +138,7 @@ export default function productReducer(state = initialState, action) {
           'animal de compagnie': false,
           couple: false,
           enfant: false,
+          famille: false,
           [recipient]: trueOrFalse,
           filteredArray: dataRecipient,
         },
