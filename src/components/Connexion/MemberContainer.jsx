@@ -12,7 +12,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { register, clearErrors } from '../../actions/generalActions';
 
-const MemberContainer = ({ register, isAuthenticated }) => {
+const MemberContainer = ({ register, isAuthenticated, cart }) => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [address, setAddress] = useState('');
@@ -94,7 +94,9 @@ const MemberContainer = ({ register, isAuthenticated }) => {
   return (
     <div className="connexion">
       <h2>DEVENIR MEMBRE</h2>
-      {isAuthenticated === false ? (
+      {isAuthenticated === false && cart.length > 0 ? (
+        <Redirect to="/panier" />
+      ) : isAuthenticated === false ? (
         <Redirect to={`/connexion/${client}`} />
       ) : (
         <>
@@ -247,6 +249,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
+    cart: state.cart.cart,
   };
 };
 

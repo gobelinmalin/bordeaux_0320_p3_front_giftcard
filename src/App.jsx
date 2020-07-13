@@ -16,6 +16,9 @@ import ModifyClient from './components/Connexion/ModifyClient';
 import PreRegisterShop from './components/Connexion/PreRegisterShop';
 import ShopArea from './components/Connexion/ShopArea';
 import CardsContainer from './components/GiftCardPage/CardsContainer';
+import CardContainer from './components/Cards/CardContainer';
+import CartContainer from './components/Cart/CartContainer';
+import CartContainerStep2 from './components/Cart/CartContainerStep2';
 
 const App = () => {
   return (
@@ -27,6 +30,8 @@ const App = () => {
         <Route path="/connexion/:user" component={Connexion} exact />
         <Route path="/mon-compte-client" component={ClientArea} exact />
         <Route path="/mon-compte-enseigne" component={ShopArea} exact />
+        <Route path="/panier" component={CartContainer} exact />
+        <Route path="/panier/informations" component={CartContainerStep2} />
         <Route
           path="/modifier-mon-compte/client"
           component={ModifyClient}
@@ -43,7 +48,8 @@ const App = () => {
           exact
         />
         <Route path="/contact" component={Contact} exact />
-        <Route path="/filteredCards" component={CardsContainer} exact />
+        <Route path="/cartes-cadeaux" component={CardsContainer} exact />
+        <Route path="/cartes-cadeaux/:id" component={CardContainer} exact />
         <Route path="/enseignes" component={ShopsContainer} exact />
         <Route path="/enseignes/:id" component={ShopContainer} exact />
       </Switch>

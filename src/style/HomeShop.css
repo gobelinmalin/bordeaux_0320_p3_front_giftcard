@@ -5,6 +5,11 @@
   background-color: #fff2ceff;
 }
 
+.shop-slider-container a {
+  text-decoration: none;
+  width: auto !important;
+}
+
 .slick-list,
 .slick-slider,
 .slick-track,

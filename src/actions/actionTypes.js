@@ -31,3 +31,8 @@ export const REGISTERSHOP_FAIL = 'REGISTERSHOP_FAIL';
 // errors
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+// cart
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const SAVE_DELIVERY = 'SAVE_DELIVERY';
