@@ -50,6 +50,7 @@ const AdminShopCard = ({ loadShop, email, password, shop }) => {
           <Link to="/">
             <div className="card_content">
               <h3>{card.name}</h3>
+              <p>{card.credit}€</p>
               <img src={card.image} alt={shopData.name} />
             </div>
           </Link>
