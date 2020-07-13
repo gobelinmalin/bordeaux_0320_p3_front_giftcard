@@ -217,7 +217,7 @@ const FilterCardContainer = (props) => {
                 filterRecipient['animal de compagnie'] ? 'Checked' : null,
                 'OptionBox',
               ].join(' ')}
-              onClick={() => onClickRecipient('Animal de compagnie')}
+              onClick={() => onClickRecipient('animal de compagnie')}
             >
               Animal de compagnie
             </div>
