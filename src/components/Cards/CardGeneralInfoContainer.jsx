@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -10,13 +10,19 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+import * as actionCreators from '../../actions/index';
 
-const CardGeneralInfoContainer = ({ product }) => {
+const CardGeneralInfoContainer = (props) => {
+  const { cardChoice, product, shop } = props;
+  // first price of the card
   const [priceCard, setPriceCard] = useState();
 
+  // infos of the card
   const infoProduct = product[0];
   useEffect(() => {
     if (infoProduct) {
@@ -32,6 +38,24 @@ const CardGeneralInfoContainer = ({ product }) => {
         });
     }
   }, [product.id, infoProduct]);
+
+  // all prices of the card
+  const prices = product.map((price) => price.credit).sort();
+  // all formats of the card
+  const formats = product.map((format) => format.format).sort();
+
+  // choice client
+  const [choice, setChoice] = useState({
+    type: 0,
+    price: '',
+    message: '',
+    product,
+  });
+
+  // add choice to the reducer
+  useEffect(() => {
+    cardChoice(choice);
+  }, [choice, cardChoice]);
 
   const useStyles = makeStyles(() => ({
     formControl: {
@@ -59,7 +83,7 @@ const CardGeneralInfoContainer = ({ product }) => {
       },
       '& .MuiFormControlLabel-root': {
         marginRight: '1rem',
-        width: '45%',
+        width: 'auto',
       },
       '& .MuiRadio-root': {
         color: '#F28A2F',
@@ -94,7 +118,7 @@ const CardGeneralInfoContainer = ({ product }) => {
           <div className="product-info-description">
             <h2>{infoProduct.name}</h2>
             <div className="product_price">
-              <h3>{infoProduct.name}</h3>
+              <h3>{shop.name}</h3>
               {priceCard && <p>à partir de {priceCard}€</p>}
             </div>
             <p>{infoProduct.description}</p>
@@ -103,12 +127,21 @@ const CardGeneralInfoContainer = ({ product }) => {
                 <InputLabel id="label">Choisissez une valeur</InputLabel>
                 <Select
                   labelId="label"
-                  value=""
-                  // onChange={handleChangeCivility}
+                  value={choice.price}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setChoice((prevState) => {
+                      return { ...prevState, price: value };
+                    });
+                  }}
                   label="Sélectionnez un montant"
                 >
-                  <MenuItem value="10">10€</MenuItem>
-                  <MenuItem value="20">20€</MenuItem>
+                  {prices &&
+                    prices.map((price, index) => (
+                      <MenuItem key={index} value={price}>
+                        {price}€
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
               <FormControl
@@ -119,27 +152,30 @@ const CardGeneralInfoContainer = ({ product }) => {
                 <FormLabel component="legend">Type de carte</FormLabel>
                 <RadioGroup
                   row
-                  aria-label="position"
-                  name="position"
-                  defaultValue="top"
+                  value={String(choice.type)}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setChoice((prevState) => {
+                      return { ...prevState, type: value };
+                    });
+                  }}
                 >
-                  <FormControlLabel
-                    value="E-carte"
-                    control={<Radio color="primary" />}
-                    label="E-carte"
-                    labelPlacement="end"
-                  />
-                  <FormControlLabel
-                    value="Physique"
-                    control={<Radio color="primary" />}
-                    label="Physique"
-                    labelPlacement="end"
-                  />
+                  {formats &&
+                    formats.map((format) => (
+                      <FormControlLabel
+                        key={format}
+                        value={String(format)}
+                        control={<Radio />}
+                        label={format === 1 ? 'Carte physique' : 'E-carte'}
+                      />
+                    ))}
                 </RadioGroup>
               </FormControl>
-              <Button className={classes.Button} variant="contained">
-                Continuer
-              </Button>
+              <Link to="/choix/e-carte/1">
+                <Button className={classes.Button} variant="contained">
+                  Continuer
+                </Button>
+              </Link>
             </div>
           </div>
         </>
@@ -148,9 +184,19 @@ const CardGeneralInfoContainer = ({ product }) => {
   );
 };
 
-CardGeneralInfoContainer.defaultProps = {
-  product: PropTypes.object,
-  shop: PropTypes.object,
+const mapStateToProps = (state) => {
+  return {
+    choiceClient: state.choice.choice,
+  };
 };
 
-export default CardGeneralInfoContainer;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    cardChoice: (data) => dispatch(actionCreators.cardChoice(data)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardGeneralInfoContainer);

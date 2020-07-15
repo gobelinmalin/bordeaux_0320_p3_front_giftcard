@@ -36,3 +36,6 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const SAVE_DELIVERY = 'SAVE_DELIVERY';
+
+// choice
+export const CARD_CHOICE = 'CARD_CHOICE';

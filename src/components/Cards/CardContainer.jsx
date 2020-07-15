@@ -7,7 +7,7 @@ import CardsSlider from './CardsSlider';
 import '../../style/CardContainer.css';
 
 const CardContainer = ({ match }) => {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
   const [shop, setShop] = useState({});
   const [theme, setTheme] = useState('');
   const [sameCards, setSameCards] = useState([]);
@@ -24,7 +24,7 @@ const CardContainer = ({ match }) => {
   const infoProduct = product[0];
 
   useEffect(() => {
-    if (infoProduct.id_shop) {
+    if (infoProduct) {
       // get shop of one product
       axios
         .get(
@@ -40,7 +40,7 @@ const CardContainer = ({ match }) => {
         .then((res) => res.data[0])
         .then((data) => setTheme(data));
     }
-  }, [infoProduct.id_shop, infoProduct.id_theme]);
+  }, [infoProduct]);
 
   useEffect(() => {
     if (theme.name) {
@@ -58,7 +58,7 @@ const CardContainer = ({ match }) => {
     <div className="cardcontainer">
       <CardGeneralInfoContainer product={product} shop={shop} />
       <CardDetail shop={shop} />
-      <CardsSlider sameCards={sameCards} />
+      <CardsSlider sameCards={sameCards} infoProduct={infoProduct} />
     </div>
   );
 };

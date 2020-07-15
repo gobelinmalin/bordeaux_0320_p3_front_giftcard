@@ -1,0 +1,30 @@
+.standardecard {
+  padding-top: 15vh;
+  min-height: 85vh;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.ecardchoice {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 2rem;
+}
+
+.ecardstepchoice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formchoice {
+  display: flex;
+  flex-direction: column;
+}
+
+.standardecardmessage,
+.standardecardchoice {
+  width: 40%;
+  margin: 0 auto;
+}

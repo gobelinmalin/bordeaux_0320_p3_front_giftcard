@@ -8,4 +8,5 @@ export {
   addToCart,
   removeFromCart,
   saveDelivery,
+  cardChoice,
 } from './generalActions';
