@@ -57,10 +57,11 @@ const CartTotal = (props) => {
   const priceAndFees =
     selectedDelivery.value === undefined
       ? totalPrice
-      : totalPrice + parseInt(selectedDelivery.value, 10);
+      : totalPrice + parseInt(selectedDelivery.value, 10);  
+
   return (
     <div className="CartTotal">
-      {choice ? (
+      {choice.price ? (
         <>
           <div className="Total">
             <p>Total</p>
@@ -133,9 +134,10 @@ CartTotal.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
   saveDelivery: PropTypes.func,
-  delivery: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+  delivery: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   step1: PropTypes.bool,
   choice: PropTypes.instanceOf(Object),
 };
@@ -145,7 +147,7 @@ CartTotal.defaultProps = {
   saveDelivery: '',
   delivery: [],
   choice: {},
-  step1: 0,
+  step1: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartTotal);

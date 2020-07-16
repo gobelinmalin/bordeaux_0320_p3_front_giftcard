@@ -12,6 +12,12 @@ import CartTotal from '../Cart/CartTotal';
 
 const EcardSendContainer = (props) => {
   const { client, email, password, isAuthenticated } = props;
+
+  console.log(isAuthenticated)
+  useEffect(() => {
+    loadUser(email, password);
+  }, [email, password]);
+
   const [dataClient, setDataClient] = useState({
     firstname: '',
     lastname: '',
@@ -33,10 +39,6 @@ const EcardSendContainer = (props) => {
     'Adresse mail du destinataire'
   );
 
-  useEffect(() => {
-    loadUser(email, password);
-  }, [email, password]);
-
   let clientInfo;
   if (client) {
     clientInfo = client.authdata.user[0];
@@ -45,6 +47,7 @@ const EcardSendContainer = (props) => {
   const handleChange = (event) => {
     setAddressChoice(event.target.value);
   };
+  console.log(client, clientInfo)
 
   useEffect(() => {
     if (client) {
@@ -316,8 +319,7 @@ const mapStateToProps = (state) => {
 };
 
 EcardSendContainer.propTypes = {
-  client: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]
   ),
   email: PropTypes.string,
   password: PropTypes.string,

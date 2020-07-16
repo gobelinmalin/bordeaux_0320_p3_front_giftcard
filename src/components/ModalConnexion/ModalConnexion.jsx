@@ -85,6 +85,9 @@ function ModalConnexion({ isAuthenticated, step, setStep, login }) {
 
   const handleOpen = () => {
     setOpen(true);
+    if(isAuthenticated) {
+      setStep('step2');
+    }
   };
 
   const handleClose = () => {
