@@ -23,8 +23,23 @@
   flex-direction: column;
 }
 
-.standardecardmessage,
 .standardecardchoice {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.standardecardmessage {
   width: 40%;
   margin: 0 auto;
+}
+
+.allchoices {
+  display: flex;
+  justify-content: space-between;
+}
+
+.allchoices img {
+  width: 50%;
+  height: 30%;
+  object-fit: contain;
 }

@@ -9,4 +9,6 @@ export {
   removeFromCart,
   saveDelivery,
   cardChoice,
+  setStep,
+  login,
 } from './generalActions';

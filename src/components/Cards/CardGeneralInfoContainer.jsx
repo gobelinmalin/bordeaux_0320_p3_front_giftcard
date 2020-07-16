@@ -44,13 +44,26 @@ const CardGeneralInfoContainer = (props) => {
   // all formats of the card
   const formats = product.map((format) => format.format).sort();
 
+  let image = '';
   // choice client
   const [choice, setChoice] = useState({
     type: 0,
     price: '',
     message: '',
-    product,
+    image,
   });
+
+  if (infoProduct) {
+    image = infoProduct.image;
+  }
+
+  useEffect(() => {
+    if (image) {
+      setChoice((prevState) => {
+        return { ...prevState, image };
+      });
+    }
+  }, [image]);
 
   // add choice to the reducer
   useEffect(() => {

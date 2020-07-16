@@ -39,3 +39,4 @@ export const SAVE_DELIVERY = 'SAVE_DELIVERY';
 
 // choice
 export const CARD_CHOICE = 'CARD_CHOICE';
+export const SET_STEP = 'SET_STEP';

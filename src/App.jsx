@@ -58,6 +58,11 @@ const App = () => {
           component={StandardEcardContainer}
           exact
         />
+        <Route
+          path="/choix/e-carte/2"
+          component={StandardEcardContainer}
+          exact
+        />
       </Switch>
       <Footer />
     </>

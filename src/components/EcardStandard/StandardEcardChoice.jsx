@@ -46,25 +46,28 @@ const StandardEcardChoice = (props) => {
   return (
     <div className="standardecardchoice">
       <h3>CHOIX</h3>
-      <div className="formchoice">
-        <TextField
-          className={classes.textField}
-          disabled
-          id="montant"
-          variant="outlined"
-          value={`${choiceClient.price}€`}
-          style={{ width: 300 }}
-          label="Montant"
-        />
-        <TextField
-          disabled
-          className={classes.textField}
-          id="type"
-          variant="outlined"
-          value={choiceClient.type === 1 ? 'Carte physique' : 'E-carte'}
-          style={{ width: 300 }}
-          label="Type de carte"
-        />
+      <div className="allchoices">
+        <div className="formchoice">
+          <TextField
+            className={classes.textField}
+            disabled
+            id="montant"
+            variant="outlined"
+            value={`${choiceClient.price}€`}
+            style={{ width: 300 }}
+            label="Montant"
+          />
+          <TextField
+            disabled
+            className={classes.textField}
+            id="type"
+            variant="outlined"
+            value={choiceClient.type === 1 ? 'Carte physique' : 'E-carte'}
+            style={{ width: 300 }}
+            label="Type de carte"
+          />
+        </div>
+        <img src={choiceClient.image} alt="carte choisie" />
       </div>
     </div>
   );
