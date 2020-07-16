@@ -8,4 +8,7 @@ export {
   addToCart,
   removeFromCart,
   saveDelivery,
+  cardChoice,
+  setStep,
+  login,
 } from './generalActions';

@@ -4,6 +4,7 @@ import errorReducer from './errorReducer';
 import authReducer from './authReducer';
 import authShopReducer from './authShopReducer';
 import cartReducer from './cartReducer';
+import choiceReducer from './choiceReducer';
 
 export default combineReducers({
   product: productReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   auth: authReducer,
   authShop: authShopReducer,
   cart: cartReducer,
+  choice: choiceReducer,
 });

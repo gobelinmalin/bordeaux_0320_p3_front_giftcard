@@ -19,6 +19,7 @@ import CardsContainer from './components/GiftCardPage/CardsContainer';
 import CardContainer from './components/Cards/CardContainer';
 import CartContainer from './components/Cart/CartContainer';
 import CartContainerStep2 from './components/Cart/CartContainerStep2';
+import StandardEcardContainer from './components/EcardStandard/StandardEcardContainer';
 
 const App = () => {
   return (
@@ -52,6 +53,16 @@ const App = () => {
         <Route path="/cartes-cadeaux/:id" component={CardContainer} exact />
         <Route path="/enseignes" component={ShopsContainer} exact />
         <Route path="/enseignes/:id" component={ShopContainer} exact />
+        <Route
+          path="/choix/e-carte/1"
+          component={StandardEcardContainer}
+          exact
+        />
+        <Route
+          path="/choix/e-carte/2"
+          component={StandardEcardContainer}
+          exact
+        />
       </Switch>
       <Footer />
     </>

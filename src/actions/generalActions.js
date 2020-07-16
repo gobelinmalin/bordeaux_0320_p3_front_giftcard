@@ -357,3 +357,19 @@ export const loginShop = (email, password) => (dispatch) => {
       });
     });
 };
+
+// CHOICE
+
+export const cardChoice = (data) => {
+  return {
+    type: actionTypes.CARD_CHOICE,
+    data,
+  };
+};
+
+export const setStep = (data) => {
+  return {
+    type: actionTypes.SET_STEP,
+    data,
+  };
+};

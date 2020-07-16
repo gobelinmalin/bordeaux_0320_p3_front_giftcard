@@ -40,7 +40,7 @@ const CartTotal = (props) => {
 
   const classes = useStyles();
 
-  const { cart, saveDelivery, delivery, step1 } = props;
+  const { cart, saveDelivery, delivery, step1, choice } = props;
   const [selectedDelivery, setSelectedDelivery] = useState({
     value: '5',
     label: 'Livraison en 24h (5€)',
@@ -60,41 +60,54 @@ const CartTotal = (props) => {
       : totalPrice + parseInt(selectedDelivery.value, 10);
   return (
     <div className="CartTotal">
-      <div className="Total">
-        <p>Total</p>
-        <div className="Price">{priceAndFees}€</div>
-      </div>
-      <div className="UnderTotal">
-        <p>Sous total</p>
-        <div className="Price">{totalPrice}€</div>
-      </div>
-      <p>Livraison</p>
-      {step1 ? (
-        <Select
-          styles={customStyles}
-          // isDisabled={step1}
-          value={selectedDelivery}
-          onChange={handleChange}
-          options={options}
-          width="333px"
-        />
+      {choice ? (
+        <>
+          <div className="Total">
+            <p>Total</p>
+            <div className="Price">{choice.price}€</div>
+          </div>
+          <Button className={classes.Button} variant="contained">
+            Paiement
+          </Button>
+        </>
       ) : (
-        <TextField
-          disabled
-          id="delivery"
-          variant="outlined"
-          value={delivery}
-          style={{ width: 300 }}
-        />
-      )}
-      {step1 ? (
-        <div className="BtnContainer">
-          <ModalConnexion />
-        </div>
-      ) : (
-        <Button className={classes.Button} variant="contained">
-          Paiement
-        </Button>
+        <>
+          <div className="Total">
+            <div className="Price">{priceAndFees}€</div>
+          </div>
+          <div className="UnderTotal">
+            <p>Sous total</p>
+            <div className="Price">{totalPrice}€</div>
+          </div>
+          <p>Livraison</p>
+          {step1 ? (
+            <Select
+              styles={customStyles}
+              // isDisabled={step1}
+              value={selectedDelivery}
+              onChange={handleChange}
+              options={options}
+              width="333px"
+            />
+          ) : (
+            <TextField
+              disabled
+              id="delivery"
+              variant="outlined"
+              value={delivery}
+              style={{ width: 300 }}
+            />
+          )}
+          {step1 ? (
+            <div className="BtnContainer">
+              <ModalConnexion />
+            </div>
+          ) : (
+            <Button className={classes.Button} variant="contained">
+              Paiement
+            </Button>
+          )}
+        </>
       )}
     </div>
   );
@@ -104,6 +117,7 @@ const mapStateToProps = (state) => {
   return {
     cart: state.cart.cart,
     delivery: state.cart.delivery.label,
+    choice: state.choice.choice,
   };
 };
 
@@ -123,13 +137,15 @@ CartTotal.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
   step1: PropTypes.bool,
+  choice: PropTypes.instanceOf(Object),
 };
 
 CartTotal.defaultProps = {
   cart: '',
   saveDelivery: '',
-  delivery: '',
-  step1: '',
+  delivery: [],
+  choice: {},
+  step1: 0,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartTotal);
