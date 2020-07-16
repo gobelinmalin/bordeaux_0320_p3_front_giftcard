@@ -130,6 +130,7 @@ export const tokenConfig = (getState) => {
 /* authentification CLIENT */
 // Check token & load client
 export const loadUser = (email, password) => (dispatch, getState) => {
+  console.log('user',email, password)
   // User loading
   dispatch({ type: actionTypes.USER_LOADING });
   // Request body
@@ -147,6 +148,7 @@ export const loadUser = (email, password) => (dispatch, getState) => {
       })
     )
     .catch((err) => {
+      console.log(err);
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: actionTypes.AUTH_ERROR,
@@ -356,4 +358,20 @@ export const loginShop = (email, password) => (dispatch) => {
         type: actionTypes.LOGIN_FAIL,
       });
     });
+};
+
+// CHOICE
+
+export const cardChoice = (data) => {
+  return {
+    type: actionTypes.CARD_CHOICE,
+    data,
+  };
+};
+
+export const setStep = (data) => {
+  return {
+    type: actionTypes.SET_STEP,
+    data,
+  };
 };

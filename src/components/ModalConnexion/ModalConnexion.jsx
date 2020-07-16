@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -7,7 +8,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import './ModalConnexion.css';
 import PropTypes from 'prop-types';
-import { login } from '../../actions/generalActions';
+import * as actionCreators from '../../actions/index';
 
 function getModalStyle() {
   const top = 50;
@@ -20,7 +21,7 @@ function getModalStyle() {
   };
 }
 
-function ModalConnexion({ isAuthenticated }) {
+function ModalConnexion({ isAuthenticated, step, setStep, login }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -84,6 +85,9 @@ function ModalConnexion({ isAuthenticated }) {
 
   const handleOpen = () => {
     setOpen(true);
+    if(isAuthenticated) {
+      setStep('step2');
+    }
   };
 
   const handleClose = () => {
@@ -94,11 +98,14 @@ function ModalConnexion({ isAuthenticated }) {
     e.preventDefault();
     const client = { email, password };
     login(client);
+    setStep('step2');
   };
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      {isAuthenticated ? (
+      {isAuthenticated && step === 'step2' ? (
+        <Redirect to="/choix/e-carte/2" />
+      ) : isAuthenticated ? (
         <Redirect to="/panier/informations" />
       ) : (
         <div className="ConnexionModal">
@@ -141,11 +148,24 @@ function ModalConnexion({ isAuthenticated }) {
                 </Button>
               </Link>
               <div className="NoAccountBtn">
-                <Link to="/panier/informations">
-                  <Button className={classes.Button} variant="contained">
-                    Commander sans compte
-                  </Button>
-                </Link>
+                {step ? (
+                  <Link
+                    to="/choix/e-carte/2"
+                    onClick={() => {
+                      setStep('step2');
+                    }}
+                  >
+                    <Button className={classes.Button} variant="contained">
+                      Commander sans compte
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link to="/panier/informations">
+                    <Button className={classes.Button} variant="contained">
+                      Commander sans compte
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -181,15 +201,29 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
+    step: state.choice.step,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setStep: (data) => dispatch(actionCreators.setStep(data)),
+    login: (email, password) => dispatch(actionCreators.login(email, password)),
   };
 };
 
 ModalConnexion.propTypes = {
   isAuthenticated: PropTypes.bool,
+  step: PropTypes.string,
+  setStep: PropTypes.func,
+  login: PropTypes.func,
 };
 
 ModalConnexion.defaultProps = {
   isAuthenticated: null,
+  step: '',
+  setStep: () => {},
+  login: () => {},
 };
 
-export default connect(mapStateToProps, { login })(ModalConnexion);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalConnexion);

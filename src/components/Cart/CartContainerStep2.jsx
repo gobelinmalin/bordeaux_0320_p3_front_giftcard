@@ -243,7 +243,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-adress"
+                id="login-adress2"
                 label="Adresse"
                 variant="outlined"
                 value={form.adresse}
@@ -263,7 +263,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-zipcode"
+                id="login-zipcode2"
                 label="Code postal"
                 variant="outlined"
                 value={form.zipcode}
@@ -281,7 +281,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-city"
+                id="login-city2"
                 label="Ville"
                 variant="outlined"
                 value={form.city}
@@ -299,7 +299,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-country"
+                id="login-country2"
                 label="Pays"
                 variant="outlined"
                 value={form.country}

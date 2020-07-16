@@ -1,0 +1,45 @@
+.standardecard {
+  padding-top: 15vh;
+  min-height: 85vh;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.ecardchoice {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 2rem;
+}
+
+.ecardstepchoice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formchoice {
+  display: flex;
+  flex-direction: column;
+}
+
+.standardecardchoice {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.standardecardmessage {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.allchoices {
+  display: flex;
+  justify-content: space-between;
+}
+
+.allchoices img {
+  width: 50%;
+  height: 30%;
+  object-fit: contain;
+}

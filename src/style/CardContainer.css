@@ -98,6 +98,10 @@
   margin-bottom: 2rem;
 }
 
+.contentsamecards {
+  display: flex;
+}
+
 .samecards hr,
 .card_enseigne hr {
   clear: none;
