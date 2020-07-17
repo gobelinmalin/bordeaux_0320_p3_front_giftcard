@@ -16,6 +16,7 @@ const CartContainer = (props) => {
           cart.map((element) => {
             return (
               <CartItem
+                key={element.id}
                 title={element.name}
                 image={element.image}
                 credit={element.credit}

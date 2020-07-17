@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
 /* eslint-disable prefer-destructuring */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -11,12 +13,7 @@ import { loadUser } from '../../actions/generalActions';
 import CartTotal from '../Cart/CartTotal';
 
 const EcardSendContainer = (props) => {
-  const { client, email, password, isAuthenticated } = props;
-
-  console.log(isAuthenticated)
-  useEffect(() => {
-    loadUser(email, password);
-  }, [email, password]);
+  const { client, email, password, isAuthenticated, loadUser } = props;
 
   const [dataClient, setDataClient] = useState({
     firstname: '',
@@ -39,6 +36,10 @@ const EcardSendContainer = (props) => {
     'Adresse mail du destinataire'
   );
 
+  useEffect(() => {
+    loadUser(email, password);
+  }, [loadUser, email, password]);
+
   let clientInfo;
   if (client) {
     clientInfo = client.authdata.user[0];
@@ -47,7 +48,6 @@ const EcardSendContainer = (props) => {
   const handleChange = (event) => {
     setAddressChoice(event.target.value);
   };
-  console.log(client, clientInfo)
 
   useEffect(() => {
     if (client) {
@@ -319,8 +319,7 @@ const mapStateToProps = (state) => {
 };
 
 EcardSendContainer.propTypes = {
-  client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]
-  ),
+  client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   email: PropTypes.string,
   password: PropTypes.string,
   isAuthenticated: PropTypes.bool,
@@ -330,7 +329,7 @@ EcardSendContainer.defaultProps = {
   client: [],
   email: '',
   password: '',
-  isAuthenticated: '',
+  isAuthenticated: false,
 };
 
 export default connect(mapStateToProps, { loadUser })(EcardSendContainer);

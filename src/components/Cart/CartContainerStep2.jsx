@@ -331,16 +331,14 @@ const mapStateToProps = (state) => {
 };
 
 CartContainerStep2.propTypes = {
-  client: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+  client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   email: PropTypes.string,
   password: PropTypes.string,
   isAuthenticated: PropTypes.bool,
 };
 
 CartContainerStep2.defaultProps = {
-  client: '',
+  client: [],
   email: '',
   password: '',
   isAuthenticated: '',

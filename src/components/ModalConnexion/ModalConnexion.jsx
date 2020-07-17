@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,7 +10,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import './ModalConnexion.css';
 import PropTypes from 'prop-types';
-import * as actionCreators from '../../actions/index';
+import { setStep, login } from '../../actions/generalActions';
 
 function getModalStyle() {
   const top = 50;
@@ -21,7 +23,7 @@ function getModalStyle() {
   };
 }
 
-function ModalConnexion({ isAuthenticated, step, setStep, login }) {
+function ModalConnexion({ isAuthenticated, step, choice, setStep, login }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -85,7 +87,7 @@ function ModalConnexion({ isAuthenticated, step, setStep, login }) {
 
   const handleOpen = () => {
     setOpen(true);
-    if(isAuthenticated) {
+    if (isAuthenticated) {
       setStep('step2');
     }
   };
@@ -98,7 +100,9 @@ function ModalConnexion({ isAuthenticated, step, setStep, login }) {
     e.preventDefault();
     const client = { email, password };
     login(client);
-    setStep('step2');
+    if (choice) {
+      setStep('step2');
+    }
   };
 
   const body = (
@@ -202,13 +206,7 @@ const mapStateToProps = (state) => {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
     step: state.choice.step,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setStep: (data) => dispatch(actionCreators.setStep(data)),
-    login: (email, password) => dispatch(actionCreators.login(email, password)),
+    choice: state.choice.choice,
   };
 };
 
@@ -226,4 +224,4 @@ ModalConnexion.defaultProps = {
   login: () => {},
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalConnexion);
+export default connect(mapStateToProps, { setStep, login })(ModalConnexion);

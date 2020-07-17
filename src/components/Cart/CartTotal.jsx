@@ -57,7 +57,7 @@ const CartTotal = (props) => {
   const priceAndFees =
     selectedDelivery.value === undefined
       ? totalPrice
-      : totalPrice + parseInt(selectedDelivery.value, 10);  
+      : totalPrice + parseInt(selectedDelivery.value, 10);
 
   return (
     <div className="CartTotal">
@@ -84,7 +84,6 @@ const CartTotal = (props) => {
           {step1 ? (
             <Select
               styles={customStyles}
-              // isDisabled={step1}
               value={selectedDelivery}
               onChange={handleChange}
               options={options}
@@ -134,10 +133,7 @@ CartTotal.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
   saveDelivery: PropTypes.func,
-  delivery: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  delivery: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   step1: PropTypes.bool,
   choice: PropTypes.instanceOf(Object),
 };

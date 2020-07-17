@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   choice: [],
   step: 'step1',
+  client: {},
 };
 
 export default function choiceReducer(state = initialState, action) {
