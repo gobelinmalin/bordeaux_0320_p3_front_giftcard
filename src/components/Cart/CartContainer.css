@@ -9,6 +9,7 @@
   width: auto;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 .CartTotalContainer {
@@ -27,4 +28,8 @@
 
 .paniervide p {
   text-align: center;
+}
+
+.containercart {
+  display: flex;
 }

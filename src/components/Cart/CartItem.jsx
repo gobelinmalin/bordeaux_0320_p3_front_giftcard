@@ -5,7 +5,16 @@ import PropTypes from 'prop-types';
 import './CartItem.css';
 
 const CartItem = (props) => {
-  const { image, title, description, credit, message, removeFromCart } = props;
+  const {
+    image,
+    title,
+    description,
+    credit,
+    message,
+    removeFromCart,
+    id,
+  } = props;
+
   const useStyles = makeStyles({
     root: {
       backgroundColor: '#231864',
@@ -47,7 +56,7 @@ const CartItem = (props) => {
       </div>
 
       <Button
-        onClick={removeFromCart}
+        onClick={() => removeFromCart(id)}
         variant="contained"
         color="primary"
         className={classes.root}
@@ -58,6 +67,7 @@ const CartItem = (props) => {
     </div>
   );
 };
+
 CartItem.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
@@ -65,6 +75,7 @@ CartItem.propTypes = {
   credit: PropTypes.number,
   message: PropTypes.string,
   removeFromCart: PropTypes.func,
+  id: PropTypes.number,
 };
 
 CartItem.defaultProps = {
@@ -72,8 +83,9 @@ CartItem.defaultProps = {
   title: '',
   description: '',
   credit: Number,
-  removeFromCart: '',
+  removeFromCart: () => {},
   message: '',
+  id: '',
 };
 
 export default CartItem;

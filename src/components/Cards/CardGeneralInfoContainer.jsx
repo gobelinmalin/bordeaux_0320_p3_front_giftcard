@@ -47,6 +47,9 @@ const CardGeneralInfoContainer = (props) => {
   let image = '';
   let title = '';
   let description = '';
+  let id;
+  // let id = Math.random();
+
   // choice client
   const [choice, setChoice] = useState({
     type: 0,
@@ -55,21 +58,23 @@ const CardGeneralInfoContainer = (props) => {
     image,
     title,
     description,
+    id,
   });
 
   if (infoProduct) {
     image = infoProduct.image;
     title = infoProduct.name;
     description = infoProduct.description;
+    id = infoProduct.id;
   }
 
   useEffect(() => {
     if (image) {
       setChoice((prevState) => {
-        return { ...prevState, image, title, description };
+        return { ...prevState, image, title, description, id };
       });
     }
-  }, [image, description, title]);
+  }, [image, description, title, id]);
 
   // add choice to the reducer
   useEffect(() => {
