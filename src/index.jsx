@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import App from './App';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import productReducer from './reducers/productReducer';
+import rootReducer from './reducers';
 
-const store = createStore(productReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <Provider store={store} >
+  <Provider store={store}>
     <React.StrictMode>
       <Router>
         <App />
       </Router>
     </React.StrictMode>
-  </Provider>
-  , document.getElementById('root')
+  </Provider>,
+  document.getElementById('root')
 );

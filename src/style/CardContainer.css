@@ -1,0 +1,116 @@
+.cardcontainer {
+  padding-top: 15vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+  height: 100%;
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.product-info-container hr {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  padding: 0;
+  background-color: #231864;
+  opacity: 0.5;
+}
+.product-img-container {
+  display: flex;
+  height: 100%;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-info-img {
+  width: 60%;
+  height: 30%;
+  object-fit: contain;
+}
+.product_price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-info-description {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  padding-left: 10%;
+}
+
+.product-info-description p {
+  padding-right: 3rem;
+}
+.product-info-description h2 {
+  margin: 0;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
+.product-info-description h3 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.product_choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0.5rem 0;
+  margin-right: 2rem;
+}
+
+.card_enseigne {
+  width: 90%;
+  margin: auto;
+}
+
+.card_enseigne .container-products {
+  justify-content: left;
+  padding: 1rem;
+}
+
+.title_card {
+  display: flex;
+}
+.samecards h2,
+.card_enseigne h2 {
+  float: left;
+  margin-right: 1rem;
+}
+
+.samecards {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.contentsamecards {
+  display: flex;
+}
+
+.samecards hr,
+.card_enseigne hr {
+  clear: none;
+  position: relative;
+  top: 2rem;
+  margin-bottom: 5rem;
+}
+
+.card_enseigne .container-products {
+  display: flex;
+  flex-direction: column;
+}

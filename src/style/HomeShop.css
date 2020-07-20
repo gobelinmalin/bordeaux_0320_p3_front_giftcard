@@ -1,44 +1,52 @@
 .shop-slider-container {
-    border-radius: 0 10px 10px;
-    width: 100%;
-    padding: 0.5rem 0;
-    background-color: #fff2ceff
-};
+  border-radius: 0 10px 10px;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #fff2ceff;
+}
 
-.slick-list, .slick-slider, .slick-track, .slick-initialized {
-    position: relative;
-    display: block;
-    width: 95%;
-    margin: auto;
+.shop-slider-container a {
+  text-decoration: none;
+  width: auto !important;
+}
+
+.slick-list,
+.slick-slider,
+.slick-track,
+.slick-initialized {
+  position: relative;
+  display: block;
+  width: 95%;
+  margin: auto;
 }
 
 .slick-track {
-    top: 0;
-    left: 0;
+  top: 0;
+  left: 0;
 }
 
 .slick-slide {
-    height: 15vh;
+  height: 15vh;
 }
 
 .slick-slide button {
-    border: none;
-    background-color: transparent;
+  border: none;
+  background-color: transparent;
 }
 
 .slick-slide button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .slick-slide img {
-   display: block;
-   margin: auto;
-   position: unset;
-   width: 50%;
-   height: 15vh;
-   object-fit: contain;
+  display: block;
+  margin: auto;
+  position: unset;
+  width: 50%;
+  height: 15vh;
+  object-fit: contain;
 }
 
 .lastitem {
-    padding-bottom: 3rem;
+  padding-bottom: 3rem;
 }

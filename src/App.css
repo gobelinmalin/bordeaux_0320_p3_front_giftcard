@@ -2,11 +2,11 @@ body {
   font-family: 'Montserrat', 'sans-serif';
   overflow-x: hidden;
   outline: none;
-  color: #20124d;
+  color: #231864;
 }
 
 a {
-  color: #20124d;
+  color: #231864;
 }
 
 /*TITLE*/
@@ -28,7 +28,7 @@ h4 {
   font-family: 'Montserrat', sans-serif;
   width: 50%;
   height: 3rem;
-  background: #20124d;
+  background: #231864;
   color: #fff2ceff;
   display: flex;
   justify-content: center;

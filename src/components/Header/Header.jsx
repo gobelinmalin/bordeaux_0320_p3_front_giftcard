@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logoSvg from '../../style/images/LogoGivYoo.svg';
 
 import '../../style/Header.css';
 
-function Header() {
+function Header({ isAuthenticated, isAuthenticatedShop, client }) {
   return (
     <nav className="Header">
       <Link to="/">
@@ -14,10 +16,10 @@ function Header() {
         <Link className="Header_link" to="/">
           Comment ça marche ?
         </Link>
-        <Link className="Header_link" to="/">
+        <Link className="Header_link" to="/cartes-cadeaux">
           Cartes cadeaux
         </Link>
-        <Link className="Header_link" to="/">
+        <Link className="Header_link" to="/enseignes">
           Enseignes
         </Link>
         <Link className="Header_link" to="/contact">
@@ -26,10 +28,26 @@ function Header() {
       </div>
       <div className="Header_icons">
         <div className="Header_icons_container">
-          <Link className="Header_icon" to="/">
-            <i className="fas fa-user" />
-            <p className="Header_icons_description">SE CONNECTER</p>
-          </Link>
+          {isAuthenticated || isAuthenticatedShop ? (
+            <>
+              {client ? (
+                <Link className="Header_icon" to="/mon-compte-client">
+                  <i className="fas fa-user" />
+                  <p className="Header_icons_description">MON ESPACE</p>
+                </Link>
+              ) : (
+                <Link className="Header_icon" to="/mon-compte-enseigne">
+                  <i className="fas fa-user" />
+                  <p className="Header_icons_description">MON ESPACE</p>
+                </Link>
+              )}
+            </>
+          ) : (
+            <Link className="Header_icon" to="/connexion">
+              <i className="fas fa-user" />
+              <p className="Header_icons_description">SE CONNECTER</p>
+            </Link>
+          )}
         </div>
         <div className="Header_icons_container">
           <Link className="Header_icon" to="/">
@@ -38,7 +56,7 @@ function Header() {
           </Link>
         </div>
         <div className="Header_icons_container">
-          <Link className="Header_icon" to="/">
+          <Link className="Header_icon" to="/panier">
             <i className="fas fa-shopping-cart" />
             <p className="Header_icons_description">PANIER</p>
           </Link>
@@ -47,4 +65,13 @@ function Header() {
     </nav>
   );
 }
-export default Header;
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticatedShop: state.authShop.isAuthenticated,
+    client: state.auth.user,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

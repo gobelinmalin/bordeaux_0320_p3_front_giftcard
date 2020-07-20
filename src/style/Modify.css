@@ -1,0 +1,139 @@
+.modifycontainer {
+  padding-top: 15vh;
+  min-height: 85vh;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modifyform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.modifyform .MuiFormControl-root {
+  margin: 0.5rem;
+}
+
+.buttons-modify {
+  display: flex;
+  margin: auto;
+  width: 20vw;
+}
+
+.modal-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: rgba(107, 92, 160, 0.6);
+}
+
+.modal-container.closed {
+  animation: removeEntirely 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  display: none;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin-top: 10vh;
+  width: 70%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.modal.closed {
+  animation: scale-out-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.modal__btn--close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease;
+  padding: 0.5rem !important;
+}
+
+.modal__btn--close:hover {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 1);
+  transform: scale(1.2);
+}
+
+.modal__btn--close:active {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+}
+
+.modal__btn--close:focus {
+  outline: none;
+}
+
+.modal__header button {
+  border: 0.1rem solid #9185be !important;
+  transition: none;
+  margin-top: 1rem;
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@keyframes removeEntirely {
+  0% {
+    display: flex;
+    visibility: visible;
+  }
+
+  100% {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 800px) {
+  .modal {
+    width: 60%;
+  }
+}

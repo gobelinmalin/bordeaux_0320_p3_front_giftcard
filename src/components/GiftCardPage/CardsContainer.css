@@ -1,0 +1,15 @@
+.FilterAndCardsContainer {
+    display: flex;
+}
+
+.FilterContainer {
+    margin-top: 200px;
+    margin-bottom: 100px;
+    border-right: 2px solid #20124d;
+}
+
+.FilterContainer h3 {
+    margin-left: 35px;
+}
+
+
