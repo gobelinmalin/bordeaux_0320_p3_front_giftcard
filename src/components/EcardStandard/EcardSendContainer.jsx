@@ -13,7 +13,7 @@ import { loadUser } from '../../actions/generalActions';
 import CartTotal from '../Cart/CartTotal';
 
 const EcardSendContainer = (props) => {
-  const { client, email, password, isAuthenticated, loadUser } = props;
+  const { loadUser, email, password, client, isAuthenticated } = props;
 
   const [dataClient, setDataClient] = useState({
     firstname: '',

@@ -20,6 +20,8 @@ import CardContainer from './components/Cards/CardContainer';
 import CartContainer from './components/Cart/CartContainer';
 import CartContainerStep2 from './components/Cart/CartContainerStep2';
 import StandardEcardContainer from './components/EcardStandard/StandardEcardContainer';
+import Favorites from './components/favorites/Favorites';
+import StandardcardContainer from './components/CardReal/StandardCardContainer';
 
 const App = () => {
   return (
@@ -63,6 +65,8 @@ const App = () => {
           component={StandardEcardContainer}
           exact
         />
+        <Route path="/choix/physique" component={StandardcardContainer} exact />
+        <Route path="/favoris" component={Favorites} exact />
       </Switch>
       <Footer />
     </>

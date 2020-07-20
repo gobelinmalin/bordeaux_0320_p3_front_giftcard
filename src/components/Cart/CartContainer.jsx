@@ -8,30 +8,32 @@ import * as actionCreators from '../../actions/index';
 
 const CartContainer = (props) => {
   const { cart, removeFromCart } = props;
-
   return (
     <div className="CartContainer">
-      <div className="ItemContainer">
-        {cart.length > 0 ? (
-          cart.map((element) => {
-            return (
+      <h2>PANIER</h2>
+      {cart.length > 0 ? (
+        cart.map((element) => {
+          return (
+            <div className="ItemContainer" key={element.id}>
               <CartItem
-                key={element.id}
-                title={element.name}
+                title={element.title}
                 image={element.image}
-                credit={element.credit}
+                credit={element.price}
                 description={element.description}
+                message={element.message}
                 removeFromCart={() => removeFromCart(element.id)}
               />
-            );
-          })
-        ) : (
+              <div className="CartTotalContainer">
+                <CartTotal step1 />
+              </div>
+            </div>
+          );
+        })
+      ) : (
+        <div className="paniervide">
           <p>Votre panier est vide</p>
-        )}
-      </div>
-      <div className="CartTotalContainer">
-        <CartTotal step1 />
-      </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -56,8 +58,8 @@ CartContainer.propTypes = {
 };
 
 CartContainer.defaultProps = {
-  cart: '',
-  removeFromCart: '',
+  cart: [],
+  removeFromCart: () => {},
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

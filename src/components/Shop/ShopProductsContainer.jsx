@@ -5,9 +5,15 @@ import '../../style/ShopProductsContainer.css';
 
 const ShopProductsContainer = ({ products }) => {
   return (
-    <div>
-      {products &&
-        products.map((product) => <CardShopProduct product={product} />)}
+    <div className="allproductsshop">
+      <h2>SES PRODUITS</h2>
+      <hr />
+      <div className="cards_shop">
+        {products &&
+          products.map((product) => (
+            <CardShopProduct key={product.id} product={product} />
+          ))}
+      </div>
     </div>
   );
 };

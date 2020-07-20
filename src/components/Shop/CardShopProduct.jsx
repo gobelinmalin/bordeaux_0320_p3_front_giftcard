@@ -1,26 +1,31 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ButtonPersonnalisation from '../../style/ButtonPersonnalisation';
 
 const CardShopProduct = ({ product }) => {
   return (
-    <div className="shop-products-container">
-      <div className="card-shop-product">
-        <img
-          className="card-shop-product-img"
-          src={product.image}
-          alt={product.name}
-        />
-        <ButtonPersonnalisation />
-      </div>
-    </div>
+    <>
+      {product ? (
+        <Link to={`/cartes-cadeaux/${product.id_product}`}>
+          <div className="card_content-shop">
+            <img src={product.image} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{product.credit}€</p>
+            <ButtonPersonnalisation />
+          </div>
+        </Link>
+      ) : (
+        <p>loading...</p>
+      )}
+    </>
   );
 };
 
 CardShopProduct.defaultProps = {
-  product: Proptypes.objectOf(Proptypes.string),
+  product: {},
 };
 CardShopProduct.propTypes = {
-  product: Proptypes.objectOf(Proptypes.string),
+  product: Proptypes.objectOf(Proptypes.any),
 };
 export default CardShopProduct;

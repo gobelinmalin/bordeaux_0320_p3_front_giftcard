@@ -50,7 +50,7 @@ function Header({ isAuthenticated, isAuthenticatedShop, client }) {
           )}
         </div>
         <div className="Header_icons_container">
-          <Link className="Header_icon" to="/">
+          <Link className="Header_icon" to="/favoris">
             <i className="fas fa-heart" />
             <p className="Header_icons_description">FAVORIS</p>
           </Link>

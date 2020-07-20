@@ -16,16 +16,17 @@ const CardSlider = ({ sameCards, infoProduct }) => {
 
   return (
     <div className="samecards">
-      <h2>CARTES SIMILAIRES</h2>
-      <hr />
-      <div className="contentsamecards">
-        {getCardNotSame.length > 0 &&
-          getCardNotSame
-            .slice(0, 5)
-            .map((product) => (
+      {getCardNotSame.length > 0 && (
+        <>
+          <h2>CARTES SIMILAIRES</h2>
+          <hr />
+          <div className="contentsamecards">
+            {getCardNotSame.slice(0, 5).map((product) => (
               <CardProduct key={product.id} product={product} />
             ))}
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

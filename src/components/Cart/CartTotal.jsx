@@ -52,7 +52,7 @@ const CartTotal = (props) => {
   };
 
   const totalPrice = cart
-    .map((element) => element.credit)
+    .map((element) => element.price)
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   const priceAndFees =
     selectedDelivery.value === undefined
@@ -61,7 +61,7 @@ const CartTotal = (props) => {
 
   return (
     <div className="CartTotal">
-      {choice.price ? (
+      {choice.type === 0 ? (
         <>
           <div className="Total">
             <p>Total</p>
@@ -73,9 +73,6 @@ const CartTotal = (props) => {
         </>
       ) : (
         <>
-          <div className="Total">
-            <div className="Price">{priceAndFees}€</div>
-          </div>
           <div className="UnderTotal">
             <p>Sous total</p>
             <div className="Price">{totalPrice}€</div>
@@ -98,6 +95,12 @@ const CartTotal = (props) => {
               style={{ width: 300 }}
             />
           )}
+          <div className="Total">
+            <h4>Total</h4>
+            <div className="Price">
+              <strong>{priceAndFees}€</strong>
+            </div>
+          </div>
           {step1 ? (
             <div className="BtnContainer">
               <ModalConnexion />
