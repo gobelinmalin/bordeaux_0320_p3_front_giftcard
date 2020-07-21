@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import './ModalConnexion.css';
 import PropTypes from 'prop-types';
-import { setStep, login, loadUser } from '../../actions/generalActions';
+import { setStep, login } from '../../actions/generalActions';
 
 function getModalStyle() {
   const top = 50;
@@ -105,16 +105,12 @@ function ModalConnexion({ isAuthenticated, step, choice, setStep, login }) {
     }
   };
 
-  useEffect(() => {
-    loadUser(email, password);
-  }, [email, password]);
-
   const body = (
     <div style={modalStyle} className={classes.paper}>
       {isAuthenticated && step === 'step2' ? (
-        <Redirect to="/choix/e-carte/2" />
+        <Redirect to="/choix/e-carte/2" email={email} password={password} />
       ) : isAuthenticated ? (
-        <Redirect to="/panier/informations" />
+        <Redirect to="/panier/informations" email={email} password={password} />
       ) : (
         <div className="ConnexionModal">
           <div className="connexion-container">
@@ -228,6 +224,4 @@ ModalConnexion.defaultProps = {
   login: () => {},
 };
 
-export default connect(mapStateToProps, { setStep, login, loadUser })(
-  ModalConnexion
-);
+export default connect(mapStateToProps, { setStep, login })(ModalConnexion);

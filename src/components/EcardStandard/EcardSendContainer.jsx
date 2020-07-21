@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-shadow */
 /* eslint-disable prefer-destructuring */
+/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
@@ -12,9 +11,13 @@ import PropTypes from 'prop-types';
 import { loadUser } from '../../actions/generalActions';
 import CartTotal from '../Cart/CartTotal';
 
-const EcardSendContainer = (props) => {
-  const { loadUser, email, password, client, isAuthenticated } = props;
-
+const EcardSendContainer = ({
+  loadUser,
+  email,
+  password,
+  client,
+  isAuthenticated,
+}) => {
   const [dataClient, setDataClient] = useState({
     firstname: '',
     lastname: '',
@@ -311,6 +314,8 @@ const EcardSendContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  // eslint-disable-next-line no-console
+  console.log(state);
   return {
     cart: state.cart.cart,
     client: state.auth.user,
@@ -323,6 +328,7 @@ EcardSendContainer.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
   isAuthenticated: PropTypes.bool,
+  loadUser: PropTypes.func,
 };
 
 EcardSendContainer.defaultProps = {
@@ -330,6 +336,7 @@ EcardSendContainer.defaultProps = {
   email: '',
   password: '',
   isAuthenticated: false,
+  loadUser: () => {},
 };
 
 export default connect(mapStateToProps, { loadUser })(EcardSendContainer);

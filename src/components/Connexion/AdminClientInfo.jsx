@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
 /* eslint-disable prefer-destructuring */
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadUser } from '../../actions/generalActions';
 
@@ -62,6 +62,20 @@ const mapStateToProps = (state) => {
   return {
     client: state.auth.user,
   };
+};
+
+AdminClientInfo.propTypes = {
+  client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  email: PropTypes.string,
+  password: PropTypes.string,
+  loadUser: PropTypes.func,
+};
+
+AdminClientInfo.defaultProps = {
+  client: [],
+  email: '',
+  password: '',
+  loadUser: () => {},
 };
 
 export default connect(mapStateToProps, { loadUser })(AdminClientInfo);

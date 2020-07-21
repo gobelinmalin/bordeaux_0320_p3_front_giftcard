@@ -344,7 +344,7 @@ export const loginShop = (email, password) => (dispatch) => {
     )
     .then((res) =>
       dispatch({
-        type: actionTypes.LOGIN_SUCCESS,
+        type: actionTypes.LOGINSHOP_SUCCESS,
         payload: res.data,
       })
     )
@@ -353,7 +353,7 @@ export const loginShop = (email, password) => (dispatch) => {
         returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
       );
       dispatch({
-        type: actionTypes.LOGIN_FAIL,
+        type: actionTypes.LOGINSHOP_FAIL,
       });
     });
 };
