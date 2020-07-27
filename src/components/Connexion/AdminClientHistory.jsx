@@ -40,22 +40,22 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminClientHistory = ({ loadUser, email, password, client }) => {
+const AdminClientHistory = ({ loadUser, client }) => {
   const classes = useStyles();
 
   const [orders, setOrders] = useState([]);
   const [deliveries, setDeliveries] = useState([]);
-  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
 
   let clientInfo;
   if (client) {
     clientInfo = client.authdata.user[0];
   }
 
-  useEffect(() => {
-    loadUser(email, password);
-  }, [loadUser, email, password]);
-
+  // accèder aux commandes liées au client
   useEffect(() => {
     Axios.get(
       `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders`
@@ -64,31 +64,20 @@ const AdminClientHistory = ({ loadUser, email, password, client }) => {
       .then((data) => setOrders(data));
   }, [clientInfo.id]);
 
+  const delivery = [];
+  // accèder à toutes les données de chaque commande
   useEffect(() => {
-    const delivery = [];
     if (orders) {
       orders.map((order) =>
         Axios.get(
-          `${process.env.REACT_APP_LOCALHOST}/api/orders/${order.id_delivery}/delivery`
+          // `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
+          `http://localhost:5000/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
         )
-          .then((res) => delivery.push(res.data))
-          .then(() => setDeliveries(delivery))
+          .then((res) => res.data[0])
+          .then((data) => delivery.push(data) && setDeliveries(delivery))
       );
     }
-  }, [orders]);
-
-  useEffect(() => {
-    const product = [];
-    if (deliveries.length > 0) {
-      orders.map((order) =>
-        Axios.get(
-          `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/products`
-        )
-          .then((res) => product.push(res.data.products_order_client))
-          .then(() => setProducts(product))
-      );
-    }
-  }, [clientInfo.id, orders, deliveries.length]);
+  }, [orders, clientInfo.id, delivery]);
 
   return (
     <div>
@@ -110,47 +99,33 @@ const AdminClientHistory = ({ loadUser, email, password, client }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.filter(
-                  (order) =>
-                    order.status === 1 &&
-                    deliveries.map((delivery) =>
-                      products.map((product) =>
-                        product.map((prod) => (
-                          <StyledTableRow key={delivery.id}>
-                            <StyledTableCell component="th" scope="row">
-                              {new Date(order.createDate).toLocaleDateString()}
-                            </StyledTableCell>
-                            <StyledTableCell>
-                              {prod.commande_nb}
-                            </StyledTableCell>
-                            <StyledTableCell>{prod.name}</StyledTableCell>
-                            {prod.realCard === 0 ? (
-                              <>
-                                <StyledTableCell>E-card</StyledTableCell>
-                                <StyledTableCell>
-                                  {delivery.mail}
-                                </StyledTableCell>
-                              </>
-                            ) : (
-                              <>
-                                <StyledTableCell>Physique</StyledTableCell>
-                                <StyledTableCell>
-                                  {delivery.address}, {delivery.zipcode}{' '}
-                                  {delivery.city}, {delivery.country}
-                                </StyledTableCell>
-                              </>
-                            )}
-                            <StyledTableCell>
-                              {new Date(
-                                order.delivery_date
-                              ).toLocaleDateString()}
-                            </StyledTableCell>
-                            <StyledTableCell>{prod.credit}€</StyledTableCell>
-                          </StyledTableRow>
-                        ))
-                      )
-                    )
-                )}
+                {deliveries.map((info) => (
+                  <StyledTableRow key={info.id}>
+                    <StyledTableCell component="th" scope="row">
+                      {new Date(info.createDate).toLocaleDateString()}
+                    </StyledTableCell>
+                    <StyledTableCell>{info.id}</StyledTableCell>
+                    <StyledTableCell>{info.name}</StyledTableCell>
+                    {info.realCard === 0 ? (
+                      <>
+                        <StyledTableCell>E-card</StyledTableCell>
+                        <StyledTableCell>{info.mail}</StyledTableCell>
+                      </>
+                    ) : (
+                      <>
+                        <StyledTableCell>Physique</StyledTableCell>
+                        <StyledTableCell>
+                          {info.address}, {info.zipcode} {info.city},{' '}
+                          {info.country}
+                        </StyledTableCell>
+                      </>
+                    )}
+                    <StyledTableCell>
+                      {new Date(info.delivery_date).toLocaleDateString()}
+                    </StyledTableCell>
+                    <StyledTableCell>{info.credit}€</StyledTableCell>
+                  </StyledTableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>

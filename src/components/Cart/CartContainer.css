@@ -1,19 +1,9 @@
-.CartContainer {
-  display: flex;
-  flex-direction: row;
-  padding-top: 15vh;
-  padding-bottom: 15vh;
-}
-
 .ItemContainer {
   width: auto;
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
-}
-
-.CartTotalContainer {
-  width: 25%;
+  width: 60%;
 }
 
 .CartContainer {
@@ -32,4 +22,7 @@
 
 .containercart {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
 }

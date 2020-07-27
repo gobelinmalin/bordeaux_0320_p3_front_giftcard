@@ -1,5 +1,4 @@
 .CartItem {
-  width: 65%;
   height: auto;
   border: 1px solid black;
   border-radius: 10px;
@@ -34,15 +33,13 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  margin: 10px;
-  width: 100px;
-  height: 25px;
+  margin: 1rem;
   text-align: center;
 }
 
 .FirstPart img {
-  width: 300px;
-  height: 175px;
+  width: 45%;
+  object-fit: contain;
 }
 
 .FirstPart {

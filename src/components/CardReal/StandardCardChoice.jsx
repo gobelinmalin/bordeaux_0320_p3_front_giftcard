@@ -62,7 +62,7 @@ const StandardcardChoice = (props) => {
             className={classes.textField}
             id="type"
             variant="outlined"
-            value={choiceClient.type === 1 ? 'Carte physique' : 'E-carte'}
+            value="Carte physique"
             style={{ width: 300 }}
             label="Type de carte"
           />

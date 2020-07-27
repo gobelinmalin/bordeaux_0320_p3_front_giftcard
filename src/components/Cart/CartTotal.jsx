@@ -78,6 +78,14 @@ const CartTotal = (props) => {
     <div className="CartTotal">
       {choice.type === 0 ? (
         <>
+          <h4 className="cartcardtitle">{choice.title}</h4>
+          {choice.message.length > 0 ? (
+            <p className="pmessage">
+              Votre message : &quot;{choice.message}&quot;
+            </p>
+          ) : (
+            <p className="pmessage">Envoi sans message personnalisé</p>
+          )}
           <div className="Total">
             <p>Total</p>
             <div className="Price">{choice.price}€</div>
@@ -88,10 +96,20 @@ const CartTotal = (props) => {
         </>
       ) : (
         <>
-          <div className="UnderTotal">
-            <p>Sous total</p>
-            <div className="Price">{totalPrice}€</div>
-          </div>
+          {cart.map((card) => (
+            <div className="UnderTotal">
+              <p>{card.title}</p>
+              <div className="Price">{card.price}€</div>
+            </div>
+          ))}
+          {cart.length > 1 && (
+            <div className="UnderTotal">
+              <p>
+                <strong>Sous total</strong>
+              </p>
+              <div className="Price">{totalPrice}€</div>
+            </div>
+          )}
           <p>Livraison</p>
           {step1 ? (
             <Select

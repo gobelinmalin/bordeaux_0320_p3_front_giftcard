@@ -47,15 +47,14 @@ const AdminClientOrder = ({ loadUser, client }) => {
   const [orders, setOrders] = useState([]);
   const [infos, setInfos] = useState([]);
 
+  useEffect(() => {
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
+
   let clientInfo;
   if (client) {
     clientInfo = client.authdata.user[0];
   }
-
-  // charger les données liées au client
-  useEffect(() => {
-    loadUser(localStorage.getItem('token'));
-  }, [loadUser]);
 
   // accèder aux commandes liées au client
   useEffect(() => {
@@ -69,14 +68,13 @@ const AdminClientOrder = ({ loadUser, client }) => {
   const allinfos = [];
   // accèder à toutes les données de chaque commande
   useEffect(() => {
-    orders.map(
-      (order) =>
-        Axios.get(
-          `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
-        )
-          .then((res) => res.data[0])
-          .then((data) => allinfos.push(data))
-      // .then(() => console.log(allinfos))
+    orders.map((order) =>
+      Axios.get(
+        // `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
+        `http://localhost:5000/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
+      )
+        .then((res) => res.data[0])
+        .then((data) => allinfos.push(data) && setInfos(allinfos))
     );
   }, [clientInfo.id, orders, allinfos]);
 

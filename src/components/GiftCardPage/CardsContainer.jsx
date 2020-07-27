@@ -10,9 +10,8 @@ const CardsContainer = () => {
         <h3>NOS CARTES</h3>
         <FilterCardContainer />
       </div>
-      <div>
-        <CardList />
-      </div>
+      <hr />
+      <CardList />
     </div>
   );
 };

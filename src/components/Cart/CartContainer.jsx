@@ -13,23 +13,21 @@ const CartContainer = (props) => {
       <h2>PANIER</h2>
       {cart.length > 0 ? (
         <div className="containercart">
-          <div>
-            {cart.map((element) => {
-              return (
-                <div className="ItemContainer" key={element.id}>
-                  <CartItem
-                    title={element.title}
-                    image={element.image}
-                    credit={element.price}
-                    description={element.description}
-                    message={element.message}
-                    id={element.id}
-                    removeFromCart={() => removeFromCart(element.id)}
-                  />
-                </div>
-              );
-            })}
-          </div>
+          {cart.map((element) => {
+            return (
+              <div className="ItemContainer" key={element.id}>
+                <CartItem
+                  title={element.title}
+                  image={element.image}
+                  credit={element.price}
+                  description={element.description}
+                  message={element.message}
+                  id={element.id}
+                  removeFromCart={() => removeFromCart(element.id)}
+                />
+              </div>
+            );
+          })}
           <div className="CartTotalContainer">
             <CartTotal step1 />
           </div>

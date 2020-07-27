@@ -19,6 +19,9 @@ const StandardEcardChoice = (props) => {
           borderColor: '#F28A2F',
         },
       },
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
       margin: '1rem 0',
       marginRight: '0.5rem',
     },
@@ -62,7 +65,7 @@ const StandardEcardChoice = (props) => {
             className={classes.textField}
             id="type"
             variant="outlined"
-            value={choiceClient.type === 1 ? 'Carte physique' : 'E-carte'}
+            value="E-carte"
             style={{ width: 300 }}
             label="Type de carte"
           />

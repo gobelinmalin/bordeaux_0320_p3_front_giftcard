@@ -37,6 +37,11 @@ const StandardCardChoiceContainer = ({ addToCart, choice, history }) => {
     history.push('/panier');
   };
 
+  const goOther = () => {
+    addToCart(choice);
+    history.push('/cartes-cadeaux');
+  };
+
   return (
     <div className="ecardstepchoice">
       <div className="ecardchoice">
@@ -46,7 +51,7 @@ const StandardCardChoiceContainer = ({ addToCart, choice, history }) => {
       </div>
       <div className="button-realcard">
         <Button
-          href="/cartes-cadeaux"
+          onClick={goOther}
           variant="contained"
           color="primary"
           className={classes.root}

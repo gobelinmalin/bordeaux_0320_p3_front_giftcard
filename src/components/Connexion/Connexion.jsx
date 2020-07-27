@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
 import React, { useState } from 'react';
@@ -14,6 +15,8 @@ const Connexion = ({
   loginShop,
   isAuthenticated,
   isAuthenticatedShop,
+  cart,
+  choice,
 }) => {
   const { user } = match.params;
   const [email, setEmail] = useState('');
@@ -65,7 +68,11 @@ const Connexion = ({
   return (
     <div className="connexion">
       <h2>CONNEXION</h2>
-      {isAuthenticated || isAuthenticatedShop ? (
+      {isAuthenticated && cart.length > 0 ? (
+        <Redirect to="/panier" />
+      ) : isAuthenticated && choice.price ? (
+        <Redirect to="/choix/e-carte/2" />
+      ) : isAuthenticated || isAuthenticatedShop ? (
         <Redirect to={`/mon-compte-${user}`} />
       ) : (
         <div className="connexion-container">
@@ -141,6 +148,8 @@ const mapStateToProps = (state) => {
     isAuthenticated: state.auth.isAuthenticated,
     isAuthenticatedShop: state.authShop.isAuthenticated,
     error: state.error,
+    cart: state.cart.cart,
+    choice: state.choice.choice,
   };
 };
 
