@@ -3,6 +3,18 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   cart: [],
   delivery: { value: '5', label: 'Livraison en 24h (5€)' },
+  choice: {
+    price: null,
+    format: null,
+    card: {},
+    message: '',
+    deliveryDate: null,
+    recipient: {
+      mail: '',
+      firstname: '',
+      lastname: '',
+    },
+  },
 };
 
 export default function cartReducer(state = initialState, action) {

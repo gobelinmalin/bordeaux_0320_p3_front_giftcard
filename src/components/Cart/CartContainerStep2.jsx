@@ -9,11 +9,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import PropTypes from 'prop-types';
-import { loadUser } from '../../actions/generalActions';
 import CartTotal from './CartTotal';
 
 const CartContainerStep2 = (props) => {
-  const { client, email, password, isAuthenticated } = props;
+  const { client, isAuthenticated } = props;
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -39,10 +38,6 @@ const CartContainerStep2 = (props) => {
   const handleChangeZipcode = (e) => setZipcode(e.target.value);
   const handleChangeCity = (e) => setCity(e.target.value);
   const handleChangeCountry = (e) => setCountry(e.target.value);
-
-  useEffect(() => {
-    loadUser(email, password);
-  }, [email, password]);
 
   let clientInfo;
   if (client) {
@@ -243,7 +238,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-adress"
+                id="login-adress2"
                 label="Adresse"
                 variant="outlined"
                 value={form.adresse}
@@ -263,7 +258,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-zipcode"
+                id="login-zipcode2"
                 label="Code postal"
                 variant="outlined"
                 value={form.zipcode}
@@ -281,7 +276,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-city"
+                id="login-city2"
                 label="Ville"
                 variant="outlined"
                 value={form.city}
@@ -299,7 +294,7 @@ const CartContainerStep2 = (props) => {
                     ? [classes.noForm, classes.textField].join(' ')
                     : classes.textField
                 }
-                id="login-country"
+                id="login-country2"
                 label="Pays"
                 variant="outlined"
                 value={form.country}
@@ -331,19 +326,13 @@ const mapStateToProps = (state) => {
 };
 
 CartContainerStep2.propTypes = {
-  client: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  email: PropTypes.string,
-  password: PropTypes.string,
+  client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isAuthenticated: PropTypes.bool,
 };
 
 CartContainerStep2.defaultProps = {
-  client: '',
-  email: '',
-  password: '',
+  client: [],
   isAuthenticated: '',
 };
 
-export default connect(mapStateToProps, { loadUser })(CartContainerStep2);
+export default connect(mapStateToProps, null)(CartContainerStep2);

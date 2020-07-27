@@ -1,14 +1,14 @@
 /* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
 /* eslint-disable prefer-destructuring */
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadUser } from '../../actions/generalActions';
 
-const AdminClientInfo = ({ loadUser, email, password, client }) => {
+const AdminClientInfo = ({ loadUser, client }) => {
   useEffect(() => {
-    loadUser(email, password);
-  }, [loadUser, email, password]);
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
 
   let clientInfo;
   let birthdate;
@@ -19,7 +19,7 @@ const AdminClientInfo = ({ loadUser, email, password, client }) => {
 
   return (
     <div>
-      {client ? (
+      {clientInfo ? (
         <div className="info-content">
           <div className="info-text">
             <p>Identité</p>
@@ -62,6 +62,16 @@ const mapStateToProps = (state) => {
   return {
     client: state.auth.user,
   };
+};
+
+AdminClientInfo.propTypes = {
+  client: PropTypes.instanceOf(Object),
+  loadUser: PropTypes.func,
+};
+
+AdminClientInfo.defaultProps = {
+  client: {},
+  loadUser: () => {},
 };
 
 export default connect(mapStateToProps, { loadUser })(AdminClientInfo);

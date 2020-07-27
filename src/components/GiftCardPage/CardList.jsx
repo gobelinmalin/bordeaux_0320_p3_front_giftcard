@@ -27,7 +27,7 @@ const CardList = (props) => {
   getUniqueCard(state.finalArray, 'id');
 
   return (
-    <div>
+    <>
       {state.finalArray && state.finalArray.length > 0 ? (
         <div className="FinalFilter">
           {unique.map((element) => (
@@ -39,7 +39,7 @@ const CardList = (props) => {
           Aucune carte correspondante à votre recherche
         </p>
       )}
-    </div>
+    </>
   );
 };
 

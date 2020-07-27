@@ -43,7 +43,7 @@ ButtonPersonnalisation.propTypes = {
 };
 
 ButtonPersonnalisation.defaultProps = {
-  addToCart: '',
+  addToCart: () => {},
 };
 
 export default ButtonPersonnalisation;

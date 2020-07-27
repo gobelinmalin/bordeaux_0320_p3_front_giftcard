@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
@@ -6,7 +7,7 @@ import logoSvg from '../../style/images/LogoGivYoo.svg';
 
 import '../../style/Header.css';
 
-function Header({ isAuthenticated, isAuthenticatedShop, client }) {
+function Header({ isAuthenticated, isAuthenticatedShop }) {
   return (
     <nav className="Header">
       <Link to="/">
@@ -29,19 +30,17 @@ function Header({ isAuthenticated, isAuthenticatedShop, client }) {
       <div className="Header_icons">
         <div className="Header_icons_container">
           {isAuthenticated || isAuthenticatedShop ? (
-            <>
-              {client ? (
-                <Link className="Header_icon" to="/mon-compte-client">
-                  <i className="fas fa-user" />
-                  <p className="Header_icons_description">MON ESPACE</p>
-                </Link>
-              ) : (
-                <Link className="Header_icon" to="/mon-compte-enseigne">
-                  <i className="fas fa-user" />
-                  <p className="Header_icons_description">MON ESPACE</p>
-                </Link>
-              )}
-            </>
+            isAuthenticatedShop ? (
+              <Link className="Header_icon" to="/mon-compte-enseigne">
+                <i className="fas fa-user" />
+                <p className="Header_icons_description">MON ESPACE</p>
+              </Link>
+            ) : (
+              <Link className="Header_icon" to="/mon-compte-client">
+                <i className="fas fa-user" />
+                <p className="Header_icons_description">MON ESPACE</p>
+              </Link>
+            )
           ) : (
             <Link className="Header_icon" to="/connexion">
               <i className="fas fa-user" />
@@ -50,7 +49,7 @@ function Header({ isAuthenticated, isAuthenticatedShop, client }) {
           )}
         </div>
         <div className="Header_icons_container">
-          <Link className="Header_icon" to="/">
+          <Link className="Header_icon" to="/favoris">
             <i className="fas fa-heart" />
             <p className="Header_icons_description">FAVORIS</p>
           </Link>
@@ -70,7 +69,6 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     isAuthenticatedShop: state.authShop.isAuthenticated,
-    client: state.auth.user,
   };
 };
 

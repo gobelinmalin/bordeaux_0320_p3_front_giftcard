@@ -38,9 +38,9 @@ const Footer = () => {
       <div className="Footer">
         <div className="About">
           <ul>
-            <li>
-              <a href="/">Informations</a>
-            </li>
+            <p>
+              <strong>Informations</strong>
+            </p>
             <li>
               <a href="/">Comment ça marche?</a>
             </li>
