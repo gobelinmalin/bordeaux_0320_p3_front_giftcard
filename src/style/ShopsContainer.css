@@ -4,12 +4,12 @@
   width: 90%;
   margin: 150px auto 0 auto;
   padding-bottom: 1rem;
-  height: 70vh;
+  
 }
 
 .shops-filter-and-list {
   display: flex;
-  height: 60vh;
+  height: min-content;
 }
 
 .shops-filter {
@@ -60,7 +60,9 @@
   height: 20%;
   background-color: #ffffff;
   border: none;
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .shoplist-logo {

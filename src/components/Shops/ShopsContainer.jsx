@@ -5,12 +5,15 @@ import '../../style/ShopsContainer.css';
 
 const ShopsContainer = () => {
   return (
-    <div className="shops-container">
-      <h1>NOS ENSEIGNES</h1>
-      <div className="shops-filter-and-list">
-        <FilterShopContainer />
-        <ShopList />
+    <div className="FilterAndCardsContainer">
+      <div className="FilterContainer">
+        <div>
+          <h3>NOS ENSEIGNES</h3>
+          <FilterShopContainer />
+        </div>
+        <hr />
       </div>
+      <ShopList />
     </div>
   );
 };
