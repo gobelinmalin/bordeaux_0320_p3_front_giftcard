@@ -5,13 +5,19 @@
 }
 
 .FinalFilter {
+  width: 100%;
   margin-left: 2rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-content: baseline;
 }
 
 .FilterShopType {
   display: flex;
   flex-direction: column;
+}
+
+.FinalFilter .card-product {
+  height: 25%;
 }

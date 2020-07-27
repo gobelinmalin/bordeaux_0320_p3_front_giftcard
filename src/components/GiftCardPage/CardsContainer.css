@@ -7,5 +7,15 @@
 }
 
 .FilterContainer {
-  margin-right: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.FilterContainer hr {
+  height: 100%;
+  width: 1px;
+  padding: 0;
+  background-color: #231864;
+  opacity: 0.5;
+  margin-left: 2rem;
 }
