@@ -8,6 +8,7 @@ import './StandardEcardContainer.css';
 
 const StandardEcardContainer = (props) => {
   const { step } = props;
+
   return (
     <div className="standardecard">
       <h2>VOTRE CARTE</h2>

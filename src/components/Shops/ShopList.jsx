@@ -6,7 +6,7 @@ const ShopList = () => {
   const [shops, setShops] = useState([]);
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/shops')
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops`)
       .then((res) => res.data)
       .then((data) => setShops(data));
   }, []);

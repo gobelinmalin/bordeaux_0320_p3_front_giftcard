@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { loadShop } from '../../actions/generalActions';
 
-const AdminShopInfo = ({ loadShop, email, password, shop }) => {
+const AdminShopInfo = ({ loadShop, shop }) => {
   const [shopData, setShopData] = useState([]);
 
   let shopInfo;
@@ -19,8 +19,8 @@ const AdminShopInfo = ({ loadShop, email, password, shop }) => {
   }
 
   useEffect(() => {
-    loadShop(email, password);
-  }, [loadShop, email, password]);
+    loadShop(localStorage.getItem('token'));
+  }, [loadShop]);
 
   // all info of the shop
   useEffect(() => {

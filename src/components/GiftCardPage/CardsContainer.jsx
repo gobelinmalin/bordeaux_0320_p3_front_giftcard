@@ -7,12 +7,13 @@ const CardsContainer = () => {
   return (
     <div className="FilterAndCardsContainer">
       <div className="FilterContainer">
-        <h3>NOS CARTES</h3>
-        <FilterCardContainer />
+        <div>
+          <h3>NOS CARTES</h3>
+          <FilterCardContainer />
+        </div>
+        <hr />
       </div>
-      <div>
-        <CardList />
-      </div>
+      <CardList />
     </div>
   );
 };

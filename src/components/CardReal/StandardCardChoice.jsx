@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actionCreators from '../../actions/index';
 
-const StandardEcardChoice = (props) => {
+const StandardcardChoice = (props) => {
   const { choiceClient } = props;
 
   const useStyles = makeStyles({
@@ -18,9 +18,6 @@ const StandardEcardChoice = (props) => {
         '&.Mui-focused fieldset': {
           borderColor: '#F28A2F',
         },
-      },
-      '& .MuiInputBase-root.Mui-disabled': {
-        color: 'rgba(0, 0, 0, 0.87)',
       },
       margin: '1rem 0',
       marginRight: '0.5rem',
@@ -65,7 +62,7 @@ const StandardEcardChoice = (props) => {
             className={classes.textField}
             id="type"
             variant="outlined"
-            value="E-carte"
+            value="Carte physique"
             style={{ width: 300 }}
             label="Type de carte"
           />
@@ -88,15 +85,12 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-StandardEcardChoice.defaultProps = {
+StandardcardChoice.defaultProps = {
   choiceClient: {},
 };
 
-StandardEcardChoice.propTypes = {
+StandardcardChoice.propTypes = {
   choiceClient: PropTypes.instanceOf(Object),
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StandardEcardChoice);
+export default connect(mapStateToProps, mapDispatchToProps)(StandardcardChoice);

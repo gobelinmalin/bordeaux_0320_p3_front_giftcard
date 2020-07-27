@@ -55,7 +55,10 @@
 .admin a {
   text-align: end;
 }
-
+.button_modify {
+  display: flex;
+  justify-content: flex-end;
+}
 .admin p {
   text-align: center;
 }
