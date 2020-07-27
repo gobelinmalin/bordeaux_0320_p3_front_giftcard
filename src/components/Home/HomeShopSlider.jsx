@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
 
 const HomeShopSlider = () => {
   const settings = {
@@ -24,11 +25,11 @@ const HomeShopSlider = () => {
   }, []);
 
   return (
-    <Slider {...settings}>
+    <Slider settings={settings}>
       {shops.map((shop) => (
-        <button type="button" key={shop.id}>
+        <Link to={`/enseignes/${shop.id}`} key={shop.id}>
           <img src={shop.logo} alt={shop.name} />
-        </button>
+        </Link>
       ))}
     </Slider>
   );

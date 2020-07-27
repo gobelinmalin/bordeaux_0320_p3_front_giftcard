@@ -5,11 +5,7 @@ const initialState = {
   newProducts: [],
   loading: false,
   allCards: [],
-  filterCardType: {
-    eCard: false,
-    realCard: false,
-    filteredArray: [],
-  },
+  filterCardType: { eCard: false, realCard: false, filteredArray: [] },
   filterRecipient: {
     femme: false,
     homme: false,
@@ -142,6 +138,7 @@ export default function productReducer(state = initialState, action) {
           'animal de compagnie': false,
           couple: false,
           enfant: false,
+          famille: false,
           [recipient]: trueOrFalse,
           filteredArray: dataRecipient,
         },
@@ -151,15 +148,23 @@ export default function productReducer(state = initialState, action) {
       const arrayType = state.filterCardType.filteredArray;
       const arrayRecipient = state.filterRecipient.filteredArray;
       const arrayTheme = state.filterTheme.filteredArray;
+      const baseArray = action.data;
+      let finalFilteredArray = [];
 
-      const finalFilteredArray = [];
-
-      // Filter if only array1 is not empty
+      // Filter when all array are empty
+      if (
+        arrayType.length === 0 &&
+        arrayRecipient.length === 0 &&
+        arrayTheme.length === 0
+      ) {
+        finalFilteredArray = baseArray;
+      }
       if (
         arrayType.length > 0 &&
         arrayRecipient.length === 0 &&
         arrayTheme.length === 0
       ) {
+        // Filter if only array1 is not empty
         arrayType.map((element) => finalFilteredArray.push(element));
       }
       // Filter if Only array2 is not empty

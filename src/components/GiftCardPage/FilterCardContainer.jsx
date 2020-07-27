@@ -80,19 +80,22 @@ const FilterCardContainer = (props) => {
       .then((res) => filterByRecipient(recipient, res.data));
   };
 
-  const onClickType = (bool, type) => {
+  const onClickType = (type) => {
     axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/format/${bool}`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/${type}`)
       .then((res) => filterByType(type, res.data));
   };
 
   const filter = () => {
-    finalFilter();
+    axios
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/cards`)
+      .then((res) => finalFilter(res.data));
   };
 
   return (
     <div className="AllOptionContainer">
       <div className="OptionContainer">
+        <p>VILLE</p>
         <div className="Select">
           <Select
             styles={customStyles}
@@ -114,7 +117,7 @@ const FilterCardContainer = (props) => {
               filterCardType.eCard ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
-            onClick={() => onClickType(0, 'eCard')}
+            onClick={() => onClickType('eCard')}
             onKeyDown={() => {}}
           >
             E-carte
@@ -128,7 +131,7 @@ const FilterCardContainer = (props) => {
               filterCardType.realCard ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
-            onClick={() => onClickType(1, 'realCard')}
+            onClick={() => onClickType('realCard')}
           >
             Carte physique
           </div>
@@ -214,7 +217,7 @@ const FilterCardContainer = (props) => {
                 filterRecipient['animal de compagnie'] ? 'Checked' : null,
                 'OptionBox',
               ].join(' ')}
-              onClick={() => onClickRecipient('Animal de compagnie')}
+              onClick={() => onClickRecipient('animal de compagnie')}
             >
               Animal de compagnie
             </div>
@@ -391,28 +394,51 @@ FilterCardContainer.propTypes = {
   filterByTheme: PropTypes.func,
   filterByType: PropTypes.func,
   filterByRecipient: PropTypes.func,
-  filterCardType: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  filterRecipient: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  filterTheme: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  finalFilter: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+  filterCardType: PropTypes.shape({
+    eCard: PropTypes.bool,
+    realCard: PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  filterRecipient: PropTypes.shape({
+    femme: PropTypes.bool,
+    homme: PropTypes.bool,
+    bébé: PropTypes.bool,
+    'animal de compagnie': PropTypes.bool,
+    couple: PropTypes.bool,
+    enfant: PropTypes.bool,
+    famille: PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  filterTheme: PropTypes.shape({
+    mode: PropTypes.bool,
+    maison: PropTypes.bool,
+    gastronomie: PropTypes.bool,
+    culture: PropTypes.bool,
+    adulte: PropTypes.bool,
+    'bien-être': PropTypes.bool,
+    sport: PropTypes.bool,
+    evasion: PropTypes.bool,
+    education: PropTypes.bool,
+    'magasins specialises': PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  finalFilter: PropTypes.func,
 };
 
 FilterCardContainer.defaultProps = {
   filterByTheme: '',
   filterByType: '',
   filterByRecipient: '',
-  filterCardType: '',
-  filterRecipient: '',
-  filterTheme: '',
-  finalFilter: '',
+  filterCardType: [],
+  filterRecipient: [],
+  filterTheme: [],
+  finalFilter: [],
 };
 
 const mapStateToProps = (state) => {
@@ -431,7 +457,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.filterByTheme(theme, data)),
     filterByRecipient: (recipient, data) =>
       dispatch(actionCreators.filterByRecipient(recipient, data)),
-    finalFilter: () => dispatch(actionCreators.finalFilter()),
+    finalFilter: (data) => dispatch(actionCreators.finalFilter(data)),
   };
 };
 

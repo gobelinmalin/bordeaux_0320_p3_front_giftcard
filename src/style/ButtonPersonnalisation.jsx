@@ -1,23 +1,24 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
-const ButtonLearnMore = () => {
+const ButtonPersonnalisation = (props) => {
+  const { addToCart } = props;
   const useStyles = makeStyles({
     root: {
-      backgroundColor: '#fff2ceff',
+      backgroundColor: '#20124d',
       border: 0,
       borderRadius: 10,
-      color: '#231864',
+      color: '#fff2ceff',
       height: '2rem',
       padding: '1rem',
       fontWeight: '500',
-      fontSize: '0.8rem',
       fontFamily: 'Montserrat',
       boxShadow: 'none',
       '&:hover': {
-        boxShadow: ' 0px 0px 5px 0px rgba(255,242,206,1)',
-        backgroundColor: '#fff2ceff',
+        boxShadow: '0px 0px 5px 0px rgba(32,18,77,1)',
+        backgroundColor: '#20124d',
       },
     },
   });
@@ -26,14 +27,23 @@ const ButtonLearnMore = () => {
 
   return (
     <Button
+      onClick={addToCart}
       variant="contained"
       color="primary"
       className={classes.root}
       href="#"
     >
-      En savoir plus
+      Je personnalise !
     </Button>
   );
 };
 
-export default ButtonLearnMore;
+ButtonPersonnalisation.propTypes = {
+  addToCart: PropTypes.func,
+};
+
+ButtonPersonnalisation.defaultProps = {
+  addToCart: '',
+};
+
+export default ButtonPersonnalisation;

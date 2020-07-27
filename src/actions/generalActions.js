@@ -2,11 +2,34 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
+/* Cart */
+
+export const saveDelivery = (data) => {
+  return {
+    type: actionTypes.SAVE_DELIVERY,
+    deliveryData: data,
+  };
+};
+
+export const addToCart = (item) => {
+  return {
+    type: actionTypes.ADD_TO_CART,
+    item,
+  };
+};
+
+export const removeFromCart = (id) => {
+  return {
+    type: actionTypes.REMOVE_FROM_CART,
+    id,
+  };
+};
+
 /* products */
 export const getProducts = () => (dispatch) => {
   dispatch(setProductsLoading());
   axios
-    .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
+    .get(`${process.env.REACT_APP_LOCALHOST}/api/products/cards`)
     .then((res) =>
       dispatch({
         type: actionTypes.GET_PRODUCTS,
@@ -48,9 +71,10 @@ export const filterByType = (type2, data) => {
   };
 };
 
-export const finalFilter = () => {
+export const finalFilter = (data) => {
   return {
     type: actionTypes.FINAL_FILTER,
+    data,
   };
 };
 
@@ -79,7 +103,7 @@ export const clearErrors = () => {
 
 /* authentification */
 // Logout User
-export const logout = () => {
+export const logOut = () => {
   return {
     type: actionTypes.LOGOUT_SUCCESS,
   };
@@ -332,4 +356,20 @@ export const loginShop = (email, password) => (dispatch) => {
         type: actionTypes.LOGIN_FAIL,
       });
     });
+};
+
+// CHOICE
+
+export const cardChoice = (data) => {
+  return {
+    type: actionTypes.CARD_CHOICE,
+    data,
+  };
+};
+
+export const setStep = (data) => {
+  return {
+    type: actionTypes.SET_STEP,
+    data,
+  };
 };

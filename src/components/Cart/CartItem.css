@@ -1,0 +1,51 @@
+.CartItem {
+  width: 75%;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.NameAndPrice {
+  display: flex;
+  align-items: center;
+}
+
+.ImageAndDescription {
+  display: flex;
+}
+
+.CartItemValue {
+  border: 1px solid #20124d;
+  padding: 15px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin: 10px;
+  width: 100px;
+  height: 25px;
+  text-align: center;
+}
+
+.FirstPart img {
+  width: 300px;
+  height: 175px;
+}
+
+.FirstPart {
+  display: flex;
+  flex-direction: column;
+}
+
+.Description {
+  padding: 10px;
+}

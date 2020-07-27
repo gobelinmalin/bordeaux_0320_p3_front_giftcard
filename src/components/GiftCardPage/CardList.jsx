@@ -8,18 +8,29 @@ import * as actionCreators from '../../actions/index';
 
 const CardList = (props) => {
   const { state, setFinalArray } = props;
-
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
-      .then((res) => setFinalArray(res.data));
+      .then((res) => res.data)
+      .then((data) => setFinalArray(data));
   }, [setFinalArray]);
+
+  let unique;
+  const getUniqueCard = (arr, comp) => {
+    unique = arr
+      .map((e) => e[comp])
+      .map((e, i, final) => final.indexOf(e) === i && i)
+      .filter((e) => arr[e])
+      .map((e) => arr[e]);
+  };
+
+  getUniqueCard(state.finalArray, 'id');
 
   return (
     <div>
-      {state.finalArray.length > 0 ? (
+      {state.finalArray && state.finalArray.length > 0 ? (
         <div className="FinalFilter">
-          {state.finalArray.map((element) => (
+          {unique.map((element) => (
             <CardProduct key={element.id} product={element} />
           ))}
         </div>
@@ -34,9 +45,7 @@ const CardList = (props) => {
 
 CardList.propTypes = {
   setFinalArray: PropTypes.func,
-  state: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+  state: PropTypes.objectOf(PropTypes.any),
 };
 
 CardList.defaultProps = {

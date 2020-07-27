@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { logout } from '../actions/generalActions';
+import { logOut } from '../actions/generalActions';
 
 const ButtonLogout = ({ logout }) => {
   const useStyles = makeStyles({
@@ -42,4 +43,10 @@ const ButtonLogout = ({ logout }) => {
   );
 };
 
-export default connect(null, { logout })(ButtonLogout);
+ButtonLogout.defaultProps = {
+  logout: PropTypes.func,
+};
+ButtonLogout.propTypes = {
+  logout: PropTypes.func,
+};
+export default connect(null, { logOut })(ButtonLogout);
