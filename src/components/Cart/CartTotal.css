@@ -17,6 +17,7 @@
 .UnderTotal {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .Total p,
@@ -40,4 +41,13 @@
 .BtnContainer {
   display: flex;
   justify-content: center;
+}
+
+.Total h4 {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+
+.Total {
+  margin-top: 1rem;
 }

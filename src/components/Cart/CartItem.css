@@ -1,6 +1,6 @@
 .CartItem {
-  width: 75%;
-  height: 300px;
+  width: 65%;
+  height: auto;
   border: 1px solid black;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -9,8 +9,7 @@
   -o-border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
-  margin-bottom: 15px;
+  padding: 1rem;
 }
 
 .NameAndPrice {
@@ -18,13 +17,18 @@
   align-items: center;
 }
 
+.NameAndPrice h3 {
+  margin-right: 1rem;
+}
+
 .ImageAndDescription {
   display: flex;
+  align-items: center;
 }
 
 .CartItemValue {
   border: 1px solid #20124d;
-  padding: 15px;
+  padding: 1rem;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -47,5 +51,14 @@
 }
 
 .Description {
-  padding: 10px;
+  padding: 0 1.5rem;
+}
+
+.cart-msg h4 {
+  margin: 0;
+  margin-top: 1rem;
+}
+
+.cart-msg p {
+  margin: 0 0.5rem;
 }

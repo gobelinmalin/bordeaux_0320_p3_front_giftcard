@@ -6,12 +6,30 @@
 }
 
 .ItemContainer {
-  width: 75%;
+  width: auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 .CartTotalContainer {
   width: 25%;
+}
+
+.CartContainer {
+  padding-top: 15vh;
+  min-height: 85vh;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.paniervide p {
+  text-align: center;
+}
+
+.containercart {
+  display: flex;
 }

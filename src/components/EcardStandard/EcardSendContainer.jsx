@@ -1,4 +1,5 @@
 /* eslint-disable prefer-destructuring */
+/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
@@ -7,15 +8,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { loadUser } from '../../actions/generalActions';
 import CartTotal from '../Cart/CartTotal';
+import { loadUser } from '../../actions/generalActions';
 
-const EcardSendContainer = (props) => {
-  const { client, email, password, isAuthenticated } = props;
-
+const EcardSendContainer = ({ loadUser, client, isAuthenticated }) => {
   useEffect(() => {
-    loadUser(email, password);
-  }, [email, password]);
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
 
   const [dataClient, setDataClient] = useState({
     firstname: '',
@@ -73,6 +72,9 @@ const EcardSendContainer = (props) => {
       },
       margin: '1rem 0',
       marginRight: '0.5rem',
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
     },
     formControl: {
       color: 'rgba(0, 0, 0, 0.54)',
@@ -318,16 +320,14 @@ const mapStateToProps = (state) => {
 
 EcardSendContainer.propTypes = {
   client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  email: PropTypes.string,
-  password: PropTypes.string,
   isAuthenticated: PropTypes.bool,
+  loadUser: PropTypes.func,
 };
 
 EcardSendContainer.defaultProps = {
   client: [],
-  email: '',
-  password: '',
-  isAuthenticated: '',
+  isAuthenticated: false,
+  loadUser: () => {},
 };
 
 export default connect(mapStateToProps, { loadUser })(EcardSendContainer);

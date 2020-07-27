@@ -3,8 +3,8 @@ import {
   SHOP_LOADING,
   SHOP_MODIFY,
   SHOPAUTH_ERROR,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
+  LOGINSHOP_SUCCESS,
+  LOGINSHOP_FAIL,
   LOGOUT_SUCCESS,
   REGISTERSHOP_SUCCESS,
   REGISTERSHOP_FAIL,
@@ -38,7 +38,7 @@ export default function (state = initialState, action) {
         isLoading: false,
         shop: action.userUpdated,
       };
-    case LOGIN_SUCCESS:
+    case LOGINSHOP_SUCCESS:
     case REGISTERSHOP_SUCCESS:
       localStorage.setItem('token', action.payload.token);
       return {
@@ -48,7 +48,13 @@ export default function (state = initialState, action) {
         isLoading: false,
       };
     case SHOPAUTH_ERROR:
-    case LOGIN_FAIL:
+    case LOGINSHOP_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
+        isLoading: false,
+        shop: null,
+      };
     case LOGOUT_SUCCESS:
     case REGISTERSHOP_FAIL:
       localStorage.removeItem('token');

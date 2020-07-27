@@ -36,6 +36,21 @@ const CartTotal = (props) => {
       borderRadius: '10px',
       margin: 'auto',
     },
+    textField: {
+      '& label.Mui-focused': {
+        color: '#F28A2F',
+      },
+      '& .MuiOutlinedInput-root': {
+        '&.Mui-focused fieldset': {
+          borderColor: '#F28A2F',
+        },
+      },
+      margin: '1rem 0',
+      marginRight: '0.5rem',
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
+    },
   }));
 
   const classes = useStyles();
@@ -46,13 +61,13 @@ const CartTotal = (props) => {
     label: 'Livraison en 24h (5€)',
   });
 
-  const handleChange = () => {
-    setSelectedDelivery(selectedDelivery);
+  const handleChange = (deliverychoice) => {
+    setSelectedDelivery(deliverychoice);
     saveDelivery(selectedDelivery);
   };
 
   const totalPrice = cart
-    .map((element) => element.credit)
+    .map((element) => element.price)
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   const priceAndFees =
     selectedDelivery.value === undefined
@@ -61,7 +76,7 @@ const CartTotal = (props) => {
 
   return (
     <div className="CartTotal">
-      {choice.price ? (
+      {choice.type === 0 ? (
         <>
           <div className="Total">
             <p>Total</p>
@@ -73,9 +88,6 @@ const CartTotal = (props) => {
         </>
       ) : (
         <>
-          <div className="Total">
-            <div className="Price">{priceAndFees}€</div>
-          </div>
           <div className="UnderTotal">
             <p>Sous total</p>
             <div className="Price">{totalPrice}€</div>
@@ -84,21 +96,27 @@ const CartTotal = (props) => {
           {step1 ? (
             <Select
               styles={customStyles}
-              // isDisabled={step1}
               value={selectedDelivery}
               onChange={handleChange}
               options={options}
-              width="333px"
+              width="300px"
             />
           ) : (
             <TextField
               disabled
+              className={classes.textField}
               id="delivery"
               variant="outlined"
               value={delivery}
               style={{ width: 300 }}
             />
           )}
+          <div className="Total">
+            <h4>Total</h4>
+            <div className="Price">
+              <strong>{priceAndFees}€</strong>
+            </div>
+          </div>
           {step1 ? (
             <div className="BtnContainer">
               <ModalConnexion />

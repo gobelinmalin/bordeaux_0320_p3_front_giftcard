@@ -11,13 +11,14 @@ const ShopGeneralInfo = ({ shop }) => {
           alt={shop && shop.name}
         />
       </div>
+      <hr />
       <div className="shop-info-description">
         <h2>{shop && shop.name}</h2>
-        <h3>
+        <h4>
           {shop && shop.offline === 1 && 'PHYSIQUE'}
           {shop && shop.offline === 1 && shop && shop.online === 1 && ' ET '}
           {shop && shop.online === 1 && 'EN LIGNE'}
-        </h3>
+        </h4>
         <p>{shop && shop.description}</p>
       </div>
     </div>
@@ -25,9 +26,9 @@ const ShopGeneralInfo = ({ shop }) => {
 };
 
 ShopGeneralInfo.defaultProps = {
-  shop: Proptypes.arrayOf(Proptypes.object),
+  shop: {},
 };
 ShopGeneralInfo.propTypes = {
-  shop: Proptypes.arrayOf(Proptypes.object),
+  shop: Proptypes.instanceOf(Object),
 };
 export default ShopGeneralInfo;

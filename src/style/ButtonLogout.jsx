@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { logOut } from '../actions/generalActions';
 
-const ButtonLogout = ({ logout }) => {
+const ButtonLogout = ({ logOut }) => {
   const useStyles = makeStyles({
     root: {
       backgroundColor: '#231864',
@@ -35,7 +36,7 @@ const ButtonLogout = ({ logout }) => {
         color="primary"
         className={classes.root}
         href="#"
-        onClick={logout}
+        onClick={logOut}
       >
         Déconnexion
       </Button>
@@ -44,9 +45,9 @@ const ButtonLogout = ({ logout }) => {
 };
 
 ButtonLogout.defaultProps = {
-  logout: PropTypes.func,
+  logOut: PropTypes.func,
 };
 ButtonLogout.propTypes = {
-  logout: PropTypes.func,
+  logOut: PropTypes.func,
 };
 export default connect(null, { logOut })(ButtonLogout);
