@@ -43,3 +43,8 @@
   height: 30%;
   object-fit: contain;
 }
+
+.button-realcard {
+  display: flex;
+  margin: auto;
+}

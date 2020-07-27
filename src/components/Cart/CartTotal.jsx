@@ -36,6 +36,21 @@ const CartTotal = (props) => {
       borderRadius: '10px',
       margin: 'auto',
     },
+    textField: {
+      '& label.Mui-focused': {
+        color: '#F28A2F',
+      },
+      '& .MuiOutlinedInput-root': {
+        '&.Mui-focused fieldset': {
+          borderColor: '#F28A2F',
+        },
+      },
+      margin: '1rem 0',
+      marginRight: '0.5rem',
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
+    },
   }));
 
   const classes = useStyles();
@@ -46,8 +61,8 @@ const CartTotal = (props) => {
     label: 'Livraison en 24h (5€)',
   });
 
-  const handleChange = () => {
-    setSelectedDelivery(selectedDelivery);
+  const handleChange = (deliverychoice) => {
+    setSelectedDelivery(deliverychoice);
     saveDelivery(selectedDelivery);
   };
 
@@ -84,11 +99,12 @@ const CartTotal = (props) => {
               value={selectedDelivery}
               onChange={handleChange}
               options={options}
-              width="333px"
+              width="300px"
             />
           ) : (
             <TextField
               disabled
+              className={classes.textField}
               id="delivery"
               variant="outlined"
               value={delivery}

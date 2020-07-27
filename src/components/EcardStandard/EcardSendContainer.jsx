@@ -9,8 +9,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import CartTotal from '../Cart/CartTotal';
+import { loadUser } from '../../actions/generalActions';
 
-const EcardSendContainer = ({ client, isAuthenticated }) => {
+const EcardSendContainer = ({ loadUser, client, isAuthenticated }) => {
+  useEffect(() => {
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
+
   const [dataClient, setDataClient] = useState({
     firstname: '',
     lastname: '',
@@ -67,6 +72,9 @@ const EcardSendContainer = ({ client, isAuthenticated }) => {
       },
       margin: '1rem 0',
       marginRight: '0.5rem',
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
     },
     formControl: {
       color: 'rgba(0, 0, 0, 0.54)',
@@ -313,11 +321,13 @@ const mapStateToProps = (state) => {
 EcardSendContainer.propTypes = {
   client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isAuthenticated: PropTypes.bool,
+  loadUser: PropTypes.func,
 };
 
 EcardSendContainer.defaultProps = {
   client: [],
   isAuthenticated: false,
+  loadUser: () => {},
 };
 
-export default connect(mapStateToProps, null)(EcardSendContainer);
+export default connect(mapStateToProps, { loadUser })(EcardSendContainer);

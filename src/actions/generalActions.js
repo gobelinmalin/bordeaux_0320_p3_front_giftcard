@@ -102,7 +102,7 @@ export const clearErrors = () => {
 };
 
 /* authentification */
-// Logout User
+// Logout client - shop
 export const logOut = () => {
   return {
     type: actionTypes.LOGOUT_SUCCESS,
@@ -118,7 +118,7 @@ export const loadUser = (token) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_LOCALHOST}/api/auth/profile`, null, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Basic ${token}`,
       },
     })
     .then((res) =>
