@@ -8,16 +8,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { loadUser } from '../../actions/generalActions';
 import CartTotal from '../Cart/CartTotal';
 
-const EcardSendContainer = ({
-  loadUser,
-  email,
-  password,
-  client,
-  isAuthenticated,
-}) => {
+const EcardSendContainer = ({ client, isAuthenticated }) => {
   const [dataClient, setDataClient] = useState({
     firstname: '',
     lastname: '',
@@ -38,10 +31,6 @@ const EcardSendContainer = ({
   const [addressChoice, setAddressChoice] = useState(
     'Adresse mail du destinataire'
   );
-
-  useEffect(() => {
-    loadUser(email, password);
-  }, [loadUser, email, password]);
 
   let clientInfo;
   if (client) {
@@ -314,8 +303,6 @@ const EcardSendContainer = ({
 };
 
 const mapStateToProps = (state) => {
-  // eslint-disable-next-line no-console
-  console.log(state);
   return {
     cart: state.cart.cart,
     client: state.auth.user,
@@ -325,18 +312,12 @@ const mapStateToProps = (state) => {
 
 EcardSendContainer.propTypes = {
   client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  email: PropTypes.string,
-  password: PropTypes.string,
   isAuthenticated: PropTypes.bool,
-  loadUser: PropTypes.func,
 };
 
 EcardSendContainer.defaultProps = {
   client: [],
-  email: '',
-  password: '',
   isAuthenticated: false,
-  loadUser: () => {},
 };
 
-export default connect(mapStateToProps, { loadUser })(EcardSendContainer);
+export default connect(mapStateToProps, null)(EcardSendContainer);

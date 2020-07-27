@@ -8,7 +8,13 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { login, loginShop, clearErrors } from '../../actions/generalActions';
 
-const Connexion = ({ match, login, loginShop, isAuthenticated }) => {
+const Connexion = ({
+  match,
+  login,
+  loginShop,
+  isAuthenticated,
+  isAuthenticatedShop,
+}) => {
   const { user } = match.params;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,12 +65,8 @@ const Connexion = ({ match, login, loginShop, isAuthenticated }) => {
   return (
     <div className="connexion">
       <h2>CONNEXION</h2>
-      {isAuthenticated ? (
-        <Redirect
-          to={`/mon-compte-${user}`}
-          email={email}
-          password={password}
-        />
+      {isAuthenticated || isAuthenticatedShop ? (
+        <Redirect to={`/mon-compte-${user}`} />
       ) : (
         <div className="connexion-container">
           <div className="connexion-bloc">
@@ -137,6 +139,7 @@ const Connexion = ({ match, login, loginShop, isAuthenticated }) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticatedShop: state.authShop.isAuthenticated,
     error: state.error,
   };
 };

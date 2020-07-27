@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminClientOrder = ({ loadUser, email, password, client }) => {
+const AdminClientOrder = ({ loadUser, client }) => {
   const classes = useStyles();
 
   const [orders, setOrders] = useState([]);
@@ -51,8 +51,8 @@ const AdminClientOrder = ({ loadUser, email, password, client }) => {
   }
 
   useEffect(() => {
-    loadUser(email, password);
-  }, [loadUser, email, password]);
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
 
   useEffect(() => {
     Axios.get(

@@ -49,6 +49,12 @@ export default function (state = initialState, action) {
       };
     case SHOPAUTH_ERROR:
     case LOGINSHOP_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
+        isLoading: false,
+        shop: null,
+      };
     case LOGOUT_SUCCESS:
     case REGISTERSHOP_FAIL:
       localStorage.removeItem('token');

@@ -22,6 +22,7 @@ import CartContainerStep2 from './components/Cart/CartContainerStep2';
 import StandardEcardContainer from './components/EcardStandard/StandardEcardContainer';
 import Favorites from './components/favorites/Favorites';
 import StandardcardContainer from './components/CardReal/StandardCardContainer';
+import PrivateRoute from './components/Private/PrivateRoute';
 
 const App = () => {
   return (
@@ -31,15 +32,8 @@ const App = () => {
         <Route path="/" component={HomeContainer} exact />
         <Route path="/connexion" component={ConnexionContainer} exact />
         <Route path="/connexion/:user" component={Connexion} exact />
-        <Route path="/mon-compte-client" component={ClientArea} exact />
-        <Route path="/mon-compte-enseigne" component={ShopArea} exact />
         <Route path="/panier" component={CartContainer} exact />
         <Route path="/panier/informations" component={CartContainerStep2} />
-        <Route
-          path="/modifier-mon-compte/client"
-          component={ModifyClient}
-          exact
-        />
         <Route
           path="/devenir-membre/client"
           component={MemberContainer}
@@ -55,18 +49,22 @@ const App = () => {
         <Route path="/cartes-cadeaux/:id" component={CardContainer} exact />
         <Route path="/enseignes" component={ShopsContainer} exact />
         <Route path="/enseignes/:id" component={ShopContainer} exact />
+        <Route path="/favoris" component={Favorites} exact />
         <Route
           path="/choix/e-carte/1"
           component={StandardEcardContainer}
           exact
         />
-        <Route
-          path="/choix/e-carte/2"
-          component={StandardEcardContainer}
-          exact
-        />
+        <Route path="/choix/e-carte/2" component={StandardEcardContainer} />
         <Route path="/choix/physique" component={StandardcardContainer} exact />
-        <Route path="/favoris" component={Favorites} exact />
+
+        {/* PRIVATE ROUTES */}
+        <PrivateRoute
+          path="/modifier-mon-compte/client"
+          component={ModifyClient}
+        />
+        <PrivateRoute path="/mon-compte-client" component={ClientArea} />
+        <PrivateRoute path="/mon-compte-enseigne" component={ShopArea} />
       </Switch>
       <Footer />
     </>

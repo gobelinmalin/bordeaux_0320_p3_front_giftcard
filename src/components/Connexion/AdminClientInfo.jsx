@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadUser } from '../../actions/generalActions';
 
-const AdminClientInfo = ({ loadUser, email, password, client }) => {
+const AdminClientInfo = ({ loadUser, client }) => {
   useEffect(() => {
-    loadUser(email, password);
-  }, [loadUser, email, password]);
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
 
   let clientInfo;
   let birthdate;
@@ -19,7 +19,7 @@ const AdminClientInfo = ({ loadUser, email, password, client }) => {
 
   return (
     <div>
-      {client ? (
+      {clientInfo ? (
         <div className="info-content">
           <div className="info-text">
             <p>Identité</p>
@@ -65,16 +65,12 @@ const mapStateToProps = (state) => {
 };
 
 AdminClientInfo.propTypes = {
-  client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  email: PropTypes.string,
-  password: PropTypes.string,
+  client: PropTypes.instanceOf(Object),
   loadUser: PropTypes.func,
 };
 
 AdminClientInfo.defaultProps = {
-  client: [],
-  email: '',
-  password: '',
+  client: {},
   loadUser: () => {},
 };
 
