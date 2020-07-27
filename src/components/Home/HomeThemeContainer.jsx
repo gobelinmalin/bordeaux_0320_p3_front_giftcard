@@ -13,7 +13,7 @@ const HomeThemeContainer = () => {
 
   return (
     <div className="home">
-      <h2>NOS THÈMATIQUES</h2>
+      <h2>NOS THÉMATIQUES</h2>
       <HomeTheme themes={themes} />
     </div>
   );

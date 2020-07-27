@@ -85,6 +85,45 @@ export const setFinalArray = (array) => {
   };
 };
 
+// SHOPS //
+export const filterShopByTheme = (theme, data) => {
+  return {
+    type: actionTypes.FILTER_BY_THEMESHOP,
+    theme,
+    dataTheme: data,
+  };
+};
+
+export const filterShopByRecipient = (recipient, data) => {
+  return {
+    type: actionTypes.FILTER_BY_RECIPIENTSHOP,
+    recipient,
+    dataRecipient: data,
+  };
+};
+
+export const filterShopByType = (type2, data) => {
+  return {
+    type: actionTypes.FILTER_BY_TYPESHOP,
+    type2,
+    dataType: data,
+  };
+};
+
+export const finalShopFilter = (data) => {
+  return {
+    type: actionTypes.FINAL_FILTERSHOP,
+    data,
+  };
+};
+
+export const setFinalShopArray = (array) => {
+  return {
+    type: actionTypes.SET_FINAL_ARRAYSHOP,
+    finalArray: array,
+  };
+};
+
 /* errors */
 // RETURN ERRORS
 export const returnErrors = (msg, status) => {

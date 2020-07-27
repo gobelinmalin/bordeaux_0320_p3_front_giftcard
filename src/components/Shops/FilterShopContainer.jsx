@@ -30,7 +30,7 @@ const customStyles = {
   }),
 };
 
-const FilterCardContainer = (props) => {
+const FilterShopContainer = (props) => {
   const useStyles = makeStyles({
     root: {
       backgroundColor: '#20124d',
@@ -53,13 +53,13 @@ const FilterCardContainer = (props) => {
 
   const classes = useStyles();
   const {
-    filterCardType,
+    filterShopType,
     filterRecipient,
     filterTheme,
-    finalFilter,
-    filterByType,
-    filterByTheme,
-    filterByRecipient,
+    finalShopFilter,
+    filterShopByType,
+    filterShopByTheme,
+    filterShopByRecipient,
   } = props;
 
   const [selectedCity, setSelectedCity] = useState('');
@@ -68,28 +68,33 @@ const FilterCardContainer = (props) => {
     setSelectedCity(city);
   };
 
+  // filter themes
   const onClickTheme = (theme) => {
     axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products?theme=${theme}`)
-      .then((res) => filterByTheme(theme, res.data));
+      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops?theme=${theme}`)
+      .get(`http://localhost:5000/api/shops?theme=${theme}`)
+      .then((res) => filterShopByTheme(theme, res.data));
   };
 
   const onClickRecipient = (recipient) => {
     axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products?tag=${recipient}`)
-      .then((res) => filterByRecipient(recipient, res.data));
+      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops?tag=${recipient}`)
+      .get(`http://localhost:5000/api/shops?tag=${recipient}`)
+      .then((res) => filterShopByRecipient(recipient, res.data));
   };
 
   const onClickType = (type) => {
     axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products/${type}`)
-      .then((res) => filterByType(type, res.data));
+      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${type}`)
+      .get(`http://localhost:5000/api/shops/${type}`)
+      .then((res) => filterShopByType(type, res.data));
   };
 
   const filter = () => {
     axios
-      .get(`${process.env.REACT_APP_LOCALHOST}/api/products`)
-      .then((res) => finalFilter(res.data));
+      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/products`)
+      .get(`http://localhost:5000/api/shops/products`)
+      .then((res) => finalShopFilter(res.data));
   };
 
   return (
@@ -112,28 +117,28 @@ const FilterCardContainer = (props) => {
           <div
             role="button"
             tabIndex={0}
-            name="eCard"
+            name="online"
             className={[
-              filterCardType.eCard ? 'Checked' : null,
+              filterShopType.eshop ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
-            onClick={() => onClickType('eCard')}
+            onClick={() => onClickType('online')}
             onKeyDown={() => {}}
           >
-            Boutique en ligne
+            En ligne
           </div>
           <div
             role="button"
             tabIndex={0}
-            onKeyDown={() => {}}
-            name="realCard"
+            name="offline"
             className={[
-              filterCardType.realCard ? 'Checked' : null,
+              filterShopType.realshop ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
-            onClick={() => onClickType('realCard')}
+            onClick={() => onClickType('offline')}
+            onKeyDown={() => {}}
           >
-            Boutique physique
+            Physique
           </div>
         </div>
       </div>
@@ -390,55 +395,78 @@ const FilterCardContainer = (props) => {
   );
 };
 
-FilterCardContainer.propTypes = {
-  filterByTheme: PropTypes.func,
-  filterByType: PropTypes.func,
-  filterByRecipient: PropTypes.func,
-  filterCardType: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  filterRecipient: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  filterTheme: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  finalFilter: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
+FilterShopContainer.propTypes = {
+  filterShopByTheme: PropTypes.func,
+  filterShopByType: PropTypes.func,
+  filterShopByRecipient: PropTypes.func,
+  filterShopType: PropTypes.shape({
+    eshop: PropTypes.bool,
+    realshop: PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  filterRecipient: PropTypes.shape({
+    femme: PropTypes.bool,
+    homme: PropTypes.bool,
+    bébé: PropTypes.bool,
+    'animal de compagnie': PropTypes.bool,
+    couple: PropTypes.bool,
+    enfant: PropTypes.bool,
+    famille: PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  filterTheme: PropTypes.shape({
+    mode: PropTypes.bool,
+    maison: PropTypes.bool,
+    gastronomie: PropTypes.bool,
+    culture: PropTypes.bool,
+    adulte: PropTypes.bool,
+    'bien-être': PropTypes.bool,
+    sport: PropTypes.bool,
+    evasion: PropTypes.bool,
+    education: PropTypes.bool,
+    'magasins specialises': PropTypes.bool,
+    filteredArray: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+  }),
+  finalShopFilter: PropTypes.func,
 };
 
-FilterCardContainer.defaultProps = {
-  filterByTheme: '',
-  filterByType: '',
-  filterByRecipient: '',
-  filterCardType: '',
-  filterRecipient: '',
-  filterTheme: '',
-  finalFilter: '',
+FilterShopContainer.defaultProps = {
+  filterShopByTheme: '',
+  filterShopByType: '',
+  filterShopByRecipient: '',
+  filterShopType: [],
+  filterRecipient: [],
+  filterTheme: [],
+  finalShopFilter: [],
 };
 
 const mapStateToProps = (state) => {
   return {
-    filterCardType: state.product.filterCardType,
-    filterRecipient: state.product.filterRecipient,
-    filterTheme: state.product.filterTheme,
+    filterShopType: state.shop.filterShopType,
+    filterRecipient: state.shop.filterRecipient,
+    filterTheme: state.shop.filterTheme,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    filterByType: (type, data) =>
-      dispatch(actionCreators.filterByType(type, data)),
-    filterByTheme: (theme, data) =>
-      dispatch(actionCreators.filterByTheme(theme, data)),
-    filterByRecipient: (recipient, data) =>
-      dispatch(actionCreators.filterByRecipient(recipient, data)),
-    finalFilter: (data) => dispatch(actionCreators.finalFilter(data)),
+    filterShopByType: (type, data) =>
+      dispatch(actionCreators.filterShopByType(type, data)),
+    filterShopByTheme: (theme, data) =>
+      dispatch(actionCreators.filterShopByTheme(theme, data)),
+    filterShopByRecipient: (recipient, data) =>
+      dispatch(actionCreators.filterShopByRecipient(recipient, data)),
+    finalShopFilter: (data) => dispatch(actionCreators.finalShopFilter(data)),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FilterCardContainer);
+)(FilterShopContainer);
