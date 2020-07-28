@@ -10,8 +10,7 @@ const ShopList = (props) => {
 
   useEffect(() => {
     axios
-      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/products`)
-      .get(`http://localhost:5000/api/shops/products`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/products`)
       .then((res) => res.data)
       .then((data) => setFinalShopArray(data));
   }, [setFinalShopArray]);

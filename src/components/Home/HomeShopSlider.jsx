@@ -7,9 +7,7 @@ import { Link } from 'react-router-dom';
 const HomeShopSlider = () => {
   const [shops, setShops] = useState([]);
   useEffect(() => {
-    Axios
-      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops`)
-      .get(`http://localhost:5000/api/shops/products`)
+    Axios.get(`${process.env.REACT_APP_LOCALHOST}/api/shops`)
       .then((res) => res.data)
       .then((data) => setShops(data));
   }, []);
