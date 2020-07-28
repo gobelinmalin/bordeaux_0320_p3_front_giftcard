@@ -70,8 +70,7 @@ const AdminClientHistory = ({ loadUser, client }) => {
     if (orders) {
       orders.map((order) =>
         Axios.get(
-          // `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
-          `http://localhost:5000/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
+          `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
         )
           .then((res) => res.data[0])
           .then((data) => delivery.push(data) && setDeliveries(delivery))
