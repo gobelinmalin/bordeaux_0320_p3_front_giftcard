@@ -71,29 +71,25 @@ const FilterShopContainer = (props) => {
   // filter themes
   const onClickTheme = (theme) => {
     axios
-      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops?theme=${theme}`)
-      .get(`http://localhost:5000/api/shops?theme=${theme}`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops?theme=${theme}`)
       .then((res) => filterShopByTheme(theme, res.data));
   };
 
   const onClickRecipient = (recipient) => {
     axios
-      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops?tag=${recipient}`)
-      .get(`http://localhost:5000/api/shops?tag=${recipient}`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops?tag=${recipient}`)
       .then((res) => filterShopByRecipient(recipient, res.data));
   };
 
   const onClickType = (type) => {
     axios
-      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${type}`)
-      .get(`http://localhost:5000/api/shops/${type}`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/${type}`)
       .then((res) => filterShopByType(type, res.data));
   };
 
   const filter = () => {
     axios
-      // .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/products`)
-      .get(`http://localhost:5000/api/shops/products`)
+      .get(`${process.env.REACT_APP_LOCALHOST}/api/shops/products`)
       .then((res) => finalShopFilter(res.data));
   };
 
