@@ -21,6 +21,9 @@ const StandardcardChoice = (props) => {
       },
       margin: '1rem 0',
       marginRight: '0.5rem',
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
     },
     formControl: {
       color: 'rgba(0, 0, 0, 0.54)',

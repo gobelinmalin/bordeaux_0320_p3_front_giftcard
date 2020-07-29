@@ -12,10 +12,6 @@
   flex-direction: column;
 }
 
-.CartTotalContainer {
-  width: 20%;
-}
-
 .pmessage {
   font-size: 0.8rem;
 }

@@ -115,7 +115,7 @@ const FilterShopContainer = (props) => {
             tabIndex={0}
             name="online"
             className={[
-              filterShopType.eshop ? 'Checked' : null,
+              filterShopType.online ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
             onClick={() => onClickType('online')}
@@ -128,7 +128,7 @@ const FilterShopContainer = (props) => {
             tabIndex={0}
             name="offline"
             className={[
-              filterShopType.realshop ? 'Checked' : null,
+              filterShopType.offline ? 'Checked' : null,
               'OptionBox',
             ].join(' ')}
             onClick={() => onClickType('offline')}
@@ -396,8 +396,8 @@ FilterShopContainer.propTypes = {
   filterShopByType: PropTypes.func,
   filterShopByRecipient: PropTypes.func,
   filterShopType: PropTypes.shape({
-    eshop: PropTypes.bool,
-    realshop: PropTypes.bool,
+    offline: PropTypes.bool,
+    online: PropTypes.bool,
     filteredArray: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     ),

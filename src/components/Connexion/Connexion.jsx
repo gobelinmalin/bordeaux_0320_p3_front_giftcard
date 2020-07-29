@@ -72,8 +72,10 @@ const Connexion = ({
         <Redirect to="/panier" />
       ) : isAuthenticated && choice.price ? (
         <Redirect to="/choix/e-carte/2" />
-      ) : isAuthenticated || isAuthenticatedShop ? (
-        <Redirect to={`/mon-compte-${user}`} />
+      ) : isAuthenticated ? (
+        <Redirect to="/mon-compte-client" />
+      ) : isAuthenticatedShop ? (
+        <Redirect to="/mon-compte-enseigne" />
       ) : (
         <div className="connexion-container">
           <div className="connexion-bloc">

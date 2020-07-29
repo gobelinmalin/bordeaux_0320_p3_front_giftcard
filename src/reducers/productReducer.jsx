@@ -175,6 +175,7 @@ export default function productReducer(state = initialState, action) {
         finalFilteredArray = baseArray;
       }
 
+      // filter when one array is empty
       if (
         state.filterTheme.arrayvide === true ||
         state.filterRecipient.arrayvide === true ||
@@ -183,12 +184,12 @@ export default function productReducer(state = initialState, action) {
         finalFilteredArray = [];
       }
 
+      // Filter if only array1 is not empty
       if (
         arrayType.length > 0 &&
         arrayRecipient.length === 0 &&
         arrayTheme.length === 0
       ) {
-        // Filter if only array1 is not empty
         arrayType.map((element) => finalFilteredArray.push(element));
       }
       // Filter if Only array2 is not empty

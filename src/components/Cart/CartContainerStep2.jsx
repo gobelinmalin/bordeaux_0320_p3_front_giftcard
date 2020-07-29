@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable prefer-destructuring */
 import React, { useEffect, useState } from 'react';
 import './CartContainer.css';
@@ -10,9 +11,13 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import PropTypes from 'prop-types';
 import CartTotal from './CartTotal';
+import { loadUser } from '../../actions/generalActions';
 
 const CartContainerStep2 = (props) => {
-  const { client, isAuthenticated } = props;
+  const { loadUser, client, isAuthenticated } = props;
+  useEffect(() => {
+    loadUser(localStorage.getItem('token'));
+  }, [loadUser]);
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -67,6 +72,9 @@ const CartContainerStep2 = (props) => {
       },
       margin: '1rem 0',
       marginRight: '0.5rem',
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
     },
     formControl: {
       color: 'rgba(0, 0, 0, 0.54)',
@@ -328,11 +336,13 @@ const mapStateToProps = (state) => {
 CartContainerStep2.propTypes = {
   client: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isAuthenticated: PropTypes.bool,
+  loadUser: PropTypes.func,
 };
 
 CartContainerStep2.defaultProps = {
   client: [],
   isAuthenticated: '',
+  loadUser: () => {},
 };
 
-export default connect(mapStateToProps, null)(CartContainerStep2);
+export default connect(mapStateToProps, { loadUser })(CartContainerStep2);
