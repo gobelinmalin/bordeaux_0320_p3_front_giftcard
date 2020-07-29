@@ -11,12 +11,16 @@ const PrivateRoute = ({
   path,
   component: Component,
   isAuthenticated,
+  isAuthenticatedShop,
   loadUser,
 }) => {
   useEffect(() => {
     loadUser(localStorage.getItem('token'));
   }, [loadUser]);
-  if (!isAuthenticated && isAuthenticated !== null) {
+  if (
+    (!isAuthenticated && isAuthenticated !== null) ||
+    (!isAuthenticatedShop && isAuthenticatedShop !== null)
+  ) {
     return <Redirect to="/connexion" />;
   }
 
@@ -26,6 +30,7 @@ const PrivateRoute = ({
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticatedShop: state.authShop.isAuthenticated,
   };
 };
 
@@ -33,6 +38,7 @@ PrivateRoute.propTypes = {
   path: PropTypes.string,
   component: PropTypes.func,
   isAuthenticated: PropTypes.bool,
+  isAuthenticatedShop: PropTypes.bool,
   loadUser: PropTypes.func,
 };
 
@@ -40,6 +46,7 @@ PrivateRoute.defaultProps = {
   path: '',
   component: {},
   isAuthenticated: false,
+  isAuthenticatedShop: false,
 };
 
 export default connect(mapStateToProps, { loadUser })(PrivateRoute);

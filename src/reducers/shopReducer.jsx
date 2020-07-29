@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  filterShopType: { eshop: false, realshop: false, filteredArray: [] },
+  filterShopType: { online: false, offline: false, filteredArray: [] },
   filterRecipient: {
     femme: false,
     homme: false,
@@ -53,8 +53,8 @@ export default function shopReducer(state = initialState, action) {
         ...state,
         filterShopType: {
           ...state.filterShopType,
-          eshop: false,
-          realshop: false,
+          online: false,
+          offline: false,
           [type]: trueOrFalse,
           filteredArray: newTypeArray,
           arrayvide: vide,
@@ -136,9 +136,7 @@ export default function shopReducer(state = initialState, action) {
         arrayTheme.length === 0
       ) {
         finalFilteredArray = baseArray;
-      }
-
-      if (
+      } else if (
         state.filterTheme.arrayvide === true ||
         state.filterRecipient.arrayvide === true ||
         state.filterShopType.arrayvide === true

@@ -7,21 +7,10 @@ import { Link } from 'react-router-dom';
 const HomeShopSlider = () => {
   const [shops, setShops] = useState([]);
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_LOCALHOST}/api/shops`)
+    Axios.get(`${process.env.REACT_APP_LOCALHOST}/api/shops/products`)
       .then((res) => res.data)
       .then((data) => setShops(data));
   }, []);
-
-  let unique;
-  const getUniqueCard = (arr, comp) => {
-    unique = arr
-      .map((e) => e[comp])
-      .map((e, i, final) => final.indexOf(e) === i && i)
-      .filter((e) => arr[e])
-      .map((e) => arr[e]);
-  };
-
-  getUniqueCard(shops, 'id');
 
   const settings = {
     dots: false,
@@ -39,7 +28,7 @@ const HomeShopSlider = () => {
   return (
     <Slider {...settings}>
       {shops &&
-        unique.map((shop) => (
+        shops.map((shop) => (
           <Link to={`/enseignes/${shop.id}`} key={shop.id}>
             <img src={shop.logo} alt={shop.name} />
           </Link>

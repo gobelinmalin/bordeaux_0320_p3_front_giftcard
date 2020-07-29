@@ -107,8 +107,10 @@ function ModalConnexion({ isAuthenticated, step, choice, setStep, login }) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      {isAuthenticated && step === 'step2' ? (
+      {isAuthenticated && step === 'step2' && choice.type === 0 ? (
         <Redirect to="/choix/e-carte/2" />
+      ) : isAuthenticated && step === 'step2' && choice.type === 1 ? (
+        <Redirect to="/choix/physique" />
       ) : isAuthenticated ? (
         <Redirect to="/panier/informations" />
       ) : (
