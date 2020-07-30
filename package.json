@@ -2,7 +2,7 @@
   "name": "react-prettier-eslint-action",
   "version": "0.1.0",
   "private": true,
-  "proxy": `${process.env.REACT_APP_LOCALHOST}`,
+  "proxy": "http://back-givyoo.givyoo.fr:3000",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/styles": "^4.10.0",
