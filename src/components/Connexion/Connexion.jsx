@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
 import React, { useState } from 'react';
@@ -8,7 +9,15 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { login, loginShop, clearErrors } from '../../actions/generalActions';
 
-const Connexion = ({ match, login, loginShop, isAuthenticated }) => {
+const Connexion = ({
+  match,
+  login,
+  loginShop,
+  isAuthenticated,
+  isAuthenticatedShop,
+  cart,
+  choice,
+}) => {
   const { user } = match.params;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,12 +68,14 @@ const Connexion = ({ match, login, loginShop, isAuthenticated }) => {
   return (
     <div className="connexion">
       <h2>CONNEXION</h2>
-      {isAuthenticated ? (
-        <Redirect
-          to={`/mon-compte-${user}`}
-          email={email}
-          password={password}
-        />
+      {isAuthenticated && cart.length > 0 ? (
+        <Redirect to="/panier" />
+      ) : isAuthenticated && choice.price ? (
+        <Redirect to="/choix/e-carte/2" />
+      ) : isAuthenticated ? (
+        <Redirect to="/mon-compte-client" />
+      ) : isAuthenticatedShop ? (
+        <Redirect to="/mon-compte-enseigne" />
       ) : (
         <div className="connexion-container">
           <div className="connexion-bloc">
@@ -137,7 +148,10 @@ const Connexion = ({ match, login, loginShop, isAuthenticated }) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticatedShop: state.authShop.isAuthenticated,
     error: state.error,
+    cart: state.cart.cart,
+    choice: state.choice.choice,
   };
 };
 

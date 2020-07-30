@@ -36,6 +36,21 @@ const CartTotal = (props) => {
       borderRadius: '10px',
       margin: 'auto',
     },
+    textField: {
+      '& label.Mui-focused': {
+        color: '#F28A2F',
+      },
+      '& .MuiOutlinedInput-root': {
+        '&.Mui-focused fieldset': {
+          borderColor: '#F28A2F',
+        },
+      },
+      margin: '1rem 0',
+      marginRight: '0.5rem',
+      '& .MuiInputBase-root.Mui-disabled': {
+        color: 'rgba(0, 0, 0, 0.87)',
+      },
+    },
   }));
 
   const classes = useStyles();
@@ -46,23 +61,31 @@ const CartTotal = (props) => {
     label: 'Livraison en 24h (5€)',
   });
 
-  const handleChange = () => {
-    setSelectedDelivery(selectedDelivery);
+  const handleChange = (deliverychoice) => {
+    setSelectedDelivery(deliverychoice);
     saveDelivery(selectedDelivery);
   };
 
   const totalPrice = cart
-    .map((element) => element.credit)
+    .map((element) => element.price)
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   const priceAndFees =
     selectedDelivery.value === undefined
       ? totalPrice
-      : totalPrice + parseInt(selectedDelivery.value, 10);  
+      : totalPrice + parseInt(selectedDelivery.value, 10);
 
   return (
     <div className="CartTotal">
-      {choice.price ? (
+      {choice.type === 0 ? (
         <>
+          <h4 className="cartcardtitle">{choice.title}</h4>
+          {choice.message.length > 0 ? (
+            <p className="pmessage">
+              Votre message : &quot;{choice.message}&quot;
+            </p>
+          ) : (
+            <p className="pmessage">Envoi sans message personnalisé</p>
+          )}
           <div className="Total">
             <p>Total</p>
             <div className="Price">{choice.price}€</div>
@@ -73,32 +96,45 @@ const CartTotal = (props) => {
         </>
       ) : (
         <>
-          <div className="Total">
-            <div className="Price">{priceAndFees}€</div>
-          </div>
-          <div className="UnderTotal">
-            <p>Sous total</p>
-            <div className="Price">{totalPrice}€</div>
-          </div>
+          {cart.map((card) => (
+            <div className="UnderTotal">
+              <p>{card.title}</p>
+              <div className="Price">{card.price}€</div>
+            </div>
+          ))}
+          {cart.length > 1 && (
+            <div className="UnderTotal">
+              <p>
+                <strong>Sous total</strong>
+              </p>
+              <div className="Price">{totalPrice}€</div>
+            </div>
+          )}
           <p>Livraison</p>
           {step1 ? (
             <Select
               styles={customStyles}
-              // isDisabled={step1}
               value={selectedDelivery}
               onChange={handleChange}
               options={options}
-              width="333px"
+              width="300px"
             />
           ) : (
             <TextField
               disabled
+              className={classes.textField}
               id="delivery"
               variant="outlined"
               value={delivery}
               style={{ width: 300 }}
             />
           )}
+          <div className="Total">
+            <h4>Total</h4>
+            <div className="Price">
+              <strong>{priceAndFees}€</strong>
+            </div>
+          </div>
           {step1 ? (
             <div className="BtnContainer">
               <ModalConnexion />
@@ -134,10 +170,7 @@ CartTotal.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
   saveDelivery: PropTypes.func,
-  delivery: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  delivery: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   step1: PropTypes.bool,
   choice: PropTypes.instanceOf(Object),
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ButtonModify from '../../style/ButtonModify';
 import AdminClientInfo from './AdminClientInfo';
 import AdminClientOrder from './AdminClientOrder';
+import AdminClientHistory from './AdminClientHistory';
 
 const AdminClient = () => {
   const [onglets, setOnglets] = useState(1);
@@ -47,13 +48,7 @@ const AdminClient = () => {
             <AdminClientInfo />
           </>
         ) : (
-          <>
-            {onglets === 2 ? (
-              <AdminClientOrder />
-            ) : (
-              <p>Vous n&apos;avez pas de commandes passées</p>
-            )}
-          </>
+          <>{onglets === 2 ? <AdminClientOrder /> : <AdminClientHistory />}</>
         )}
       </>
     </div>

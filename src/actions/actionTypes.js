@@ -7,12 +7,19 @@ export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const FINAL_FILTER = 'FINAL_FILTER';
 export const SET_FINAL_ARRAY = 'SET_FINAL_ARRAY';
 
-// auth
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAIL = 'LOGIN_FAIL';
+// shops
+export const FILTER_BY_THEMESHOP = 'FILTER_BY_THEMESHOP';
+export const FILTER_BY_RECIPIENTSHOP = 'FILTER_BY_RECIPIENTSHOP';
+export const FILTER_BY_TYPESHOP = 'FILTER_BY_TYPESHOP';
+export const FINAL_FILTERSHOP = 'FINAL_FILTERSHOP';
+export const SET_FINAL_ARRAYSHOP = 'SET_FINAL_ARRAYSHOP';
+
+// logout
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 // client auth
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
 export const USER_MODIFY = 'USER_MODIFY';
@@ -21,6 +28,8 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 
 // shop auth
+export const LOGINSHOP_SUCCESS = 'LOGINSHOP_SUCCESS';
+export const LOGINSHOP_FAIL = 'LOGINSHOP_FAIL';
 export const SHOP_LOADING = 'SHOP_LOADING';
 export const SHOP_LOADED = 'SHOP_LOADED';
 export const SHOP_MODIFY = 'SHOP_MODIFY';

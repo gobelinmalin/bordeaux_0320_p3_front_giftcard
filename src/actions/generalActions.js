@@ -85,6 +85,45 @@ export const setFinalArray = (array) => {
   };
 };
 
+// SHOPS //
+export const filterShopByTheme = (theme, data) => {
+  return {
+    type: actionTypes.FILTER_BY_THEMESHOP,
+    theme,
+    dataTheme: data,
+  };
+};
+
+export const filterShopByRecipient = (recipient, data) => {
+  return {
+    type: actionTypes.FILTER_BY_RECIPIENTSHOP,
+    recipient,
+    dataRecipient: data,
+  };
+};
+
+export const filterShopByType = (type2, data) => {
+  return {
+    type: actionTypes.FILTER_BY_TYPESHOP,
+    type2,
+    dataType: data,
+  };
+};
+
+export const finalShopFilter = (data) => {
+  return {
+    type: actionTypes.FINAL_FILTERSHOP,
+    data,
+  };
+};
+
+export const setFinalShopArray = (array) => {
+  return {
+    type: actionTypes.SET_FINAL_ARRAYSHOP,
+    finalArray: array,
+  };
+};
+
 /* errors */
 // RETURN ERRORS
 export const returnErrors = (msg, status) => {
@@ -102,45 +141,25 @@ export const clearErrors = () => {
 };
 
 /* authentification */
-// Logout User
+// Logout client - shop
 export const logOut = () => {
   return {
     type: actionTypes.LOGOUT_SUCCESS,
   };
 };
 
-// Setup config/headers and token
-export const tokenConfig = (getState) => {
-  // Get token from localstorage
-  const { token } = getState().auth;
-  // Headers
-  const config = {
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  // If token, add to headers
-  if (token) {
-    config.headers['x-auth-token'] = token;
-  }
-  return config;
-};
-
 /* authentification CLIENT */
 // Check token & load client
-export const loadUser = (email, password) => (dispatch, getState) => {
-  console.log('user',email, password)
+export const loadUser = (token) => (dispatch) => {
   // User loading
   dispatch({ type: actionTypes.USER_LOADING });
   // Request body
-  const body = JSON.stringify(email, password);
   axios
-    .post(
-      `${process.env.REACT_APP_LOCALHOST}/api/auth/profile`,
-      body,
-      tokenConfig(getState)
-    )
+    .post(`${process.env.REACT_APP_LOCALHOST}/api/auth/profile`, null, {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+    })
     .then((res) =>
       dispatch({
         type: actionTypes.USER_LOADED,
@@ -148,7 +167,6 @@ export const loadUser = (email, password) => (dispatch, getState) => {
       })
     )
     .catch((err) => {
-      console.log(err);
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: actionTypes.AUTH_ERROR,
@@ -255,17 +273,16 @@ export const login = (email, password) => (dispatch) => {
 
 /* Authentification SHOP */
 // Check token & load shop
-export const loadShop = (email, password) => (dispatch, getState) => {
+export const loadShop = (token) => (dispatch) => {
   // User loading
   dispatch({ type: actionTypes.SHOP_LOADING });
   // Request body
-  const body = JSON.stringify(email, password);
   axios
-    .post(
-      `${process.env.REACT_APP_LOCALHOST}/api/auth/profile`,
-      body,
-      tokenConfig(getState)
-    )
+    .post(`${process.env.REACT_APP_LOCALHOST}/api/auth/profile`, null, {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+    })
     .then((res) =>
       dispatch({
         type: actionTypes.SHOP_LOADED,
@@ -346,7 +363,7 @@ export const loginShop = (email, password) => (dispatch) => {
     )
     .then((res) =>
       dispatch({
-        type: actionTypes.LOGIN_SUCCESS,
+        type: actionTypes.LOGINSHOP_SUCCESS,
         payload: res.data,
       })
     )
@@ -355,7 +372,7 @@ export const loginShop = (email, password) => (dispatch) => {
         returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
       );
       dispatch({
-        type: actionTypes.LOGIN_FAIL,
+        type: actionTypes.LOGINSHOP_FAIL,
       });
     });
 };

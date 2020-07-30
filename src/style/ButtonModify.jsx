@@ -19,6 +19,7 @@ const ButtonModify = () => {
       margin: 'auto',
       marginRight: '1rem',
       marginTop: '1rem',
+      cursor: 'pointer',
       '&:hover': {
         boxShadow: '0px 0px 5px 0px rgba(32,18,77,1)',
         backgroundColor: '#fadb11',
@@ -29,11 +30,13 @@ const ButtonModify = () => {
   const classes = useStyles();
 
   return (
-    <Link to="/modifier-mon-compte/client">
-      <Button variant="contained" color="primary" className={classes.Button}>
-        Modifier
-      </Button>
-    </Link>
+    <div className="button_modify">
+      <Link to="/modifier-mon-compte/client">
+        <Button variant="contained" color="primary" className={classes.Button}>
+          Modifier
+        </Button>
+      </Link>
+    </div>
   );
 };
 

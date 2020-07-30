@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
@@ -41,11 +40,11 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminClientOrder = ({ loadUser, client }) => {
+const AdminClientHistory = ({ loadUser, client }) => {
   const classes = useStyles();
 
   const [orders, setOrders] = useState([]);
-  const [infos, setInfos] = useState([]);
+  const [deliveries, setDeliveries] = useState([]);
 
   useEffect(() => {
     loadUser(localStorage.getItem('token'));
@@ -65,27 +64,31 @@ const AdminClientOrder = ({ loadUser, client }) => {
       .then((data) => setOrders(data));
   }, [clientInfo.id]);
 
-  const allinfos = [];
+  const delivery = [];
   // accèder à toutes les données de chaque commande
   useEffect(() => {
-    orders.map((order) =>
-      Axios.get(
-        `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
-      )
-        .then((res) => res.data[0])
-        .then((data) => allinfos.push(data) && setInfos(allinfos))
-    );
-  }, [clientInfo.id, orders, allinfos]);
+    if (orders) {
+      orders.map((order) =>
+        Axios.get(
+          `${process.env.REACT_APP_LOCALHOST}/api/clients/${clientInfo.id}/orders/${order.id}/deliveries/products`
+        )
+          .then((res) => res.data[0])
+          .then((data) => delivery.push(data) && setDeliveries(delivery))
+      );
+    }
+  }, [orders, clientInfo.id, delivery]);
 
   return (
     <div>
-      {infos.length > 0 && infos.filter((info) => info.status === 0) ? (
+      {orders.filter((order) => order.status === 0) ? (
+        <p>Vous n&apos;avez pas de commandes passées</p>
+      ) : (
         <div className="info-content">
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>Date de commande</StyledTableCell>
+                  <StyledTableCell>Date</StyledTableCell>
                   <StyledTableCell>N° de commande</StyledTableCell>
                   <StyledTableCell>Carte</StyledTableCell>
                   <StyledTableCell>Type</StyledTableCell>
@@ -95,7 +98,7 @@ const AdminClientOrder = ({ loadUser, client }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {infos.map((info) => (
+                {deliveries.map((info) => (
                   <StyledTableRow key={info.id}>
                     <StyledTableCell component="th" scope="row">
                       {new Date(info.createDate).toLocaleDateString()}
@@ -126,8 +129,6 @@ const AdminClientOrder = ({ loadUser, client }) => {
             </Table>
           </TableContainer>
         </div>
-      ) : (
-        <p>Vous n&apos;avez pas de commandes en cours</p>
       )}
     </div>
   );
@@ -139,4 +140,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { loadUser })(AdminClientOrder);
+export default connect(mapStateToProps, { loadUser })(AdminClientHistory);

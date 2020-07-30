@@ -9,15 +9,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  height: 100%;
+  position: relative;
+  margin-bottom: 3rem;
 }
+
+.shop-info-container hr {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  padding: 0;
+  background-color: #231864;
+  opacity: 0.5;
+}
+
 .shop-logo-container {
   display: flex;
-  height: 80%;
+  height: 100%;
   width: 50%;
   align-items: center;
   justify-content: center;
-  border-right: solid 2px #20124d;
 }
 
 .shop-info-logo {
@@ -31,6 +44,15 @@
   justify-content: flex-start;
   flex-direction: column;
   width: 50%;
-  height: 80%;
-  padding-left: 2rem;
+  height: 100%;
+  padding-left: 10%;
+}
+
+.shop-info-description h2 {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.shop-info-container h4 {
+  margin: 0.5rem 0;
 }

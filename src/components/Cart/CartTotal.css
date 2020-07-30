@@ -1,43 +1,52 @@
 .CartTotal {
-  width: 300px;
   height: auto;
   border: 1px solid black;
-  padding: 15px;
-  border-radius: 25px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  -ms-border-radius: 25px;
-  -o-border-radius: 25px;
+  padding: 1rem;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
   border-top-left-radius: 0px;
   display: flex;
   flex-direction: column;
+}
+
+.pmessage {
+  font-size: 0.8rem;
 }
 
 .Total,
 .UnderTotal {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.Total p,
-.UnderTotal p {
-  margin-top: 25px;
+.cartcardtitle {
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .Price {
   border: 1px solid #20124d;
-  padding: 15px;
+  padding: 1rem;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   margin: 10px;
-  width: 35px;
+  width: auto;
   text-align: center;
 }
 
 .BtnContainer {
   display: flex;
   justify-content: center;
+}
+
+.Total h4 {
+  text-transform: uppercase;
+  font-size: 1.3rem;
 }

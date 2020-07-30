@@ -8,7 +8,7 @@
 
 .ecardchoice {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding-top: 2rem;
 }
 
@@ -42,4 +42,9 @@
   width: 50%;
   height: 30%;
   object-fit: contain;
+}
+
+.button-realcard {
+  display: flex;
+  margin: auto;
 }

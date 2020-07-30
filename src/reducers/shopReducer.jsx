@@ -1,11 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  products: [],
-  newProducts: [],
-  loading: false,
-  allCards: [],
-  filterCardType: { eCard: false, realCard: false, filteredArray: [] },
+  filterShopType: { online: false, offline: false, filteredArray: [] },
   filterRecipient: {
     femme: false,
     homme: false,
@@ -32,53 +28,20 @@ const initialState = {
   finalArray: [],
 };
 
-export default function productReducer(state = initialState, action) {
+export default function shopReducer(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.GET_PRODUCTS: {
-      const listProducts = action.payload;
-      const month = new Date();
-      const months = [
-        '01',
-        '02',
-        '03',
-        '04',
-        '05',
-        '06',
-        '07',
-        '08',
-        '09',
-        '10',
-        '11',
-        '12',
-      ];
-      const actualMonth = months[month.getMonth()];
-      const news = listProducts.filter((product) =>
-        product.creationDate.includes(actualMonth)
-      );
-      return {
-        ...state,
-        products: action.payload,
-        newProducts: news,
-        loading: false,
-      };
-    }
-    case actionTypes.PRODUCTS_LOADING:
-      return {
-        ...state,
-        loading: true,
-      };
-    case actionTypes.SET_FINAL_ARRAY: {
+    case actionTypes.SET_FINAL_ARRAYSHOP: {
       const { finalArray } = action;
       return {
         ...state,
         finalArray,
       };
     }
-    case actionTypes.FILTER_BY_TYPE: {
+    case actionTypes.FILTER_BY_TYPESHOP: {
       const type = action.type2;
       let newTypeArray = action.dataType;
       let trueOrFalse = true;
-      if (state.filterCardType[type]) {
+      if (state.filterShopType[type]) {
         trueOrFalse = false;
         newTypeArray = [];
       }
@@ -88,17 +51,17 @@ export default function productReducer(state = initialState, action) {
       }
       return {
         ...state,
-        filterCardType: {
-          ...state.filterCardType,
-          eCard: false,
-          realCard: false,
+        filterShopType: {
+          ...state.filterShopType,
+          online: false,
+          offline: false,
           [type]: trueOrFalse,
           filteredArray: newTypeArray,
           arrayvide: vide,
         },
       };
     }
-    case actionTypes.FILTER_BY_THEME: {
+    case actionTypes.FILTER_BY_THEMESHOP: {
       const { theme } = action;
       let { dataTheme } = action;
       let trueOrFalse = true;
@@ -130,7 +93,7 @@ export default function productReducer(state = initialState, action) {
         },
       };
     }
-    case actionTypes.FILTER_BY_RECIPIENT: {
+    case actionTypes.FILTER_BY_RECIPIENTSHOP: {
       const { recipient } = action;
       let { dataRecipient } = action;
       let trueOrFalse = true;
@@ -159,27 +122,24 @@ export default function productReducer(state = initialState, action) {
         },
       };
     }
-    case actionTypes.FINAL_FILTER: {
-      const arrayType = state.filterCardType.filteredArray;
+    case actionTypes.FINAL_FILTERSHOP: {
+      const arrayType = state.filterShopType.filteredArray;
       const arrayRecipient = state.filterRecipient.filteredArray;
       const arrayTheme = state.filterTheme.filteredArray;
       const baseArray = action.data;
       let finalFilteredArray = [];
 
-      // Filter when all array are empty
+      // when nobody touch the filter
       if (
         arrayType.length === 0 &&
         arrayRecipient.length === 0 &&
         arrayTheme.length === 0
       ) {
         finalFilteredArray = baseArray;
-      }
-
-      // filter when one array is empty
-      if (
+      } else if (
         state.filterTheme.arrayvide === true ||
         state.filterRecipient.arrayvide === true ||
-        state.filterCardType.arrayvide === true
+        state.filterShopType.arrayvide === true
       ) {
         finalFilteredArray = [];
       }
@@ -192,6 +152,7 @@ export default function productReducer(state = initialState, action) {
       ) {
         arrayType.map((element) => finalFilteredArray.push(element));
       }
+
       // Filter if Only array2 is not empty
       if (
         arrayType.length === 0 &&
@@ -200,6 +161,7 @@ export default function productReducer(state = initialState, action) {
       ) {
         arrayRecipient.map((element) => finalFilteredArray.push(element));
       }
+
       // Filter if only array3 is empty
       if (
         arrayType.length === 0 &&
@@ -208,6 +170,7 @@ export default function productReducer(state = initialState, action) {
       ) {
         arrayTheme.map((element) => finalFilteredArray.push(element));
       }
+
       // Filter if array1 & array 2 are not empty
       if (
         arrayType.length > 0 &&
@@ -222,6 +185,7 @@ export default function productReducer(state = initialState, action) {
           });
         });
       }
+
       // Filter if array1 & array3 are not empty
       if (
         arrayType.length > 0 &&
@@ -236,6 +200,7 @@ export default function productReducer(state = initialState, action) {
           });
         });
       }
+
       // Filter if array2 & array3 are not empty
       if (
         arrayType.length === 0 &&

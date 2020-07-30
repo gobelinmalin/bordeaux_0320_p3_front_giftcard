@@ -45,25 +45,36 @@ const CardGeneralInfoContainer = (props) => {
   const formats = product.map((format) => format.format).sort();
 
   let image = '';
+  let title = '';
+  let description = '';
+  let id;
+  // let id = Math.random();
+
   // choice client
   const [choice, setChoice] = useState({
     type: 0,
     price: '',
     message: '',
     image,
+    title,
+    description,
+    id,
   });
 
   if (infoProduct) {
     image = infoProduct.image;
+    title = infoProduct.name;
+    description = infoProduct.description;
+    id = infoProduct.id;
   }
 
   useEffect(() => {
     if (image) {
       setChoice((prevState) => {
-        return { ...prevState, image };
+        return { ...prevState, image, title, description, id };
       });
     }
-  }, [image]);
+  }, [image, description, title, id]);
 
   // add choice to the reducer
   useEffect(() => {
@@ -184,7 +195,9 @@ const CardGeneralInfoContainer = (props) => {
                     ))}
                 </RadioGroup>
               </FormControl>
-              <Link to="/choix/e-carte/1">
+              <Link
+                to={choice.type === 0 ? '/choix/e-carte/1' : '/choix/physique'}
+              >
                 <Button className={classes.Button} variant="contained">
                   Continuer
                 </Button>

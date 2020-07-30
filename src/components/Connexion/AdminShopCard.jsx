@@ -9,7 +9,7 @@ import '../../style/AdminShop.css';
 import { connect } from 'react-redux';
 import { loadShop } from '../../actions/generalActions';
 
-const AdminShopCard = ({ loadShop, email, password, shop }) => {
+const AdminShopCard = ({ loadShop, shop }) => {
   const [cards, setCards] = useState([]);
   const [shopData, setShopData] = useState([]);
 
@@ -19,8 +19,8 @@ const AdminShopCard = ({ loadShop, email, password, shop }) => {
   }
 
   useEffect(() => {
-    loadShop(email, password);
-  }, [loadShop, email, password]);
+    loadShop(localStorage.getItem('token'));
+  }, [loadShop]);
 
   // all info of the shop
   useEffect(() => {
@@ -67,8 +67,6 @@ AdminShopCard.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
   loadShop: PropTypes.func.isRequired,
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
 };
 
 AdminShopCard.defaultProps = {

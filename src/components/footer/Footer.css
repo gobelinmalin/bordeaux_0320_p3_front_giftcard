@@ -57,6 +57,10 @@
   justify-content: space-around;
 }
 
+.SocialNetworkItem:hover {
+  cursor: pointer;
+}
+
 .vl {
   border-left: 2px solid #231864;
   height: 280px;
@@ -73,14 +77,6 @@
   font-size: 2rem;
   margin-right: 0.5rem;
   color: #231864;
-}
-
-.IconSocialNetwork:hover {
-  transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  -o-transform: scale(1.1);
 }
 
 .SubscribeBtn {
